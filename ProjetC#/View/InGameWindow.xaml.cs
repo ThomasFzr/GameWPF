@@ -1,11 +1,13 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
+//TODO CODE BEHIND => VIEWMODEL
 namespace Game
 {
     public partial class InGameWindow : Window
     {
-        public int SpellNbr { get; private set; }
+        public Action<int>? OnClickedSpell;
 
         public InGameWindow()
         {
@@ -16,8 +18,9 @@ namespace Game
         {
             if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
             {
-                SpellNbr = spellNumber;
+                OnClickedSpell?.Invoke(spellNumber);
             }
+            
         }
     }
 }

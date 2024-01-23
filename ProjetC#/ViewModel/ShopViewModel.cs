@@ -1,6 +1,6 @@
 ﻿namespace Game.ViewModel
 {
-    public class MainViewModel
+    class ShopViewModel
     {
     }
 }
