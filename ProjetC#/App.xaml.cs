@@ -1,9 +1,7 @@
-﻿using Game.Model;
-using System.Windows;
+﻿using System.Windows;
 
-namespace Game
+namespace Game;
+
+public partial class App : Application
 {
-    public partial class App : Application
-    {
-    }
 }

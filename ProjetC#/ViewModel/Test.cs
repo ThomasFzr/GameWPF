@@ -1,5 +1,7 @@
 ﻿namespace Game.ViewModel;
 
-class ShopViewModel
+class Test
 {
 }
+
+

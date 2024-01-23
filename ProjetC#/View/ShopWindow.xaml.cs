@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.View
+namespace Game.View;
+
+internal class ShopWindow
 {
-    internal class ShopWindow
-    {
-    }
 }

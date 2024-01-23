@@ -1,20 +1,19 @@
 ﻿using System.Collections.Generic;
 
-namespace Game.Model
+namespace Game.Model;
+
+class Character
 {
-    class Character
+    public int hp;
+    public int mana;
+    public enumState state;
+    public enum enumState
     {
-        public int hp;
-        public int mana;
-        public enumState state;
-        public enum enumState
-        {
-            freeze,
-            fire,
-            nothing,
-        };
+        freeze,
+        fire,
+        nothing
+    };
 
-        public List<ASpell> spells = new ();
+    public List<ASpell> spells = new();
 
-    }
 }

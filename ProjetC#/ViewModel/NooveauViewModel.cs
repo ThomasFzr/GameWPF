@@ -1,5 +1,5 @@
 ﻿namespace Game.ViewModel;
 
-class ShopViewModel
+internal class NooveauViewModel
 {
 }

@@ -1,6 +1,5 @@
-﻿namespace Game.ViewModel
+﻿namespace Game.ViewModel;
+
+class MainViewModel
 {
-    public class MainViewModel
-    {
-    }
 }
