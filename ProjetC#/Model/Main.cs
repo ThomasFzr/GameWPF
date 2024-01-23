@@ -1,13 +1,16 @@
 ﻿namespace Game.Model;
 using System;
 
-class MainClass
+class MainClass : InGameWindow
 {
-    public void Start()
-    {
-        bool isPlaying = false;
+    public bool isPlaying = false;
+    private int spellNbr;
 
+    public MainClass() {
         
+    }  
+    public void Start(bool isPlaying)
+    {      
         Player player = new();
         Monster monster = new();
 
@@ -20,36 +23,35 @@ class MainClass
 
         while (isPlaying && player.hp > 0)
         {
-            int spellNbr = 0;
 
-            Console.WriteLine("HP: " + player.hp + "                        HP monstre: " + monster.hp + "\n");
-            Console.WriteLine("Mana: " + player.mana + "                        Mana monstre: " + monster.mana + "\n");
+            //Console.WriteLine("HP: " + player.hp + "                        HP monstre: " + monster.hp + "\n");
+            //Console.WriteLine("Mana: " + player.mana + "                        Mana monstre: " + monster.mana + "\n");
 
             if (nbToPlay == 1)
             {
                 monster.state = Character.enumState.nothing;
                 if (player.state == Character.enumState.freeze)
                 {
-                    Console.WriteLine("Vous êtes freeze, vous ne pouvez pas jouer!");
+                    //Console.WriteLine("Vous êtes freeze, vous ne pouvez pas jouer!");
                 }
                 else
                 {
-                    Console.WriteLine("Spell dispo: " + "\n");
+                    //Console.WriteLine("Spell dispo: " + "\n");
 
                     foreach (ASpell spell in player.spells)
                     {
                         if (player.mana >= spell.manaNeeded)
                         {
-                            Console.WriteLine("(" + spell.spellNumber + ") " + spell.spellName + " : Coûte " + spell.manaNeeded + " mana, " + spell.description);
+                            //Console.WriteLine("(" + spell.spellNumber + ") " + spell.spellName + " : Coûte " + spell.manaNeeded + " mana, " + spell.description);
                         }
                     }
 
-                    Console.WriteLine("\n Choisir un spell: " + "\n");
+                    //Console.WriteLine("\n Choisir un spell: " + "\n");
 
-                    while (!int.TryParse(Console.ReadLine(), out spellNbr)) { }
+                    //while (!int.TryParse(Console.ReadLine(), out spellNbr)) { }
 
                     player.spells.Find(spell => spell.spellNumber == spellNbr).Execute(player, monster);
-                    Console.WriteLine("Vous utilisez " + player.spells.Find(spell => spell.spellNumber == spellNbr).spellName + "! \n");
+                    //Console.WriteLine("Vous utilisez " + player.spells.Find(spell => spell.spellNumber == spellNbr).spellName + "! \n");
                 }
                 nbToPlay = 2;
             }
@@ -59,37 +61,37 @@ class MainClass
 
                 if (monster.state == Character.enumState.freeze)
                 {
-                    Console.WriteLine("Le monstre est freeze, il ne peut pas jouer!");
+                    //Console.WriteLine("Le monstre est freeze, il ne peut pas jouer!");
                 }
                 else if (monster.mana > 0)
                 {
                     rdmNbr = random.Next(1, 5);
                     player.spells.Find(spell => spell.spellNumber == rdmNbr).Execute(monster, player);
-                    Console.WriteLine("Le monstre utilise " + player.spells.Find(spell => spell.spellNumber == rdmNbr).spellName + "!\n");
+                    //Console.WriteLine("Le monstre utilise " + player.spells.Find(spell => spell.spellNumber == rdmNbr).spellName + "!\n");
                 }
                 nbToPlay = 1;
             }
 
-            System.Threading.Thread.Sleep(2000);
-            Console.Clear();
+            //System.Threading.Thread.Sleep(2000);
+            //Console.Clear();
 
             if (monster.hp < 0)
             {
-                Console.Clear();
-                Console.WriteLine("Le monstre niveau " + monsterLevel + " est mort! \n");
+                //Console.Clear();
+                //Console.WriteLine("Le monstre niveau " + monsterLevel + " est mort! \n");
                 monsterLevel++;
-                Console.WriteLine("Le monstre niveau " + monsterLevel + " apparait! \n");
+                //Console.WriteLine("Le monstre niveau " + monsterLevel + " apparait! \n");
                 monster.hp = 100 + 10 * (monsterLevel - 1);
                 monster.mana = 50 + 10 * (monsterLevel - 1);
                 nbToPlay = 1;
-                System.Threading.Thread.Sleep(2000);
-                Console.Clear();
+                //System.Threading.Thread.Sleep(2000);
+                //Console.Clear();
             }
 
         }
         if (player.hp <= 0)
         {
-            Console.WriteLine("Vous êtes mort :( \n");
+            //Console.WriteLine("Vous êtes mort :( \n");
         }
     }
 }

@@ -6,6 +6,13 @@
         mc:Ignorable="d"
         Title="InGameWindow" Height="450" Width="800">
     <Grid>
+        <Image Source="/photos/background2.png" Stretch="UniformToFill" Opacity="0.7" />
+
         <TextBlock HorizontalAlignment="Center" Margin="0,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="fr-fr" Text="Jeuuuu"/></TextBlock>
+        <Button Content="Spell 1" HorizontalAlignment="Left" Margin="174,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="1"/>
+        <Button Content="Spell 2" HorizontalAlignment="Left" Margin="219,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1"/>
+        <Button Content="Spell 3" HorizontalAlignment="Left" Margin="264,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="1"/>
+        <Button Content="Spell 4" HorizontalAlignment="Left" Margin="308,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="1"/>
+        
     </Grid>
 </Window>
