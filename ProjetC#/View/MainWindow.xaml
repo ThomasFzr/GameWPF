@@ -3,11 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Game"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Play&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="87" Width="364" Click="ButtonPlay_Click"/>
-        <Button Content="Quit" HorizontalAlignment="Center" Margin="0,297,0,0" VerticalAlignment="Top" Height="87" Width="364" Click="ButtonQuit_Click"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Le jeu t"/><Run Language="fr-fr" Text="a"/><Run Text="h les fou"/><Run Language="fr-fr" Text="s"/><LineBreak/><Run/></TextBlock>
+
+
+        <!-- Set background image -->
+        <Image Source="/photos/background.png" Stretch="UniformToFill" Opacity="0.7" />
+
+        <!-- Your existing UI elements go here -->
+
+        <!-- Add "Jouer" button -->
+        <Button Content="Jouer" HorizontalAlignment="Center" Margin="0,122,0,0" Width="75" Click="JouerButton_Click" RenderTransformOrigin="3.391,3.583" Height="25" VerticalAlignment="Top"/>
+        <Button Content="Jouer" HorizontalAlignment="Center" Margin="0,122,0,0" Width="75" Click="JouerButton_Click" RenderTransformOrigin="3.391,3.583" Height="25" VerticalAlignment="Top"/>
+
+        <!-- Add "Quitter" button -->
+        <Button Content="Quitter" HorizontalAlignment="Center" Margin="0,152,0,0" Width="76" Click="QuitterButton_Click" Height="25" VerticalAlignment="Top"/>
     </Grid>
 </Window>
