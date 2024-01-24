@@ -1,13 +1,13 @@
 ﻿namespace Game.Model;
 
-abstract class ASpell
+public abstract class ASpell
 {
-    public string? spellName;
-    public int spellNumber;
-    public int manaNeeded;
-    public string? description;
+    public string? SpellName { get; set; }
+    public int SpellNumber { get; set; }
+    public int ManaNeeded { get; set; }
+    public string? Description { get; set; }
 
-    public abstract void Execute(Character sender, Character receiver);
+    public virtual void Execute(Character sender, Character receiver) { }
 
 }
 
@@ -15,17 +15,17 @@ class Heal : ASpell
 {
     public Heal()
     {
-        spellName = "Heal";
-        spellNumber = 1;
-        manaNeeded = 15;
-        description = "Heal 15 HP";
+        SpellName = "Heal";
+        SpellNumber = 1;
+        ManaNeeded = 15;
+        Description = "Heal 15 HP";
     }
     public override void Execute(Character sender, Character receiver)
     {
-        if (sender.mana >= manaNeeded)
+        if (sender.Mana >= ManaNeeded)
         {
-            sender.hp += 25;
-            sender.mana -= manaNeeded;
+            sender.Hp += 25;
+            sender.Mana -= ManaNeeded;
         }
     }
 }
@@ -34,18 +34,18 @@ class Freeze : ASpell
 {
     public Freeze()
     {
-        spellName = "Freeze";
-        spellNumber = 2;
-        manaNeeded = 20;
-        description = "Freeze l'adversaire pendant un tour";
+        SpellName = "Freeze";
+        SpellNumber = 2;
+        ManaNeeded = 20;
+        Description = "Freeze l'adversaire pendant un tour";
     }
 
     public override void Execute(Character sender, Character receiver)
     {
-        if (sender.mana >= manaNeeded)
+        if (sender.Mana >= ManaNeeded)
         {
-            receiver.state = Character.enumState.freeze;
-            sender.mana -= manaNeeded;
+            receiver.State = Character.EnumState.freeze;
+            sender.Mana -= ManaNeeded;
         }
     }
 }
@@ -54,18 +54,18 @@ class Fireball : ASpell
 {
     public Fireball()
     {
-        spellName = "Fireball";
-        spellNumber = 3;
-        manaNeeded = 20;
-        description = "Inflige - 35 HP à l'adversaire";
+        SpellName = "Fireball";
+        SpellNumber = 3;
+        ManaNeeded = 20;
+        Description = "Inflige - 35 HP à l'adversaire";
 
     }
     public override void Execute(Character sender, Character receiver)
     {
-        if (sender.mana >= manaNeeded)
+        if (sender.Mana >= ManaNeeded)
         {
-            receiver.hp -= 35;
-            sender.mana -= manaNeeded;
+            receiver.Hp -= 35;
+            sender.Mana -= ManaNeeded;
         }
     }
 }
@@ -74,15 +74,15 @@ class ManaBooster : ASpell
 {
     public ManaBooster()
     {
-        spellName = "ManaBooster";
-        spellNumber = 4;
-        manaNeeded = 0;
-        description = "Donne 25 mana";
+        SpellName = "ManaBooster";
+        SpellNumber = 4;
+        ManaNeeded = 0;
+        Description = "Donne 25 mana";
 
     }
     public override void Execute(Character sender, Character receiver)
     {
-        sender.mana += 25;
+        sender.Mana += 25;
     }
 }
 
@@ -90,18 +90,18 @@ class Kamehameha : ASpell
 {
     public Kamehameha()
     {
-        spellName = "Kamehameha ";
-        spellNumber = 5;
-        manaNeeded = 30;
-        description = "Inflige - 50 HP à l'adversaire";
+        SpellName = "Kamehameha ";
+        SpellNumber = 5;
+        ManaNeeded = 30;
+        Description = "Inflige - 50 HP à l'adversaire";
 
     }
     public override void Execute(Character sender, Character receiver)
     {
-        if (sender.mana >= manaNeeded)
+        if (sender.Mana >= ManaNeeded)
         {
-            receiver.hp -= 50;
-            sender.mana -= manaNeeded;
+            receiver.Hp -= 50;
+            sender.Mana -= ManaNeeded;
         }
     }
 }
@@ -110,18 +110,18 @@ class GumGumPistol : ASpell
 {
     public GumGumPistol()
     {
-        spellName = "GumGumPistol";
-        spellNumber = 6;
-        manaNeeded = 50;
-        description = "Inflige - 50 HP à l'adversaire";
+        SpellName = "GumGumPistol";
+        SpellNumber = 6;
+        ManaNeeded = 50;
+        Description = "Inflige - 50 HP à l'adversaire";
 
     }
     public override void Execute(Character sender, Character receiver)
     {
-        if (sender.mana >= manaNeeded)
+        if (sender.Mana >= ManaNeeded)
         {
-            receiver.hp -= 50;
-            sender.mana -= manaNeeded;
+            receiver.Hp -= 50;
+            sender.Mana -= ManaNeeded;
         }
     }
 }

@@ -18,6 +18,6 @@ class DamageBooster : Totem
 
     public override void Activated(Player player)
     {
-        player.damageBooster = 15;
+        //player.damageBooster = 15;
     }
 }

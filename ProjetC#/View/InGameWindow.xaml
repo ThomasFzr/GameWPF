@@ -4,17 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        DataContext=""
-        Title="InGameWindow" Height="450" Width="800">
+        Height="450" Width="800">
 
     <Grid>
         <Image Source="/photos/background2.png" Stretch="UniformToFill" Opacity="0.7" />
-        <Button Content="Spell 1" HorizontalAlignment="Left" Margin="174,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="1"/>
-        <Button Content="Spell 2" HorizontalAlignment="Left" Margin="219,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="2"/>
-        <Button Content="Spell 3" HorizontalAlignment="Left" Margin="264,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="3"/>
-        <Button Content="Spell 4" HorizontalAlignment="Left" Margin="308,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="4"/>
-        <TextBlock HorizontalAlignment="Left" Margin="30,343,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
+        <Button Content="{Binding Player.Spells[0].SpellName}" HorizontalAlignment="Left" Margin="159,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="0"/>
+        <Button Content="{Binding Player.Spells[1].SpellName}" HorizontalAlignment="Left" Margin="203,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1"/>
+        <Button Content="{Binding Player.Spells[2].SpellName}" HorizontalAlignment="Left" Margin="264,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="2"/>
+        <Button Content="{Binding Player.Spells[3].SpellName}" HorizontalAlignment="Left" Margin="308,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="3"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="30,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="HP: " />
+            <Run Text="{Binding Player.Hp}" />
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="40,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+             <Run Text="Money: " />
+             <Run Text="{Binding Player.Money}" />
+             <Run Text="$" />
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="32,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+             <Run Text="Mana: " />
+             <Run Text="{Binding Player.Mana}" />
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" Margin="585,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+    <Run Text="Monster HP: " />
+    <Run Text="{Binding Monster.Hp}" />
+        </TextBlock>
 
     </Grid>
 </Window>
+
+

@@ -1,19 +1,65 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Game.Model;
 
-class Character
+public class Character : INotifyPropertyChanged
 {
-    public int hp;
-    public int mana;
-    public enumState state;
-    public enum enumState
+    private int hp;
+    public int Hp
+    {
+        get { return hp; }
+        set
+        {
+            hp = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private int mana;
+    public int Mana
+    {
+        get { return mana; }
+        set
+        {
+            mana = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private EnumState state;
+    public EnumState State
+    {
+        get { return state; }
+        set
+        {
+            state = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public enum EnumState
     {
         freeze,
         fire,
         nothing
     };
 
-    public List<ASpell> spells = new();
+    private List<ASpell> spells = new();
+    public List<ASpell> Spells
+    {
+        get { return spells; }
+        set
+        {
+            spells = value;
+            OnPropertyChanged();
+        }
+    }
 
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
 }
