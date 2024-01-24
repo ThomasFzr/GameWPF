@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game.ViewModel;
+using System.Windows;
 
 namespace Game.View;
 
-internal class ShopWindow
+public partial class ShopWindow : Window
 {
+    private ShopViewModel? shopViewModel;
+
+    public ShopWindow()
+    {
+        InitializeComponent();
+        shopViewModel = new ();
+        DataContext = shopViewModel;
+    }
 }

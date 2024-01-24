@@ -21,7 +21,7 @@ public class Player : Character
     {
         Hp = 100;
         Mana = 200;
-        Money = 10000000;
+        Money = 0;
         State = Character.EnumState.nothing;
         Spells.Add(new Heal());
         Spells.Add(new Fireball());

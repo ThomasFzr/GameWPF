@@ -3,13 +3,13 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-//TODO CODE BEHIND => VIEWMODEL
 namespace Game.View;
 
 public partial class InGameWindow : Window
 {
 
     private InGameViewModel inGameViewModel;
+    private ShopWindow? ShopWindow;
     public Action<int>? OnClickedSpell;
 
     public InGameWindow()
@@ -28,5 +28,12 @@ public partial class InGameWindow : Window
             OnClickedSpell?.Invoke(spellNumber);
         }
         
+    }
+
+    private void ShopButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShopWindow = new();
+        ShopWindow.Show();
+        Close();
     }
 }

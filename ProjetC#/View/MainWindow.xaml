@@ -12,9 +12,9 @@
         <Image Source="/photos/background.png" Stretch="UniformToFill" Opacity="0.7" />
 
         <!-- Add "Jouer" button -->
-        <Button Content="Jouer" HorizontalAlignment="Center" Margin="0,122,0,0" Width="75" Click="JouerButton_Click" RenderTransformOrigin="3.391,3.583" Height="25" VerticalAlignment="Top"/>
+        <Button Content="Jouer" HorizontalAlignment="Center" Margin="0,187,0,0" Width="76" Click="JouerButton_Click" RenderTransformOrigin="3.391,3.583" Height="25" VerticalAlignment="Top"/>
 
         <!-- Add "Quitter" button -->
-        <Button Content="Quitter" HorizontalAlignment="Center" Margin="0,152,0,0" Width="76" Click="QuitterButton_Click" Height="25" VerticalAlignment="Top"/>
+        <Button Content="Quitter" HorizontalAlignment="Center" Margin="0,217,0,0" Width="76" Click="QuitterButton_Click" Height="25" VerticalAlignment="Top"/>
     </Grid>
 </Window>

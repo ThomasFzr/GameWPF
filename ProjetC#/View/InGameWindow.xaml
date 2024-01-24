@@ -19,7 +19,7 @@
             <Run Text="HP: " />
             <Run Text="{Binding Player.Hp}" />
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="40,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="14,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
              <Run Text="Money: " />
              <Run Text="{Binding Player.Money}" />
              <Run Text="$" />
@@ -29,10 +29,12 @@
              <Run Text="{Binding Player.Mana}" />
         </TextBlock>
 
-        <TextBlock HorizontalAlignment="Left" Margin="585,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="630,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
     <Run Text="Monster HP: " />
     <Run Text="{Binding Monster.Hp}" />
         </TextBlock>
+
+        <Button Content="Shop" HorizontalAlignment="Left" Margin="703,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click"/>
 
     </Grid>
 </Window>
