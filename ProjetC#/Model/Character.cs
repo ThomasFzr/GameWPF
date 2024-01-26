@@ -6,27 +6,10 @@ namespace Game.Model;
 
 public class Character : INotifyPropertyChanged
 {
-    private int hp;
-    public int Hp
-    {
-        get { return hp; }
-        set
-        {
-            hp = value;
-            OnPropertyChanged();
-        }
-    }
+   public  HealthController? HealthController { get;protected set; }
+   public ManaController? ManaController { get; protected set; }
 
-    private int mana;
-    public int Mana
-    {
-        get { return mana; }
-        set
-        {
-            mana = value;
-            OnPropertyChanged();
-        }
-    }
+
 
     private EnumState state;
     public EnumState State

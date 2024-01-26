@@ -2,29 +2,21 @@
 
 public class Player : Character
 {
-    private int money;
-    public int Money
-    {
-        get { return money; }
-        set
-        {
-            money = value;
-            OnPropertyChanged();
-        }
-    }
+    public MoneyController MoneyController { get; set; }
 
     int totemEquiped;
     int damageBooster;
 
-
     public Player()
     {
-        Hp = 100;
-        Mana = 200;
-        Money = 0;
+        HealthController = new (100);
+        ManaController = new (200);
+        MoneyController = new(10);
+
         State = Character.EnumState.nothing;
         Spells.Add(new Heal());
-        Spells.Add(new Fireball());
+        Spells.Add(new Fireball());     
+        Spells.Add(new ManaBooster());
         Spells.Add(new ManaBooster());
     }
 }

@@ -13,4 +13,9 @@ public partial class ShopWindow : Window
         shopViewModel = new ();
         DataContext = shopViewModel;
     }
+
+    private void HomeButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

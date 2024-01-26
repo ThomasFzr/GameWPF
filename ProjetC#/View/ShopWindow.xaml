@@ -6,6 +6,8 @@
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="fr-fr" Text="Shop"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.7,-1.644"><Run Language="fr-fr" Text="Shop"/></TextBlock>
+        <Button Content="Home" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click"/>
+
     </Grid>
 </Window>

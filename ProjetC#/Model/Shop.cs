@@ -2,10 +2,14 @@
 
 namespace Game.Model;
 
-abstract class Shop
+public class Shop
 {
     int price;
     public List<ASpell> spellOnSale = new();
-    public abstract void Buy(Character buyer);
+    public void Buy(Character buyer, ASpell spell) { }
 
+    public Shop()
+    {
+        spellOnSale.Add(new Heal());
+    }
 }
