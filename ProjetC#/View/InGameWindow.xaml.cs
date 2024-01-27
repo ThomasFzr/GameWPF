@@ -9,17 +9,17 @@ namespace Game.View;
 public partial class InGameWindow : Window
 {
 
-    private TurnManager turnManager;
-    private ShopWindow? ShopWindow;
-    private PlayerState playerState;
+    private GameManager gameManager;
+    private ShopWindow? shopWindow;
 
     public InGameWindow()
     {
         InitializeComponent();
 
-        turnManager = new();
-        DataContext = turnManager;
-        ShopWindow = new(turnManager.Player);
+        gameManager = ((App)Application.Current).gameManager;
+        DataContext = gameManager;
+        shopWindow = new ShopWindow(gameManager.Player);
+        gameManager.TurnManager.PlayerState.OnPlayerToPlay += PlayerTurn;
 
     }
 
@@ -27,13 +27,25 @@ public partial class InGameWindow : Window
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
         {
-            playerState.OnClickedSpell.Invoke(spellNumber);
+            gameManager.TurnManager.PlayerState.OnClickedSpell?.Invoke(spellNumber);
         }
 
     }
 
     private void ShopButton_Click(object sender, RoutedEventArgs e)
     {
-        ShopWindow.Show();
+        shopWindow.Show();
+    }
+
+    private void PlayerTurn()
+    {
+        if(playerArrow.Visibility == Visibility.Collapsed)
+        {
+            playerArrow.Visibility = Visibility.Visible;
+        }
+        else if (playerArrow.Visibility == Visibility.Visible)
+        {
+            playerArrow.Visibility = Visibility.Collapsed;
+        }
     }
 }

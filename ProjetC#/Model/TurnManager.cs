@@ -1,42 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System.Windows;
 
 namespace Game.Model;
 
 public class TurnManager
 {
 
-    public Player Player { get; set; } = new();
-    public Monster Monster { get; set; } = new();
-    //public List<Character> characterList { get; set; } = new();
-    //private Character CharacterToPlay { get; set; } = new();
+    public PlayerState PlayerState { get; set; }
+    private StateMachine stateMachine;
 
-    private PlayerState PlayerState { get; set; }
-    private StateMachine StateMachine { get; set; } = new();
-
-    public TurnManager()
+    public TurnManager(Player Player, Monster Monster)
     {
-        //characterList.Add(Player);
-        //characterList.Add(Monster);
-        StateMachine.m_currentState = PlayerState;
+        PlayerState = new(Player, Monster);
+
+        stateMachine = ((App)Application.Current).stateMachine;
+        stateMachine.m_currentState = PlayerState;
+
+        stateMachine.HandleRequestStateChangement(PlayerState);
     }
 
 
-    //public void ExecuteSpellPlayer(int spellNbr)
-    //{
 
+    public void ProcessPlayerTurn()
+    {
+        stateMachine.ProcessUpdate();
+    }
 
-    //    StateMachine.HandleRequestStateChangement(MonsterState);
-    //    this.ExecuteSpellMonster();
-
-    //}
-
-    //void ExecuteSpellMonster()
-    //{
-
-      
-
-    //    StateMachine.HandleRequestStateChangement(PlayerState);
-
-    //}
+    public void ProcessMonsterTurn()
+    {
+        stateMachine.ProcessUpdate();
+    }
 
 }

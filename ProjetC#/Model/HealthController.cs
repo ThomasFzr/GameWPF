@@ -7,7 +7,7 @@ namespace Game.Model;
 public class HealthController : INotifyPropertyChanged
 {
     public Action? OnHealthChanged;
-    public bool isDead = false;
+    public Action? IsDead ;
 
     private int hp;
     public int Hp
@@ -31,7 +31,7 @@ public class HealthController : INotifyPropertyChanged
         OnHealthChanged?.Invoke();
         if (Hp <= 0)
         {
-            isDead = true;
+            IsDead?.Invoke();
         }
     }
 

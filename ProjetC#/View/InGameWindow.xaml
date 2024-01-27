@@ -56,6 +56,8 @@
         </TextBlock>
 
         <Button Content="Shop" HorizontalAlignment="Left" Margin="703,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click"/>
+        <Image x:Name="playerArrow" Margin="10,199,746,170" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed"/>
+        <Image x:Name="monsterArrow" Margin="644,20,112,349" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed"/>
 
     </Grid>
 </Window>

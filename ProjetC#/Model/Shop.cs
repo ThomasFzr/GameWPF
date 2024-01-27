@@ -23,6 +23,7 @@ public class Shop : INotifyPropertyChanged
 
     public void Buy(Player buyer, ASpell spell) {
         buyer.Spells.Add(spell);
+        OnSpellAdded -= buyer.EquipNewSpell;
         OnSpellAdded += buyer.EquipNewSpell;
         OnSpellAdded.Invoke(spell);
         SpellOnSale.Remove(spell);
