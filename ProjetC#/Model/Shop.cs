@@ -1,15 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Game.Model;
 
-public class Shop
+public class Shop : INotifyPropertyChanged
 {
     int price;
-    public List<ASpell> spellOnSale = new();
-    public void Buy(Character buyer, ASpell spell) { }
+    private Action<ASpell>? OnSpellAdded;
+
+    private List<ASpell> spellOnSale = new();
+    public List<ASpell> SpellOnSale
+    {
+        get { return spellOnSale; }
+        set
+        {
+            spellOnSale = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public void Buy(Player buyer, ASpell spell) {
+        buyer.Spells.Add(spell);
+        OnSpellAdded += buyer.EquipNewSpell;
+        OnSpellAdded.Invoke(spell);
+        SpellOnSale.Remove(spell);
+    }
 
     public Shop()
     {
-        spellOnSale.Add(new Heal());
+        SpellOnSale.Add(new ManaBooster());
+        SpellOnSale.Add(new Kamehameha());
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

@@ -9,16 +9,33 @@
     <Grid>
         <Image Source="/photos/background2.png" Stretch="UniformToFill" Opacity="0.7" />
 
-        <Button Content="{Binding Player.Spells[0].SpellName}" HorizontalAlignment="Left" Margin="159,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="0"/>
-        <Button Content="{Binding Player.Spells[1].SpellName}" HorizontalAlignment="Left" Margin="203,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1"/>
-        <Button Content="{Binding Player.Spells[2].SpellName}" HorizontalAlignment="Left" Margin="264,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="2"/>
-        <Button Content="{Binding Player.Spells[3].SpellName}" HorizontalAlignment="Left" Margin="308,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="3"/>
+        <Button Content="{Binding Player.SpellsEquipped[0].SpellName}" HorizontalAlignment="Left" Margin="159,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="0"/>
+        <Button Content="{Binding Player.SpellsEquipped[1].SpellName}" HorizontalAlignment="Left" Margin="203,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1"/>
+        <Button Content="{Binding Player.SpellsEquipped[2].SpellName}" HorizontalAlignment="Left" Margin="264,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="2"/>
+        <Button Content="{Binding Player.SpellsEquipped[3].SpellName}" HorizontalAlignment="Left" Margin="308,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="3"/>
 
 
         <TextBlock HorizontalAlignment="Left" Margin="30,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Text="HP: " />
             <Run Text="{Binding Player.HealthController.Hp}" />
         </TextBlock>
+
+        <ProgressBar Width="100" Height="20"
+                 Name="progressBar1" Margin="30,404,670,10">
+            <ProgressBar.Triggers>
+                <EventTrigger RoutedEvent="ProgressBar.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                Storyboard.TargetName="progressBar1" 
+                Storyboard.TargetProperty="Value"
+                From="0" To="100" Duration="0:0:5"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ProgressBar.Triggers>
+        </ProgressBar>
+
         <TextBlock HorizontalAlignment="Left" Margin="14,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
              <Run Text="Money: " />
              <Run Text="{Binding Player.MoneyController.Money}" />
@@ -30,8 +47,12 @@
         </TextBlock>
 
         <TextBlock HorizontalAlignment="Left" Margin="630,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-    <Run Text="Monster HP: " />
-    <Run Text="{Binding Monster.HealthController.Hp}" />
+            <Run Text="Monster HP: " />
+            <Run Text="{Binding Monster.HealthController.Hp}" />
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="630,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+    <Run Text="Monster Mana: " />
+    <Run Text="{Binding Monster.ManaController.Mana}" />
         </TextBlock>
 
         <Button Content="Shop" HorizontalAlignment="Left" Margin="703,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click"/>

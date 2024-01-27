@@ -1,4 +1,6 @@
-﻿namespace Game.Model;
+﻿using System.Collections.Generic;
+
+namespace Game.Model;
 
 public class Player : Character
 {
@@ -6,6 +8,17 @@ public class Player : Character
 
     int totemEquiped;
     int damageBooster;
+
+    private List<ASpell> spellsEquipped = new();
+    public List<ASpell> SpellsEquipped
+    {
+        get { return spellsEquipped; }
+        set
+        {
+            spellsEquipped = value;
+        }
+    }
+
 
     public Player()
     {
@@ -15,8 +28,18 @@ public class Player : Character
 
         State = Character.EnumState.nothing;
         Spells.Add(new Heal());
-        Spells.Add(new Fireball());     
-        Spells.Add(new ManaBooster());
-        Spells.Add(new ManaBooster());
+        Spells.Add(new Fireball());
+
+        SpellsEquipped.Add(new Heal());
+        SpellsEquipped.Add(new Fireball());
+    }
+
+    public void EquipNewSpell(ASpell newSpell) {
+        if(SpellsEquipped.Count < 4)
+        {
+            SpellsEquipped.Add(newSpell);
+            OnPropertyChanged("SpellsEquipped");
+
+        }
     }
 }

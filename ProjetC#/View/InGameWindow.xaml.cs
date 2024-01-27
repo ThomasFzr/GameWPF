@@ -1,4 +1,5 @@
-﻿using Game.ViewModel;
+﻿using Game.Model;
+using Game.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,32 +9,31 @@ namespace Game.View;
 public partial class InGameWindow : Window
 {
 
-    private InGameViewModel inGameViewModel;
+    private TurnManager turnManager;
     private ShopWindow? ShopWindow;
-    public Action<int>? OnClickedSpell;
+    private PlayerState playerState;
 
     public InGameWindow()
     {
         InitializeComponent();
 
-        inGameViewModel = new(this);
-        inGameViewModel.StartGame();
-        DataContext = inGameViewModel;
+        turnManager = new();
+        DataContext = turnManager;
+        ShopWindow = new(turnManager.Player);
+
     }
 
     private void SpellButton_Click(object sender, RoutedEventArgs e)
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
         {
-            OnClickedSpell?.Invoke(spellNumber);
+            playerState.OnClickedSpell.Invoke(spellNumber);
         }
-        
+
     }
 
     private void ShopButton_Click(object sender, RoutedEventArgs e)
     {
-        ShopWindow = new();
         ShopWindow.Show();
-        Close();
     }
 }

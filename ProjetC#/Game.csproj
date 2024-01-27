@@ -11,11 +11,13 @@
   <ItemGroup>
     <None Remove="photos\background.png" />
     <None Remove="photos\background2.png" />
+    <None Remove="photos\market.gif" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="photos\background.png" />
     <Resource Include="photos\background2.png" />
+    <Resource Include="photos\market.gif" />
   </ItemGroup>
 
 </Project>

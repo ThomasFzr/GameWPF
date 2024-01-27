@@ -6,8 +6,26 @@
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
+
+        <Image Source="/photos/market.gif" Stretch="UniformToFill" Opacity="0.7" />
+
         <TextBlock HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.7,-1.644"><Run Language="fr-fr" Text="Shop"/></TextBlock>
         <Button Content="Home" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click"/>
+
+        <Button HorizontalAlignment="Left" Margin="300,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[0].SpellName}">
+            <TextBlock>
+                <Run Text="{Binding Shop.SpellOnSale[0].SpellName}" />
+                <Run Text=" Acheter"/>
+            </TextBlock>
+        </Button>
+
+        <Button HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[1].SpellName}">
+            <TextBlock>
+        <Run Text="{Binding Shop.SpellOnSale[1].SpellName}" />
+        <Run Text=" Acheter"/>
+            </TextBlock>
+        </Button>
+
 
     </Grid>
 </Window>
