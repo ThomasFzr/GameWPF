@@ -1,32 +1,27 @@
 ﻿using Game.Model;
-using System;
 using System.Windows;
 
-namespace Game
+namespace Game;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public StateMachine stateMachine;
+        StartGame();
+    }
 
-        public App()
-        {
-            stateMachine = new();
-            StartGame();
-        }
+    private void StartGame()
+    {
+        GameManager.Instance.StartGame();
+        ProcessUpdateStateMachine();
+    }
 
-        private void StartGame()
+    private async void ProcessUpdateStateMachine()
+    {
+        while (GameManager.Instance.IsGameRunning)
         {
-            GameManager.Instance.StartGame();
-            ProcessUpdateStateMachine();
-        }
-
-        private async void ProcessUpdateStateMachine()
-        {
-            while (GameManager.Instance.IsGameRunning)
-            {
-                await System.Threading.Tasks.Task.Delay(100);
-                stateMachine.ProcessUpdate();
-            }
+            await System.Threading.Tasks.Task.Delay(100);
+            StateMachine.Instance.ProcessUpdate();
         }
     }
 }

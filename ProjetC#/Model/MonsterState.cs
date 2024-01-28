@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Windows;
 
 namespace Game.Model;
 
@@ -33,7 +32,7 @@ public class MonsterState : AState
     public override void OnProcess()
     {
         Thread.Sleep(2000);
-        ((App)Application.Current).stateMachine.HandleRequestStateChangement(new PlayerState(Player, Monster));
+        StateMachine.Instance.HandleRequestStateChangement(new PlayerState(Player, Monster));
         OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 }

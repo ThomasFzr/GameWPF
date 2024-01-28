@@ -22,7 +22,7 @@ public partial class InGameWindow : Window
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
         {
             GameManager.Instance.TurnManager.PlayerState.OnClickedSpell?.Invoke(spellNumber);
-            ((App)Application.Current).stateMachine.HandleRequestStateChangement(new MonsterState(GameManager.Instance.Player, GameManager.Instance.Monster));
+            StateMachine.Instance.HandleRequestStateChangement(new MonsterState(GameManager.Instance.Player, GameManager.Instance.Monster));
 
         }
 
