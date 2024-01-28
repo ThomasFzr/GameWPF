@@ -37,5 +37,6 @@ public class PlayerState : AState
 
     public override void OnProcess()
     {
+
     }
 }

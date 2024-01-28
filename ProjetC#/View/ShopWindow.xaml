@@ -19,6 +19,12 @@
             </TextBlock>
         </Button>
 
+        <TextBlock HorizontalAlignment="Left" Margin="21,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+             <Run Text="Money: " />
+             <!--<Run Text="{Binding Player.MoneyController.Money}" />-->
+             <Run Text="$" />
+        </TextBlock>
+
         <Button HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[1].SpellName}">
             <TextBlock>
         <Run Text="{Binding Shop.SpellOnSale[1].SpellName}" />

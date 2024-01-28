@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows;
 
 namespace Game.Model;
 
@@ -19,17 +20,20 @@ public class MonsterState : AState
 
     public override void OnEnter()
     {
-        Thread.Sleep(1000);
-        randomNumber = random.Next(0, Monster.monsterSpellLevel + 1);
+        randomNumber = random.Next(0, Monster.monsterSpellLevel);
         Monster.Spells[randomNumber]?.Execute(Monster, Player);
     }
 
     public override void OnLeave()
     {
-        OnRequestChangeState?.Invoke(new PlayerState(Player,Monster));
+        
+        OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 
     public override void OnProcess()
     {
+        Thread.Sleep(2000);
+        ((App)Application.Current).stateMachine.HandleRequestStateChangement(new PlayerState(Player, Monster));
+        OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 }

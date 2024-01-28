@@ -13,7 +13,7 @@ public class TurnManager
         PlayerState = new(Player, Monster);
 
         stateMachine = ((App)Application.Current).stateMachine;
-        stateMachine.m_currentState = PlayerState;
+        //stateMachine.m_currentState = PlayerState;
 
         stateMachine.HandleRequestStateChangement(PlayerState);
     }

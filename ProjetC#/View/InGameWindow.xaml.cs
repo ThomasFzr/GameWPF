@@ -1,6 +1,4 @@
 ﻿using Game.Model;
-using Game.ViewModel;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,18 +6,14 @@ namespace Game.View;
 
 public partial class InGameWindow : Window
 {
-
-    private GameManager gameManager;
     private ShopWindow? shopWindow;
 
     public InGameWindow()
     {
         InitializeComponent();
-
-        gameManager = ((App)Application.Current).gameManager;
-        DataContext = gameManager;
-        shopWindow = new ShopWindow(gameManager.Player);
-        gameManager.TurnManager.PlayerState.OnPlayerToPlay += PlayerTurn;
+        DataContext = GameManager.Instance;
+        shopWindow = new ShopWindow(GameManager.Instance.Player);
+        GameManager.Instance.TurnManager.PlayerState.OnPlayerToPlay += PlayerTurn;
 
     }
 
@@ -27,25 +21,29 @@ public partial class InGameWindow : Window
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
         {
-            gameManager.TurnManager.PlayerState.OnClickedSpell?.Invoke(spellNumber);
+            GameManager.Instance.TurnManager.PlayerState.OnClickedSpell?.Invoke(spellNumber);
+            ((App)Application.Current).stateMachine.HandleRequestStateChangement(new MonsterState(GameManager.Instance.Player, GameManager.Instance.Monster));
+
         }
 
     }
 
     private void ShopButton_Click(object sender, RoutedEventArgs e)
     {
-        shopWindow.Show();
+        shopWindow.ShowDialog();
     }
 
     private void PlayerTurn()
     {
-        if(playerArrow.Visibility == Visibility.Collapsed)
+        if (playerArrow.Visibility == Visibility.Collapsed)
         {
             playerArrow.Visibility = Visibility.Visible;
+            monsterArrow.Visibility = Visibility.Collapsed;
         }
         else if (playerArrow.Visibility == Visibility.Visible)
         {
             playerArrow.Visibility = Visibility.Collapsed;
+            monsterArrow.Visibility = Visibility.Visible;
         }
     }
 }

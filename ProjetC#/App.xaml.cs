@@ -7,24 +7,22 @@ namespace Game
     public partial class App : Application
     {
         public StateMachine stateMachine;
-        public GameManager gameManager;
 
         public App()
         {
             stateMachine = new();
-            gameManager = new();
             StartGame();
         }
 
         private void StartGame()
         {
-            gameManager.StartGame();
+            GameManager.Instance.StartGame();
             ProcessUpdateStateMachine();
         }
 
         private async void ProcessUpdateStateMachine()
         {
-            while (gameManager.IsGameRunning)
+            while (GameManager.Instance.IsGameRunning)
             {
                 await System.Threading.Tasks.Task.Delay(100);
                 stateMachine.ProcessUpdate();

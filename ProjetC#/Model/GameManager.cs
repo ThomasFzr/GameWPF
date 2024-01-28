@@ -1,23 +1,36 @@
-﻿using System;
-
-namespace Game.Model;
+﻿namespace Game.Model;
 
 public class GameManager
 {
-    public Player Player {  get; set; }
+    private static GameManager instance;
+
+    public Player Player { get; set; }
     public Monster Monster { get; set; }
     public TurnManager TurnManager { get; set; }
 
     private bool isGameRunning;
     public bool IsGameRunning => isGameRunning;
 
-    public GameManager()
+    private GameManager()
     {
         Player = new();
         Monster = new();
         TurnManager = new(Player, Monster);
         Monster.MonsterIsDead += AddMoneytoPlayer;
         isGameRunning = false;
+    }
+
+    // Property to access the singleton instance
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameManager();
+            }
+            return instance;
+        }
     }
 
     private void AddMoneytoPlayer(int monsterLevel)

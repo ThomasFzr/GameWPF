@@ -1,7 +1,6 @@
 ﻿using Game.Model;
 using Game.ViewModel;
 using System;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,16 +10,16 @@ namespace Game.View;
 public partial class ShopWindow : Window
 {
     private ShopViewModel shopViewModel;
-    private Player player;
+    private Player Player { get;set; }
     private ASpell spellToAdd;
 
-    public ShopWindow(Player _player)
+    public ShopWindow(Player player)
     {
         InitializeComponent();
         shopViewModel = new();
         DataContext = shopViewModel;
-        player = _player;
-        player.OnYesClickedAction += EnableDialogBox;
+        Player = player;
+        Player.OnYesClickedAction += EnableDialogBox;
 
     }
 
@@ -39,7 +38,7 @@ public partial class ShopWindow : Window
 
             if (spellToBuy != null)
             {
-                shopViewModel.Shop.Buy(player, spellToBuy);
+                shopViewModel.Shop.Buy(Player, spellToBuy);
                 (sender as Button).Visibility = Visibility.Collapsed;
             }
         }
@@ -58,11 +57,11 @@ public partial class ShopWindow : Window
         int input;
         if (int.TryParse(InputTextBox.Text, out input))
         {
-            player.SpellsEquipped.RemoveAt(input-1);
+            Player.SpellsEquipped.RemoveAt(input-1);
         }
         InputTextBox.Text = String.Empty;
-        player.SpellsEquipped.Add(spellToAdd);
-        player.OnPropertyChanged("SpellsEquipped");
+        Player.SpellsEquipped.Add(spellToAdd);
+        Player.OnPropertyChanged("SpellsEquipped");
     }
 
     private void PreviewTextInput(object sender, TextCompositionEventArgs e)
