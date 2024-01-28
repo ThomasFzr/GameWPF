@@ -5,10 +5,6 @@ public class StateMachine
     private static StateMachine instance;
     public AState m_currentState;
 
-    private StateMachine()
-    {
-    }
-
     public static StateMachine Instance
     {
         get

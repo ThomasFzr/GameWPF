@@ -7,9 +7,7 @@ public class GameManager
     public Player Player { get; set; }
     public Monster Monster { get; set; }
     public TurnManager TurnManager { get; set; }
-
-    private bool isGameRunning;
-    public bool IsGameRunning => isGameRunning;
+    public bool IsGameRunning { get; private set; }
 
     private GameManager()
     {
@@ -17,10 +15,9 @@ public class GameManager
         Monster = new();
         TurnManager = new(Player, Monster);
         Monster.MonsterIsDead += AddMoneytoPlayer;
-        isGameRunning = false;
+        IsGameRunning = false;
     }
 
-    // Property to access the singleton instance
     public static GameManager Instance
     {
         get
@@ -40,12 +37,12 @@ public class GameManager
 
     public void StartGame()
     {
-        isGameRunning = true;
+        IsGameRunning = true;
     }
 
     public void EndGame()
     {
-        isGameRunning = false;
+        IsGameRunning = false;
     }
 
     public void ProcessPlayerTurn()

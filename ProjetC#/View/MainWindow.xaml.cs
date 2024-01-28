@@ -16,6 +16,7 @@ public partial class MainWindow : Window
         inGameWindow = new();
         inGameWindow.Show();
         Close();
+        ((App)Application.Current).StartGame();
     }
 
     private void QuitterButton_Click(object sender, RoutedEventArgs e)

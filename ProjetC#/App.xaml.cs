@@ -7,10 +7,9 @@ public partial class App : Application
 {
     public App()
     {
-        StartGame();
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         GameManager.Instance.StartGame();
         ProcessUpdateStateMachine();

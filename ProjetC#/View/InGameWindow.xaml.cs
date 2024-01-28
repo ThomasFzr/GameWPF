@@ -35,15 +35,7 @@ public partial class InGameWindow : Window
 
     private void PlayerTurn()
     {
-        if (playerArrow.Visibility == Visibility.Collapsed)
-        {
-            playerArrow.Visibility = Visibility.Visible;
-            monsterArrow.Visibility = Visibility.Collapsed;
-        }
-        else if (playerArrow.Visibility == Visibility.Visible)
-        {
-            playerArrow.Visibility = Visibility.Collapsed;
-            monsterArrow.Visibility = Visibility.Visible;
-        }
+        playerArrow.Visibility = playerArrow.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        monsterArrow.Visibility = monsterArrow.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
     }
 }
