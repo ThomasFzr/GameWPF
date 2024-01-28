@@ -32,7 +32,7 @@ public class PlayerState : AState
     {
         OnClickedSpell -= ExecuteSpell;
         OnPlayerToPlay?.Invoke();
-        OnRequestChangeState?.Invoke(new MonsterState(Player, Monster));
+        //OnRequestChangeState?.Invoke(new MonsterState(Player, Monster));
     }
 
     public override void OnProcess()

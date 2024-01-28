@@ -19,20 +19,22 @@ public class MonsterState : AState
 
     public override void OnEnter()
     {
-        Thread.Sleep(2000);
+        //Thread.Sleep(2000);
         randomNumber = random.Next(0, Monster.monsterSpellLevel);
         Monster.Spells[randomNumber]?.Execute(Monster, Player);
+        StateMachine.Instance.HandleRequestStateChangement(new PlayerState(GameManager.Instance.Player, GameManager.Instance.Monster));
+
     }
 
     public override void OnLeave()
     {
         
-        OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
+        //OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 
     public override void OnProcess()
     {
-        StateMachine.Instance.HandleRequestStateChangement(new PlayerState(Player, Monster));
-        OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
+        //StateMachine.Instance.HandleRequestStateChangement(new PlayerState(Player, Monster));
+        //OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 }
