@@ -55,11 +55,11 @@ public partial class ShopWindow : Window
 
         InputBox.Visibility = Visibility.Collapsed;
         int input;
-        if (int.TryParse(InputTextBox.Text, out input))
-        {
-            Player.SpellsEquipped.RemoveAt(input-1);
-        }
-        InputTextBox.Text = String.Empty;
+        //if (int.TryParse(InputTextBox.Text, out input))
+        //{
+        //    Player.SpellsEquipped.RemoveAt(input-1);
+        //}
+        //InputTextBox.Text = String.Empty;
         Player.SpellsEquipped.Add(spellToAdd);
         Player.OnPropertyChanged("SpellsEquipped");
     }

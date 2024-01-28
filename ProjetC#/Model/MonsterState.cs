@@ -1,40 +1,47 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Game.Model;
 
 public class MonsterState : AState
 {
+    private static MonsterState instance;
+
     private int randomNumber;
 
     Random random = new();
-    public Player Player { get; set; }
-    public Monster Monster { get; set; }
 
-    public MonsterState(Player _Player, Monster _Monster)
+    private MonsterState()
     {
-        Player = _Player;
-        Monster = _Monster;
+    }
+    public static MonsterState Instance
+    {
+        get
+        {
+            instance ??= new();
+            return instance;
+        }
     }
 
     public override void OnEnter()
     {
-        //Thread.Sleep(2000);
-        randomNumber = random.Next(0, Monster.monsterSpellLevel);
-        Monster.Spells[randomNumber]?.Execute(Monster, Player);
-        StateMachine.Instance.HandleRequestStateChangement(new PlayerState(GameManager.Instance.Player, GameManager.Instance.Monster));
-
+        Task.Delay(2000).ContinueWith(t =>
+        {
+            randomNumber = random.Next(0, GameManager.Instance.Monster.monsterSpellLevel);
+            GameManager.Instance.Monster.Spells[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);
+            });
+        });
     }
 
     public override void OnLeave()
     {
-        
-        //OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 
     public override void OnProcess()
     {
-        //StateMachine.Instance.HandleRequestStateChangement(new PlayerState(Player, Monster));
-        //OnRequestChangeState?.Invoke(new PlayerState(Player, Monster));
     }
 }

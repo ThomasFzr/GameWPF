@@ -5,14 +5,15 @@ public class StateMachine
     private static StateMachine instance;
     public AState m_currentState;
 
+    private StateMachine()
+    { 
+    }
+
     public static StateMachine Instance
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new StateMachine();
-            }
+            instance ??= new StateMachine();
             return instance;
         }
     }

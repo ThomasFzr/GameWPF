@@ -13,7 +13,7 @@ public partial class InGameWindow : Window
         InitializeComponent();
         DataContext = GameManager.Instance;
         shopWindow = new ShopWindow(GameManager.Instance.Player);
-        GameManager.Instance.TurnManager.PlayerState.OnPlayerToPlay += PlayerTurn;
+        PlayerState.Instance.OnPlayerToPlay += PlayerTurn;
 
     }
 
@@ -21,8 +21,8 @@ public partial class InGameWindow : Window
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
         {
-            GameManager.Instance.TurnManager.PlayerState.OnClickedSpell?.Invoke(spellNumber);
-            StateMachine.Instance.HandleRequestStateChangement(new MonsterState(GameManager.Instance.Player, GameManager.Instance.Monster));
+            PlayerState.Instance.OnClickedSpell?.Invoke(spellNumber);
+            StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
 
         }
 

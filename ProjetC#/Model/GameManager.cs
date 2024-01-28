@@ -6,26 +6,22 @@ public class GameManager
 
     public Player Player { get; set; }
     public Monster Monster { get; set; }
-    public TurnManager TurnManager { get; set; }
     public bool IsGameRunning { get; private set; }
 
     private GameManager()
     {
         Player = new();
         Monster = new();
-        TurnManager = new(Player, Monster);
         Monster.MonsterIsDead += AddMoneytoPlayer;
         IsGameRunning = false;
+        StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);
     }
 
     public static GameManager Instance
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new GameManager();
-            }
+            instance ??= new GameManager();
             return instance;
         }
     }
@@ -43,15 +39,5 @@ public class GameManager
     public void EndGame()
     {
         IsGameRunning = false;
-    }
-
-    public void ProcessPlayerTurn()
-    {
-        TurnManager.ProcessPlayerTurn();
-    }
-
-    public void ProcessMonsterTurn()
-    {
-        TurnManager.ProcessMonsterTurn();
     }
 }
