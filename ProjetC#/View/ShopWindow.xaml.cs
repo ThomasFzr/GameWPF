@@ -10,7 +10,7 @@ namespace Game.View;
 public partial class ShopWindow : Window
 {
     private ShopViewModel shopViewModel;
-    private Player Player { get;set; }
+    private Player Player { get; set; }
     private ASpell spellToAdd;
 
     public ShopWindow(Player player)
@@ -66,12 +66,11 @@ public partial class ShopWindow : Window
 
         if (checkedRadioButton != null)
         {
-
             string selectedSpellName = checkedRadioButton.Content.ToString();
-            Player.SpellsEquipped.RemoveAll(spell=> spell.SpellName == selectedSpellName);
+            int index = Player.SpellsEquipped.FindIndex(spell => spell.SpellName == selectedSpellName);
+            Player.SpellsEquipped[index] = spellToAdd;
+            Player.OnPropertyChanged("SpellsEquipped");
         }
 
-        Player.SpellsEquipped.Add(spellToAdd);
-        Player.OnPropertyChanged("SpellsEquipped");
     }
 }
