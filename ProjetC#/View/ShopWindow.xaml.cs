@@ -52,30 +52,26 @@ public partial class ShopWindow : Window
 
     private void YesButton_Click(object sender, RoutedEventArgs e)
     {
-
         InputBox.Visibility = Visibility.Collapsed;
-        int input;
-        //if (int.TryParse(InputTextBox.Text, out input))
-        //{
-        //    Player.SpellsEquipped.RemoveAt(input-1);
-        //}
-        //InputTextBox.Text = String.Empty;
+
+        RadioButton checkedRadioButton = null;
+        foreach (UIElement element in listChoice.Children)
+        {
+            if (element is RadioButton radioButton && radioButton.IsChecked == true)
+            {
+                checkedRadioButton = radioButton;
+                break;
+            }
+        }
+
+        if (checkedRadioButton != null)
+        {
+
+            string selectedSpellName = checkedRadioButton.Content.ToString();
+            Player.SpellsEquipped.RemoveAll(spell=> spell.SpellName == selectedSpellName);
+        }
+
         Player.SpellsEquipped.Add(spellToAdd);
         Player.OnPropertyChanged("SpellsEquipped");
-    }
-
-    private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-    {
-        if (!int.TryParse(e.Text, out int result))
-        {
-            e.Handled = true;
-            return;
-        }
-
-        // Validate that the input is 1, 2, 3, or 4
-        if (result < 1 || result > 4 || ((TextBox)sender).Text.Length > 0)
-        {
-            e.Handled = true;
-        }
     }
 }

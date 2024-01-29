@@ -32,7 +32,7 @@
             </TextBlock>
         </Button>
 
-        <Grid x:Name="InputBox" >
+        <Grid x:Name="InputBox" Visibility="Collapsed" >
             <Grid Background="Black" Opacity="0.5"/>
             <Border
                 MinWidth="250"
@@ -42,13 +42,13 @@
                 CornerRadius="0,55,0,55" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center">
-                <StackPanel Width="214">
+                <StackPanel Width="214" x:Name="listChoice">
                     <TextBlock Margin="5" Text="Choisir un sort à remplacer:" FontWeight="Bold" FontFamily="Cambria" />
-                    <RadioButton Content="{Binding Player.SpellsEquipped[0].SpellName}"></RadioButton>
-                    <RadioButton Content="{Binding Player.SpellsEquipped[1].SpellName}"></RadioButton>
-                    <RadioButton Content="{Binding Player.SpellsEquipped[2].SpellName}"></RadioButton>
-                    <RadioButton Content="{Binding Player.SpellsEquipped[3].SpellName}"></RadioButton>
-                    <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
+                    <RadioButton Content="{Binding Player.SpellsEquipped[0].SpellName}"/>
+                    <RadioButton Content="{Binding Player.SpellsEquipped[1].SpellName}"/>
+                    <RadioButton Content="{Binding Player.SpellsEquipped[2].SpellName}"/>
+                    <RadioButton Content="{Binding Player.SpellsEquipped[3].SpellName}"/>
+                            <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
                 </StackPanel>
             </Border>
         </Grid>

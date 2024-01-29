@@ -36,7 +36,7 @@ public class Player : Character
 
         SpellsEquipped.Add(new Heal());
         SpellsEquipped.Add(new Fireball());
-        SpellsEquipped.Add(new Heal());
+        SpellsEquipped.Add(new Freeze());
         SpellsEquipped.Add(new Fireball());
 
     }
