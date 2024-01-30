@@ -4,10 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="750" Width="1250">
+
+    <Window.Resources>
+        <Storyboard x:Key="monsterAnimation">
+            <DoubleAnimation Storyboard.TargetName="monsterImage"
+                         Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
+                         From="0" To="10" Duration="0:0:0.6"
+                         AutoReverse="True" RepeatBehavior="Forever"/>
+        </Storyboard>
+        <Storyboard x:Key="monsterAnimation1"/>
+
+
+
+    </Window.Resources>
+
+
 
     <Grid>
-        <Image Source="/photos/background2.png" Stretch="UniformToFill" Opacity="0.7" />
+        <Image Source="/photos/qqq.png" Stretch="Fill" Height="1098" VerticalAlignment="Top"/>
 
         <Button Content="{Binding Player.SpellsEquipped[0].SpellName}" HorizontalAlignment="Left" Margin="159,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="0"/>
         <Button Content="{Binding Player.SpellsEquipped[1].SpellName}" HorizontalAlignment="Left" Margin="203,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1"/>
@@ -58,6 +73,16 @@
         <Button Content="Shop" HorizontalAlignment="Left" Margin="703,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click"/>
         <Image x:Name="playerArrow" Margin="10,199,746,170" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
         <Image x:Name="monsterArrow" Margin="644,20,112,349" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed"/>
+
+        <Canvas x:Name="imageCanvas" Height="273" VerticalAlignment="Top" Margin="-10,451,10,0">
+            <Image x:Name="animatedImage" Stretch="Fill" Height="273" HorizontalAlignment="Left" Width="326" Canvas.Left="172" VerticalAlignment="Top" Canvas.Top="-254"/>
+        </Canvas>
+
+        <Image x:Name="monsterImage" Margin="997,382,0,0" Source="/photos/saw.png" Stretch="Fill" Height="304" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182">
+            <Image.RenderTransform>
+                <TranslateTransform/>
+            </Image.RenderTransform>
+        </Image>
 
     </Grid>
 </Window>

@@ -9,17 +9,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="music\background.mp3" />
+    <None Remove="music\menu.mp3" />
+    <None Remove="music\metal.wav" />
+    <None Remove="photos\1.png" />
+    <None Remove="photos\2.png" />
+    <None Remove="photos\3.png" />
     <None Remove="photos\arrow.png" />
     <None Remove="photos\background.png" />
     <None Remove="photos\background2.png" />
+    <None Remove="photos\Chainsaw-Man-Logo.png" />
+    <None Remove="photos\denji.png" />
+    <None Remove="photos\gggg.gif" />
     <None Remove="photos\market.gif" />
+    <None Remove="photos\menu.png" />
+    <None Remove="photos\pochita.png" />
+    <None Remove="photos\qqq.png" />
+    <None Remove="photos\saw.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="music\background.mp3" />
+    <Resource Include="music\menu.mp3" />
+    <Resource Include="music\metal.wav" />
+    <Resource Include="photos\1.png" />
+    <Resource Include="photos\2.png" />
+    <Resource Include="photos\3.png" />
     <Resource Include="photos\arrow.png" />
     <Resource Include="photos\background.png" />
     <Resource Include="photos\background2.png" />
+    <Resource Include="photos\Chainsaw-Man-Logo.png" />
+    <Resource Include="photos\denji.png" />
+    <Resource Include="photos\gggg.gif" />
     <Resource Include="photos\market.gif" />
+    <Resource Include="photos\menu.png" />
+    <Resource Include="photos\pochita.png" />
+    <Resource Include="photos\qqq.png" />
+    <Resource Include="photos\saw.png" />
   </ItemGroup>
 
 </Project>

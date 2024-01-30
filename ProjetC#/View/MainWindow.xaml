@@ -4,17 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="450" Width="800">
-    <Grid>
+        WindowState="Maximized"
+         WindowStyle="None">
+
+    <Window.Resources>
+        <Storyboard x:Key="monsterAnimation">
+            <DoubleAnimation Storyboard.TargetName="monsterImage"
+                     Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
+                     From="0" To="10" Duration="0:0:0.6"
+                     AutoReverse="True" RepeatBehavior="Forever"/>
+        </Storyboard>
+
+        <Storyboard x:Key="monsterAnimationn">
+            <DoubleAnimation Storyboard.TargetName="monsterImage1"
+             Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
+             From="0" To="10" Duration="0:0:0.6"
+             AutoReverse="True" RepeatBehavior="Forever"/>
+        </Storyboard>
 
 
-        <!-- Set background image -->
-        <Image Source="/photos/background.png" Stretch="UniformToFill" Opacity="0.7" />
 
-        <!-- Add "Jouer" button -->
-        <Button Content="Jouer" HorizontalAlignment="Center" Margin="0,187,0,0" Width="76" Click="JouerButton_Click" RenderTransformOrigin="3.391,3.583" Height="25" VerticalAlignment="Top"/>
 
-        <!-- Add "Quitter" button -->
-        <Button Content="Quitter" HorizontalAlignment="Center" Margin="0,217,0,0" Width="76" Click="QuitterButton_Click" Height="25" VerticalAlignment="Top"/>
+
+    </Window.Resources>
+
+
+
+    <Grid Height="1230">
+         <!--Set background image with animation support 
+        <Image x:Name="animatedImage" Margin="75,9,453,151">
+            <Image.Source>
+                <BitmapImage UriSource="/photos/gggg.gif" CacheOption="OnLoad" />
+            </Image.Source>
+        </Image>-->
+
+        <Image Source="/photos/menu.png" Stretch="UniformToFill" Margin="0,-56,0,0" />
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Jouer" Width="76" Click="JouerButton_Click" Height="25" Margin="0,187,0,0" RenderTransformOrigin="0.572,-6.68" />
+
+            <Button Content="Quitter" Width="76" Click="QuitterButton_Click" Height="25" Margin="0,10,0,0" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Image Margin="658,250,658,744" Source="/photos/Chainsaw-Man-Logo.png" Stretch="Fill"/>
+
+        <Image x:Name="monsterImage" Margin="106,0,0,374" Source="/photos/2.png" Stretch="Fill" Height="297" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
+            <Image.RenderTransform>
+                <TranslateTransform/>
+            </Image.RenderTransform>
+        </Image>
+
+        <Image x:Name="monsterImage1" Margin="1271,615,283,446" Source="/photos/pochita.png" Stretch="Fill">
+            <Image.RenderTransform>
+                <TranslateTransform/>
+            </Image.RenderTransform>
+        </Image>
+
     </Grid>
 </Window>
