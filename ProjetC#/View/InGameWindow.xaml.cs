@@ -1,8 +1,10 @@
 ﻿using Game.Model;
 using System;
 using System.Media;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -25,7 +27,13 @@ public partial class InGameWindow : Window
         InitializeTimer();
         DataContext = GameManager.Instance;
         shopWindow = new ShopWindow(GameManager.Instance.Player);
-        PlayerState.Instance.OnPlayerToPlay += PlayerTurn;
+        PlayerState.Instance.OnArrowToShow += PlayerTurn;
+        PlayerState.Instance.OnBtnToShow += SwitchBtn;
+        shopWindow.ShopViewModel.Shop.OnBuySpell += ShowBtnWhenBuy;
+        shopWindow.ShopViewModel.Shop.OnBuyDamageBooster += ShowPochitaDmgBooster;
+        GameManager.Instance.Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
+        GameManager.Instance.Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
+
 
 
         Storyboard monsterAnimation = (Storyboard)this.Resources["monsterAnimation"];
@@ -76,9 +84,19 @@ public partial class InGameWindow : Window
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
         {
-            PlayerState.Instance.OnClickedSpell?.Invoke(spellNumber);
-            StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
+            attackSoundPlayer.Play();
 
+            currentImageIndex = 0;
+            timer.Start();
+            Task.Delay(1000).ContinueWith(t =>
+            {
+                PlayerState.Instance.OnClickedSpell?.Invoke(spellNumber);
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
+                });
+            });
+            this.SwitchBtn();
         }
 
     }
@@ -92,5 +110,56 @@ public partial class InGameWindow : Window
     {
         playerArrow.Visibility = playerArrow.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         monsterArrow.Visibility = monsterArrow.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+
+    }
+
+    private void SwitchBtn()
+    {
+        btn1.IsEnabled = btn1.IsEnabled == true ? false : true;
+        btn2.IsEnabled = btn2.IsEnabled == true ? false : true;
+        btn3.IsEnabled = btn3.IsEnabled == true ? false : true;
+        btn4.IsEnabled = btn4.IsEnabled == true ? false : true;
+    }
+
+    private void ShowBtnWhenBuy()
+    {
+        btn2.Visibility = btn2.Content == null ? Visibility.Collapsed : Visibility.Visible;
+        btn3.Visibility = btn3.Content == null ? Visibility.Collapsed : Visibility.Visible;
+        btn4.Visibility = btn4.Content == null ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void ShowPochitaDmgBooster()
+    {
+        pochitaDmgBooster.Visibility = Visibility.Visible;
+    }
+
+    private void ChangeHpColorPlayer()
+    {
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            HpPlayer.Foreground = Brushes.Red;
+        });
+        Task.Delay(250).ContinueWith(t =>
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                HpPlayer.Foreground = Brushes.Black;
+            });
+        });
+    }
+
+    private void ChangeHpColorMonster()
+    {
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            HpMonster.Foreground = Brushes.Red;
+        });
+        Task.Delay(250).ContinueWith(t =>
+            {
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    HpMonster.Foreground = Brushes.Black;
+                });
+            });
     }
 }

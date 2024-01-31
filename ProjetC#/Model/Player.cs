@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Printing;
 using System.Windows;
 
 namespace Game.Model;
@@ -8,10 +7,8 @@ namespace Game.Model;
 public class Player : Character
 {
     public MoneyController MoneyController { get; set; }
-    public Action<ASpell> OnYesClickedAction;
-
-    int totemEquiped;
-    int damageBooster;
+    public bool IsTotemActivated { get; set; }
+    public Action<ASpell>? OnYesClickedAction;
 
     private List<ASpell> spellsEquipped = new();
     public List<ASpell> SpellsEquipped
@@ -23,34 +20,29 @@ public class Player : Character
         }
     }
 
-
     public Player()
     {
-        HealthController = new(100);
+        HealthController = new(200);
         ManaController = new(200);
         MoneyController = new(0);
 
         State = Character.EnumState.nothing;
-        Spells.Add(new Heal());
-        Spells.Add(new Fireball());
+        IsTotemActivated = false;
 
-        SpellsEquipped.Add(new Heal());
-        SpellsEquipped.Add(new Fireball());
-        SpellsEquipped.Add(new Freeze());
-        SpellsEquipped.Add(new Fireball());
-
+        Spells.Add(new Punch());
+        SpellsEquipped.Add(new Punch());
     }
 
     public void EquipNewSpell(ASpell newSpell)
     {
-        if (SpellsEquipped.Count < 4) 
+        if (SpellsEquipped.Count < 4)
         {
             SpellsEquipped.Add(newSpell);
         }
         else if (MessageBox.Show("Vous avez déjà le nombre maximum de sort équipé, voulez-vous quand même l'équiper? ",
         "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
         {
-            OnYesClickedAction.Invoke(newSpell); //TODO
+            OnYesClickedAction.Invoke(newSpell);
         }
         else
         {

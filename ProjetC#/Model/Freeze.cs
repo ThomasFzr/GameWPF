@@ -5,12 +5,10 @@
         public Freeze()
         {
             SpellName = "Freeze";
-            SpellNumber = 2;
             ManaNeeded = 20;
-            Description = "Freeze l'adversaire pendant un tour";
         }
 
-        public override void Execute(Character sender, Character receiver)
+        public override void Execute(Character sender, Character receiver, bool totem)
         {
             if (sender.ManaController.Mana >= ManaNeeded)
             {

@@ -1,22 +1,27 @@
-﻿namespace Game.Model
-{
-    public class Fireball : ASpell
-    {
-        public Fireball()
-        {
-            SpellName = "Fireball";
-            SpellNumber = 3;
-            ManaNeeded = 20;
-            Description = "Inflige - 35 HP à l'adversaire";
+﻿namespace Game.Model;
 
-        }
-        public override void Execute(Character sender, Character receiver)
+public class Fireball : ASpell
+{
+    public Fireball()
+    {
+        SpellName = "Fireball";
+        Damage = 35;
+        ManaNeeded = 20;
+
+    }
+    public override void Execute(Character sender, Character receiver, bool totem)
+    {
+        if (sender.ManaController.Mana >= ManaNeeded)
         {
-            if (sender.ManaController.Mana >= ManaNeeded)
+            if (totem)
             {
-                receiver.HealthController.HealthLoss(35);
-                sender.ManaController.ManaLoss(ManaNeeded);
+                receiver.HealthController.HealthLoss(Damage * (float)1.5);
             }
+            else
+            {
+                receiver.HealthController.HealthLoss(Damage);
+            }
+            sender.ManaController.ManaLoss(ManaNeeded);
         }
     }
 }

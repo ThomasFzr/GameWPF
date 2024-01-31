@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Game.Model;
@@ -26,10 +25,17 @@ public class MonsterState : AState
 
     public override void OnEnter()
     {
-        Task.Delay(2000).ContinueWith(t =>
+        Task.Delay(2500).ContinueWith(t =>
         {
-            randomNumber = random.Next(0, GameManager.Instance.Monster.monsterSpellLevel);
-            GameManager.Instance.Monster.Spells[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
+            if(!GameManager.Instance.Monster.IsDead) {
+                randomNumber = random.Next(0, GameManager.Instance.Monster.monsterSpellLevel);
+                GameManager.Instance.Monster.Spells[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
+            }
+            else
+            {
+                GameManager.Instance.Monster.IsDead = false;
+            }
+            
             App.Current.Dispatcher.Invoke(() =>
             {
                 StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);

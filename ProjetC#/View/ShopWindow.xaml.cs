@@ -1,26 +1,23 @@
 ﻿using Game.Model;
 using Game.ViewModel;
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Game.View;
 
 public partial class ShopWindow : Window
 {
-    private ShopViewModel shopViewModel;
+    public ShopViewModel ShopViewModel { get; private set; }
     private Player Player { get; set; }
     private ASpell spellToAdd;
 
     public ShopWindow(Player player)
     {
         InitializeComponent();
-        shopViewModel = new();
-        DataContext = shopViewModel;
+        ShopViewModel = new();
+        DataContext = ShopViewModel;
         Player = player;
         Player.OnYesClickedAction += EnableDialogBox;
-
     }
 
     private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -34,12 +31,14 @@ public partial class ShopWindow : Window
 
         if (!string.IsNullOrEmpty(spellName))
         {
-            ASpell spellToBuy = shopViewModel.Shop.SpellOnSale.Find(s => s.SpellName == spellName);
+            ASpell spellToBuy = ShopViewModel.Shop.SpellOnSale.Find(s => s.SpellName == spellName);
 
             if (spellToBuy != null)
             {
-                shopViewModel.Shop.Buy(Player, spellToBuy);
-                (sender as Button).Visibility = Visibility.Collapsed;
+                if (ShopViewModel.Shop.Buy(Player, spellToBuy))
+                {
+                    (sender as Button).Visibility = Visibility.Collapsed;
+                }
             }
         }
     }
@@ -70,6 +69,18 @@ public partial class ShopWindow : Window
             int index = Player.SpellsEquipped.FindIndex(spell => spell.SpellName == selectedSpellName);
             Player.SpellsEquipped[index] = spellToAdd;
             Player.OnPropertyChanged("SpellsEquipped");
+        }
+
+    }
+
+    private void BuyTotemButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (Player.MoneyController.Money >= 5000)
+        {
+            Player.IsTotemActivated = true;
+            (sender as Button).Visibility = Visibility.Collapsed;
+            ShopViewModel.Shop.OnBuyDamageBooster.Invoke();
+            Player.MoneyController.Money -= 5000;
         }
 
     }

@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="750" Width="1250"
+        ResizeMode="NoResize">
     <Grid>
 
         <Image Source="/photos/market.gif" Stretch="UniformToFill" Opacity="0.7" />
@@ -12,25 +13,36 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.7,-1.644"><Run Language="fr-fr" Text="Shop"/></TextBlock>
         <Button Content="Home" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click"/>
 
-        <Button HorizontalAlignment="Left" Margin="300,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[0].SpellName}">
-            <TextBlock>
-                <Run Text="{Binding Shop.SpellOnSale[0].SpellName}" />
-                <Run Text=" Acheter"/>
-            </TextBlock>
-        </Button>
-
         <TextBlock HorizontalAlignment="Left" Margin="21,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
              <Run Text="Money: " />
              <Run Text="{Binding Player.MoneyController.Money}" />
              <Run Text="$" />
         </TextBlock>
 
-        <Button HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[1].SpellName}">
+        <Button HorizontalAlignment="Left" Margin="300,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[0].SpellName}">
             <TextBlock>
-        <Run Text="{Binding Shop.SpellOnSale[1].SpellName}" />
-        <Run Text=" Acheter"/>
+                <Run Text="{Binding Shop.SpellOnSale[0].SpellName}" />
+                <Run Text=" Acheter"/>
             </TextBlock>
         </Button>
+        <Button HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuySpellButton_Click" Tag="{Binding Shop.SpellOnSale[1].SpellName}">
+            <TextBlock>
+                <Run Text="{Binding Shop.SpellOnSale[1].SpellName}" />
+                <Run Text=" Acheter"/>
+            </TextBlock>
+        </Button>
+
+        <Button HorizontalAlignment="Left" Margin="300,500,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyTotemButton_Click" Tag="{Binding Shop.SpellOnSale[1].SpellName}">
+            <StackPanel>
+                <TextBlock Width="232">
+            <Run Text="Totem booster" />
+            <Run Text="Augmente les dégâts de 15%" />
+            <Run Text=" Acheter"/>
+                </TextBlock>
+                <Image Source="/photos/pochita.png" Height="72" Width="166"/>
+            </StackPanel>
+        </Button>
+
 
         <Grid x:Name="InputBox" Visibility="Collapsed" >
             <Grid Background="Black" Opacity="0.5"/>
@@ -48,7 +60,7 @@
                     <RadioButton Content="{Binding Player.SpellsEquipped[1].SpellName}"/>
                     <RadioButton Content="{Binding Player.SpellsEquipped[2].SpellName}"/>
                     <RadioButton Content="{Binding Player.SpellsEquipped[3].SpellName}"/>
-                            <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
+                    <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
                 </StackPanel>
             </Border>
         </Grid>

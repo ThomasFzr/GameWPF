@@ -7,10 +7,10 @@ namespace Game.Model;
 public class HealthController : INotifyPropertyChanged
 {
     public Action? OnHealthChanged;
-    public Action? IsDead ;
+    public Action? IsDead;
 
-    private int hp;
-    public int Hp
+    private float hp;
+    public float Hp
     {
         get { return hp; }
         set
@@ -25,10 +25,11 @@ public class HealthController : INotifyPropertyChanged
         Hp = hp;
     }
 
-    public void HealthLoss(int amount)
+    public void HealthLoss(float amount)
     {
         Hp -= amount;
         OnHealthChanged?.Invoke();
+
         if (Hp <= 0)
         {
             IsDead?.Invoke();

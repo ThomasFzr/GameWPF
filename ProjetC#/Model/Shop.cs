@@ -7,8 +7,9 @@ namespace Game.Model;
 
 public class Shop : INotifyPropertyChanged
 {
-    int price;
     private Action<ASpell>? OnSpellAdded;
+    public Action? OnBuySpell;
+    public Action? OnBuyDamageBooster;
 
     private List<ASpell> spellOnSale = new();
     public List<ASpell> SpellOnSale
@@ -21,12 +22,19 @@ public class Shop : INotifyPropertyChanged
         }
     }
 
-    public void Buy(Player buyer, ASpell spell) {
-        buyer.Spells.Add(spell);
-        OnSpellAdded -= buyer.EquipNewSpell;
-        OnSpellAdded += buyer.EquipNewSpell;
-        OnSpellAdded.Invoke(spell);
-        SpellOnSale.Remove(spell);
+    public bool Buy(Player buyer, ASpell spell) {
+        if(buyer.MoneyController.Money >= 1000)
+        {
+            buyer.Spells.Add(spell);
+            OnSpellAdded -= buyer.EquipNewSpell;
+            OnSpellAdded += buyer.EquipNewSpell;
+            OnSpellAdded.Invoke(spell);
+            SpellOnSale.Remove(spell);
+            buyer.MoneyController.Money-=1000;
+            OnBuySpell?.Invoke();
+            return true;
+        }
+        return false;
     }
 
     public Shop()

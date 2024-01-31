@@ -5,16 +5,22 @@
         public Kamehameha()
         {
             SpellName = "Kamehameha ";
-            SpellNumber = 5;
+            Damage = 50;
             ManaNeeded = 30;
-            Description = "Inflige - 50 HP à l'adversaire";
 
         }
-        public override void Execute(Character sender, Character receiver)
+        public override void Execute(Character sender, Character receiver, bool totem)
         {
             if (sender.ManaController.Mana >= ManaNeeded)
             {
-                receiver.HealthController.HealthLoss(50);
+                if (totem)
+                {
+                    receiver.HealthController.HealthLoss(Damage * (float)1.5);
+                }
+                else
+                {
+                    receiver.HealthController.HealthLoss(Damage);
+                }
                 sender.ManaController.ManaLoss(ManaNeeded);
             }
         }

@@ -5,12 +5,10 @@
         public ManaBooster()
         {
             SpellName = "ManaBooster";
-            SpellNumber = 4;
             ManaNeeded = 0;
-            Description = "Donne 25 mana";
 
         }
-        public override void Execute(Character sender, Character receiver)
+        public override void Execute(Character sender, Character receiver, bool totem)
         {
             sender.ManaController.ManaGain(25);
         }

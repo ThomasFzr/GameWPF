@@ -32,7 +32,7 @@ public partial class MainWindow : Window
 
         mediaPlayer.Open(new Uri(audioFilePath, UriKind.RelativeOrAbsolute));
 
-        mediaPlayer.Volume = 0.5; 
+        mediaPlayer.Volume = 0.5;
 
         mediaPlayer.MediaFailed += MediaPlayer_MediaFailed;
     }

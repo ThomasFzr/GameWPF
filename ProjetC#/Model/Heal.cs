@@ -5,11 +5,9 @@
         public Heal()
         {
             SpellName = "Heal";
-            SpellNumber = 1;
             ManaNeeded = 15;
-            Description = "Heal 15 HP";
         }
-        public override void Execute(Character sender, Character receiver)
+        public override void Execute(Character sender, Character receiver, bool totem)
         {
             if (sender.ManaController.Mana >= ManaNeeded)
             {
