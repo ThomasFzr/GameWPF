@@ -21,53 +21,26 @@
              From="0" To="10" Duration="0:0:0.6"
              AutoReverse="True" RepeatBehavior="Forever"/>
         </Storyboard>
-
-
-
-
-
     </Window.Resources>
 
+    <Grid Margin="0,0,0,-6">
+        <MediaElement x:Name="backgroundVideo" Source="/video/backgroundVideo.mp4" Stretch="UniformToFill" LoadedBehavior="Play" UnloadedBehavior="Stop" MediaEnded="BackgroundVideo_MediaEnded"/>
 
-
-    <Grid Height="1230">
-        <!--Set background image with animation support 
-        <Image x:Name="animatedImage" Margin="75,9,453,151">
-            <Image.Source>
-                <BitmapImage UriSource="/photos/gggg.gif" CacheOption="OnLoad" />
-            </Image.Source>
-        </Image>-->
-
-        <Image Source="/photos/menu.png" Stretch="UniformToFill" Margin="0,-56,0,0" />
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="357">
-
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="155">
             <Button Content="Jouer" FontSize="24"  Width="287" Click="JouerButton_Click" Height="68" RenderTransformOrigin="0.572,-6.68" />
-
             <Button Content="Quitter" FontSize="24" Width="286" Click="QuitterButton_Click" Height="69" Margin="0,10,0,0" />
         </StackPanel>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-        </Grid>
-
-        
-		<MediaElement x:Name="backgroundVideo" Source="/videos/your_video.mp4" Stretch="UniformToFill" LoadedBehavior="Play" UnloadedBehavior="Stop" />
-
-        <Image x:Name="monsterImage" Margin="54,0,0,744" Source="/photos/2.png" Stretch="Fill" Height="297" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
+        <Image x:Name="monsterImage" Margin="47,0,0,50" Source="/photos/2.png" Stretch="Fill" Height="350" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
             <Image.RenderTransform>
                 <TranslateTransform/>
             </Image.RenderTransform>
         </Image>
 
-        <Image x:Name="monsterImage1" Margin="906,0,0,646" Source="/photos/pochita.png" Stretch="Fill" Height="148" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233">
+        <Image x:Name="monsterImage1" Margin="930,0,0,102" Source="/photos/pochita.png" Stretch="Fill" Height="148" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233">
             <Image.RenderTransform>
                 <TranslateTransform/>
             </Image.RenderTransform>
         </Image>
-
     </Grid>
 </Window>

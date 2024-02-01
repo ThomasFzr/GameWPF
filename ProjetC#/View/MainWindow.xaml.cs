@@ -44,6 +44,11 @@ public partial class MainWindow : Window
         MessageBox.Show($"Échec du chargement du média : {e.ErrorException.Message}");
     }
 
+    private void BackgroundVideo_MediaEnded(object sender, RoutedEventArgs e)
+    {
+        backgroundVideo.Position = TimeSpan.Zero;
+        backgroundVideo.Play();
+    }
 
     private void PlayAudio()
     {

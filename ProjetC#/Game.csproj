@@ -27,6 +27,7 @@
     <None Remove="photos\qqq.png" />
     <None Remove="photos\saw.png" />
     <None Remove="photos\street.jpg" />
+    <None Remove="video\backgroundVideo.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,9 @@
     <Resource Include="photos\pochita.png" />
     <Resource Include="photos\qqq.png" />
     <Resource Include="photos\saw.png" />
+    <Resource Include="video\backgroundVideo.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
