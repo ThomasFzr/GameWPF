@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.IO;
 
 namespace Game.View;
 
@@ -28,7 +29,8 @@ public partial class MainWindow : Window
     {
         mediaPlayer = new MediaPlayer();
 
-        var audioFilePath = "C:\\Users\\thoma\\source\\repos\\ProjetC#\\ProjetC#\\music\\menu.mp3";
+        string workingDirectory = Environment.CurrentDirectory;
+        var audioFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\music\\menu.mp3";
 
         mediaPlayer.Open(new Uri(audioFilePath, UriKind.RelativeOrAbsolute));
 
