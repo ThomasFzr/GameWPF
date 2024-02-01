@@ -11,8 +11,10 @@
         <MediaElement x:Name="backgroundVideo" Source="/video/backgroundVideo.mp4" Stretch="UniformToFill" LoadedBehavior="Play" UnloadedBehavior="Stop" MediaEnded="BackgroundVideo_MediaEnded"/>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="155">
-            <Button Content="JOUER" FontSize="30" FontFamily="Meiryo" Width="287" Background="{x:Null}" Click="JouerButton_Click" Foreground="White" Height="68" RenderTransformOrigin="0.572,-6.68" />
-            <Button Content="QUITTER" FontSize="30" FontFamily="Meiryo" Width="286" Background="{x:Null}" Click="QuitterButton_Click" Foreground="White" Height="69" Margin="0,10,0,0" />
+            <Button Content="JOUER" FontSize="30" FontFamily="Meiryo" Width="287" Background="{x:Null}" 
+                    Click="JouerButton_Click" Foreground="White" Height="68" RenderTransformOrigin="0.572,-6.68" />
+            <Button Content="QUITTER" FontSize="30" FontFamily="Meiryo" Width="286" Background="{x:Null}" 
+                    Click="QuitterButton_Click" Foreground="White" Height="69" Margin="0,10,0,0" />
         </StackPanel>
     </Grid>
 </Window>
