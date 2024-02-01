@@ -75,13 +75,20 @@ public partial class ShopWindow : Window
 
     private void BuyTotemButton_Click(object sender, RoutedEventArgs e)
     {
-        if (Player.MoneyController.Money >= 5000)
+        const int priceTotem = 5000;
+        if (Player.MoneyController.Money >= priceTotem)
         {
             Player.IsTotemActivated = true;
             (sender as Button).Visibility = Visibility.Collapsed;
             ShopViewModel.Shop.OnBuyDamageBooster.Invoke();
-            Player.MoneyController.Money -= 5000;
+            Player.MoneyController.Money -= priceTotem;
         }
 
+    }
+
+    private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        e.Cancel = true;
+        this.Hide();
     }
 }
