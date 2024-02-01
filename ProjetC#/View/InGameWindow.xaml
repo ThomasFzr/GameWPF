@@ -17,22 +17,18 @@
         <Storyboard x:Key="monsterAnimation1"/>
     </Window.Resources>
 
-    <Grid>
-        <Image Source="/photos/qqq.png" Stretch="Fill" Height="1098" VerticalAlignment="Top"/>
+    <Grid RenderTransformOrigin="0.92,0.5">
+        <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top"/>
 
         <Button Content="{Binding Player.SpellsEquipped[0].SpellName}" x:Name="btn1" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="0" Height="29" Width="100" IsEnabled="true" />
         <Button Content="{Binding Player.SpellsEquipped[1].SpellName}" x:Name="btn2" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
         <Button Content="{Binding Player.SpellsEquipped[2].SpellName}" x:Name="btn3" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="2" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
         <Button Content="{Binding Player.SpellsEquipped[3].SpellName}" x:Name="btn4" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="3" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
 
-        <TextBlock x:Name="HpPlayer" HorizontalAlignment="Left" Margin="30,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBlock x:Name="HpPlayer" HorizontalAlignment="Left" Margin="29,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Text="HP: " />
             <Run Text="{Binding Player.HealthController.Hp}" />
         </TextBlock>
-
-        <ProgressBar Width="{Binding Monster.MaxHp}" Height="20" Panel.ZIndex="1" Visibility="Visible"
-            Name="progressBarMonster" Value="{Binding Monster.HealthController.Hp}" >
-        </ProgressBar>
 
         <ProgressBar Width="100" Height="20" Panel.ZIndex="1" Visibility="Visible" RenderTransformOrigin="0.581,89"
             Name="progressBarPlayer" Value="{Binding Player.HealthController.Hp}" Margin="152,335,998,379">
@@ -43,7 +39,7 @@
             <Run Text="{Binding Player.MoneyController.Money}" />
             <Run Text="$" />
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="32,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="31,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Text="Mana: " />
             <Run Text="{Binding Player.ManaController.Mana}" />
         </TextBlock>
@@ -56,7 +52,7 @@
             <Run Text="{Binding Monster.ManaController.Mana}" />
         </TextBlock>
 
-        <Button Content="Shop" HorizontalAlignment="Left" Margin="1189,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click"/>
+        <Button Content="Shop" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click" Height="50" Width="95"/>
         <Image x:Name="playerArrow" Margin="94,399,1078,238" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
         <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed" RenderTransformOrigin="7.042,0.692"/>
 
@@ -70,7 +66,9 @@
             </Image.RenderTransform>
         </Image>
         <Image x:Name="pochitaDmgBooster" Margin="-4,549,1148,108" Source="/photos/pochita.png" Stretch="Fill" Visibility="Collapsed"/>
-
+        <ProgressBar Width="{Binding Monster.MaxHp}" Height="20" Panel.ZIndex="1" Visibility="Visible"
+            Name="progressBarMonster" Value="{Binding Monster.HealthController.Hp}" >
+        </ProgressBar>
     </Grid>
 </Window>
 

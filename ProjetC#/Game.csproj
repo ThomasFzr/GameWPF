@@ -26,6 +26,7 @@
     <None Remove="photos\pochita.png" />
     <None Remove="photos\qqq.png" />
     <None Remove="photos\saw.png" />
+    <None Remove="photos\street.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <Resource Include="music\menu.mp3" />
     <Resource Include="music\metal.wav" />
     <Resource Include="photos\1.png" />
+    <Resource Include="photos\street.jpg" />
     <Resource Include="photos\2.png" />
     <Resource Include="photos\3.png" />
     <Resource Include="photos\arrow.png" />
