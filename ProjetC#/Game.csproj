@@ -49,9 +49,9 @@
     <Resource Include="photos\pochita.png" />
     <Resource Include="photos\qqq.png" />
     <Resource Include="photos\saw.png" />
-    <Resource Include="video\backgroundVideo.mp4">
+    <Content Include="video\backgroundVideo.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
 </Project>
