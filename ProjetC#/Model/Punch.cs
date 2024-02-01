@@ -5,7 +5,7 @@ public class Punch : ASpell
     public Punch()
     {
         SpellName = "Punch";
-        Damage = 20;
+        Damage = 30;
         ManaNeeded = 0;
     }
     public override void Execute(Character sender, Character receiver, bool totem)

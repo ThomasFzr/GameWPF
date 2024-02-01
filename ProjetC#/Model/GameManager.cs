@@ -29,6 +29,7 @@ public class GameManager
     private void AddMoneytoPlayer(int monsterLevel)
     {
         Player.MoneyController.Money += monsterLevel * 1000;
+        Player.ManaController.Mana += monsterLevel * 10;
     }
 
     public void StartGame()
