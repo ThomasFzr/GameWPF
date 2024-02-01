@@ -124,6 +124,34 @@ public partial class InGameWindow : Window
         btn2.IsEnabled = btn2.IsEnabled == true ? false : true;
         btn3.IsEnabled = btn3.IsEnabled == true ? false : true;
         btn4.IsEnabled = btn4.IsEnabled == true ? false : true;
+        if (btn1.Visibility == Visibility.Visible)
+        {
+            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[0].ManaNeeded)
+            {
+                btn1.IsEnabled = false;
+            }
+        }
+        if (btn2.Visibility == Visibility.Visible)
+        {
+            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[1]?.ManaNeeded)
+            {
+                btn2.IsEnabled = false;
+            }
+        }
+        if (btn3.Visibility == Visibility.Visible)
+        {
+            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[2]?.ManaNeeded)
+            {
+                btn3.IsEnabled = false;
+            }
+        }
+        if (btn4.Visibility == Visibility.Visible)
+        {
+            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[3]?.ManaNeeded)
+            {
+                btn4.IsEnabled = false;
+            }
+        }
     }
 
     private void ShowBtnWhenBuy()
