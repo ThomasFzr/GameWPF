@@ -2,7 +2,6 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.IO;
 
 namespace Game.View;
@@ -17,12 +16,6 @@ public partial class MainWindow : Window
         InitializeComponent();
         InitializeMediaPlayer().Wait();
         PlayAudio();
-
-        Storyboard monsterAnimation = (Storyboard)this.Resources["monsterAnimation"];
-        monsterAnimation.Begin();
-
-        Storyboard monsterAnimationn = (Storyboard)this.Resources["monsterAnimationn"];
-        monsterAnimationn.Begin();
     }
 
     private async Task InitializeMediaPlayer()

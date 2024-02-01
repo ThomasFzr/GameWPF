@@ -7,40 +7,12 @@
         Height="750" Width="1250"
         ResizeMode="NoResize">
 
-    <Window.Resources>
-        <Storyboard x:Key="monsterAnimation">
-            <DoubleAnimation Storyboard.TargetName="monsterImage"
-                     Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
-                     From="0" To="10" Duration="0:0:0.6"
-                     AutoReverse="True" RepeatBehavior="Forever"/>
-        </Storyboard>
-
-        <Storyboard x:Key="monsterAnimationn">
-            <DoubleAnimation Storyboard.TargetName="monsterImage1"
-             Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
-             From="0" To="10" Duration="0:0:0.6"
-             AutoReverse="True" RepeatBehavior="Forever"/>
-        </Storyboard>
-    </Window.Resources>
-
-    <Grid Margin="0,0,0,-6">
+    <Grid>
         <MediaElement x:Name="backgroundVideo" Source="/video/backgroundVideo.mp4" Stretch="UniformToFill" LoadedBehavior="Play" UnloadedBehavior="Stop" MediaEnded="BackgroundVideo_MediaEnded"/>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="155">
             <Button Content="JOUER" FontSize="30" FontFamily="Meiryo" Width="287" Background="{x:Null}" Click="JouerButton_Click" Foreground="White" Height="68" RenderTransformOrigin="0.572,-6.68" />
             <Button Content="QUITTER" FontSize="30" FontFamily="Meiryo" Width="286" Background="{x:Null}" Click="QuitterButton_Click" Foreground="White" Height="69" Margin="0,10,0,0" />
         </StackPanel>
-
-        <Image x:Name="monsterImage" Margin="47,0,0,50" Source="/photos/2.png" Stretch="Fill" Height="350" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
-            <Image.RenderTransform>
-                <TranslateTransform/>
-            </Image.RenderTransform>
-        </Image>
-
-        <Image x:Name="monsterImage1" Margin="930,0,0,102" Source="/photos/pochita.png" Stretch="Fill" Height="148" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233">
-            <Image.RenderTransform>
-                <TranslateTransform/>
-            </Image.RenderTransform>
-        </Image>
     </Grid>
 </Window>
