@@ -40,11 +40,11 @@
 
         <Image Source="/photos/menu.png" Stretch="UniformToFill" Margin="0,-56,0,0" />
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="357">
 
-            <Button Content="Jouer" Width="76" Click="JouerButton_Click" Height="25" RenderTransformOrigin="0.572,-6.68" />
+            <Button Content="Jouer" FontSize="24"  Width="287" Click="JouerButton_Click" Height="68" RenderTransformOrigin="0.572,-6.68" />
 
-            <Button Content="Quitter" Width="76" Click="QuitterButton_Click" Height="25" Margin="0,10,0,0" />
+            <Button Content="Quitter" FontSize="24" Width="286" Click="QuitterButton_Click" Height="69" Margin="0,10,0,0" />
         </StackPanel>
 
         <Grid>
@@ -56,13 +56,13 @@
 
         <Image Margin="658,250,658,744" Source="/photos/Chainsaw-Man-Logo.png" Stretch="Fill"/>
 
-        <Image x:Name="monsterImage" Margin="119,0,0,548" Source="/photos/2.png" Stretch="Fill" Height="297" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
+        <Image x:Name="monsterImage" Margin="54,0,0,744" Source="/photos/2.png" Stretch="Fill" Height="297" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
             <Image.RenderTransform>
                 <TranslateTransform/>
             </Image.RenderTransform>
         </Image>
 
-        <Image x:Name="monsterImage1" Margin="906,0,0,587" Source="/photos/pochita.png" Stretch="Fill" Height="148" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233">
+        <Image x:Name="monsterImage1" Margin="906,0,0,646" Source="/photos/pochita.png" Stretch="Fill" Height="148" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="233">
             <Image.RenderTransform>
                 <TranslateTransform/>
             </Image.RenderTransform>
