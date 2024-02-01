@@ -1,5 +1,7 @@
 ﻿using Game.Model;
 using System;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Media;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,11 +41,14 @@ public partial class InGameWindow : Window
         Storyboard monsterAnimation = (Storyboard)this.Resources["monsterAnimation"];
         monsterAnimation.Begin();
 
-        attackSoundPlayer = new SoundPlayer("C:\\Users\\thoma\\source\\repos\\ProjetC#\\ProjetC#\\music\\metal.wav");
+        string workingDirectory = Environment.CurrentDirectory;
+        var attackSoundPlayerPath = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\music\\metal.wav";
+        attackSoundPlayer = new SoundPlayer(attackSoundPlayerPath);
         attackSoundPlayer.Load();
 
         backgroundMusic = new MediaElement();
-        backgroundMusic.Source = new Uri("D:\\jeu\\ProjetC#\\music\\background.mp3");
+        var inGameSoundPath = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\music\\background.mp3";
+        backgroundMusic.Source = new Uri(inGameSoundPath);
         backgroundMusic.MediaEnded += BackgroundMusic_MediaEnded;
         backgroundMusic.LoadedBehavior = MediaState.Manual;
         backgroundMusic.UnloadedBehavior = MediaState.Manual;
