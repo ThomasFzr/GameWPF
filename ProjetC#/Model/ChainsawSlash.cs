@@ -4,7 +4,7 @@ public class ChainsawSlash : AAttack
 {
     public ChainsawSlash()
     {
-        AttackName = "Slash";
+        AttackName = "SLASH";
         Damage = 30;
         BloodNeeded = 0;
     }

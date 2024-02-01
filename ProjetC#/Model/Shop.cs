@@ -22,6 +22,13 @@ public class Shop : INotifyPropertyChanged
         }
     }
 
+    public Shop()
+    {
+        AttacksOnSale.Add(new Heal());
+        AttacksOnSale.Add(new ChainsawHurricane());
+        AttacksOnSale.Add(new ChainsawBlaster());
+    }
+
     public bool Buy(Player buyer, AAttack attack) {
         if(buyer.MoneyController.Money >= 1000)
         {
@@ -35,13 +42,6 @@ public class Shop : INotifyPropertyChanged
             return true;
         }
         return false;
-    }
-
-    public Shop()
-    {
-        AttacksOnSale.Add(new Heal());
-        AttacksOnSale.Add(new ChainsawHurricane());
-        AttacksOnSale.Add(new ChainsawBlaster());
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

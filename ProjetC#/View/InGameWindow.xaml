@@ -17,58 +17,76 @@
         <Storyboard x:Key="monsterAnimation1"/>
     </Window.Resources>
 
-    <Grid RenderTransformOrigin="0.92,0.5">
-        <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top"/>
+    <Grid>
+        <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top" Panel.ZIndex="-1"/>
 
         <Button Content="{Binding Player.AttacksEquipped[0].AttackName}" x:Name="btn1" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="AttackButton_Click" Tag="0" Height="29" Width="100" IsEnabled="true" />
         <Button Content="{Binding Player.AttacksEquipped[1].AttackName}" x:Name="btn2" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="AttackButton_Click" Tag="1" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
         <Button Content="{Binding Player.AttacksEquipped[2].AttackName}" x:Name="btn3" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="AttackButton_Click" Tag="2" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
         <Button Content="{Binding Player.AttacksEquipped[3].AttackName}" x:Name="btn4" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="AttackButton_Click" Tag="3" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
 
-        <TextBlock x:Name="HpPlayer" HorizontalAlignment="Left" Margin="29,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="HP: " />
-            <Run Text="{Binding Player.HealthController.Hp}" />
+       
+
+        
+        <!--MONEY-->
+        <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+           Margin="10,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="426">
+             <Run Text="ARGENT: " />
+             <Run Text="{Binding Player.MoneyController.Money}" />
+             <Run Text="$" />
         </TextBlock>
 
-        <ProgressBar Width="100" Height="20" Panel.ZIndex="1" Visibility="Visible" RenderTransformOrigin="0.581,89"
-            Name="progressBarPlayer" Value="{Binding Player.HealthController.Hp}" Margin="152,335,998,379">
-        </ProgressBar>
-
-        <TextBlock HorizontalAlignment="Left" Margin="14,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="51" Width="212" FontSize="18">
-            <Run Text="Money: " />
-            <Run Text="{Binding Player.MoneyController.Money}" />
-            <Run Text="$" />
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="31,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="Sang: " />
-            <Run Text="{Binding Player.BloodController.Blood}" />
-        </TextBlock>
-        <TextBlock x:Name="HpMonster" HorizontalAlignment="Left" Margin="1052,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="HP monstre: " />
-            <Run Text="{Binding Monster.HealthController.Hp}" />
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="1052,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="Sang monstre: " />
-            <Run Text="{Binding Monster.BloodController.Blood}" />
-        </TextBlock>
-
-        <Button Content="Shop" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click" Height="50" Width="95"/>
-        <Image x:Name="playerArrow" Margin="94,399,1078,238" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
-        <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed" RenderTransformOrigin="7.042,0.692"/>
-
-        <Canvas x:Name="imageCanvas" Height="273" VerticalAlignment="Top" Margin="-10,451,10,0">
+        <!--PLAYER-->
+        <Canvas x:Name="imageCanvas" Height="273" VerticalAlignment="Top" Margin="10,451,10,0">
             <Image x:Name="animatedImage" Stretch="Fill" Height="124" HorizontalAlignment="Left" Width="145" Canvas.Left="92" VerticalAlignment="Top" Canvas.Top="27"/>
         </Canvas>
 
+        <ProgressBar Width="100" Height="20" Panel.ZIndex="2"
+            Name="progressBarPlayer" Value="{Binding Player.HealthController.Hp}" Margin="52,357,1098,357">
+        </ProgressBar>
+
+        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+             x:Name="HpPlayer" HorizontalAlignment="Left" Margin="68,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+             <Run Text="HP: " />
+             <Run Text="{Binding Player.HealthController.Hp}" />
+        </TextBlock>
+        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+            HorizontalAlignment="Left" Margin="31,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="SANG: " />
+            <Run Text="{Binding Player.BloodController.Blood}" />
+        </TextBlock>
+
+        <Image x:Name="playerArrow" Margin="94,399,1078,238" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
+
+        <!--MONSTER-->
         <Image x:Name="monsterImage" Margin="997,382,0,0" Source="/photos/saw.png" Stretch="Fill" Height="304" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182">
             <Image.RenderTransform>
                 <TranslateTransform/>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="pochitaDmgBooster" Margin="-4,549,1148,108" Source="/photos/pochita.png" Stretch="Fill" Visibility="Collapsed"/>
-        <ProgressBar Width="{Binding Monster.MaxHp}" Height="20" Panel.ZIndex="1" Visibility="Visible"
-            Name="progressBarMonster" Value="{Binding Monster.HealthController.Hp}" >
+        
+        <ProgressBar Width="{Binding Monster.MaxHp}" Height="20" Panel.ZIndex="2" Visibility="Visible"
+            Name="progressBarMonster" Value="{Binding Monster.HealthController.Hp}" Margin="0,295,0,419" >
         </ProgressBar>
+
+        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+            x:Name="HpMonster" HorizontalAlignment="Left" Margin="1051,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="HP: " />
+            <Run Text="{Binding Monster.HealthController.Hp}" />
+        </TextBlock>
+        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+            HorizontalAlignment="Left" Margin="1010,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.517,-0.487">
+            <Run Text="SANG: " />
+            <Run Text="{Binding Monster.BloodController.Blood}" />
+        </TextBlock>
+
+        <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed" RenderTransformOrigin="7.042,0.692"/>
+
+        <Button Content="Shop" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click" Height="50" Width="95"/>
+
+        <Image x:Name="pochitaDmgBooster" Margin="-4,549,1148,108" Source="/photos/pochita.png" Stretch="Fill" Visibility="Collapsed"/>
+        
+        <Image Source="/photos/bubble.png" Stretch="Fill" Margin="253,50,682,461" Panel.ZIndex="5" RenderTransformOrigin="0.914,0.748"/>
     </Grid>
 </Window>
 

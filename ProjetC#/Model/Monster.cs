@@ -27,7 +27,7 @@ public class Monster : Character
         MaxHp = (int)HealthController.Hp;
         BloodController = new(100);
         State = Character.EnumState.nothing;
-        Attacks.Add(new Fireball());
+        Attacks.Add(new ChainsawSlash());
         HealthController.IsDead += DeathManager;
         IsDead = false;
     }

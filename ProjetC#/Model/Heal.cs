@@ -4,7 +4,7 @@
     {
         public Heal()
         {
-            AttackName = "Heal";
+            AttackName = "HEAL";
             BloodNeeded = 15;
         }
         public override void Execute(Character sender, Character receiver, bool totem)

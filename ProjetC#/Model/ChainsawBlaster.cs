@@ -4,7 +4,7 @@
     {
         public ChainsawBlaster()
         {
-            AttackName = "Blaster ";
+            AttackName = "BLASTER";
             Damage = 50;
             BloodNeeded = 30;
 

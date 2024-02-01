@@ -4,7 +4,7 @@
     {
         public ChainsawHurricane()
         {
-            AttackName = "Hurricane ";
+            AttackName = "HURRICANE";
             Damage = 70;
             BloodNeeded = 40;
 

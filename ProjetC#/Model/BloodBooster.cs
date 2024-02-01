@@ -4,7 +4,7 @@
     {
         public BloodBooster()
         {
-            AttackName = "BloodBooster";
+            AttackName = "BLOODBOOSTER";
             BloodNeeded = 0;
 
         }

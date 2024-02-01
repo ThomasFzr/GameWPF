@@ -1,6 +1,5 @@
 ﻿using Game.Model;
 using System;
-using System.Diagnostics.Metrics;
 using System.IO;
 using System.Media;
 using System.Threading.Tasks;
@@ -176,7 +175,7 @@ public partial class InGameWindow : Window
         {
             App.Current.Dispatcher.Invoke(() =>
             {
-                HpPlayer.Foreground = Brushes.Black;
+                HpPlayer.Foreground = Brushes.White;
             });
         });
     }
@@ -191,7 +190,7 @@ public partial class InGameWindow : Window
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
-                    HpMonster.Foreground = Brushes.Black;
+                    HpMonster.Foreground = Brushes.White;
                 });
             });
     }

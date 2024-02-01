@@ -6,46 +6,62 @@
         mc:Ignorable="d"
         Height="750" Width="1250"
         ResizeMode="NoResize" Closing="MainWindow_Closing">
+    
     <Grid>
-
         <Image Source="/photos/market.gif" Stretch="UniformToFill" Opacity="0.7" />
+        <Button Content="RETOUR" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click" Height="44" Width="113"/>
 
-        <TextBlock HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.7,-1.644"><Run Language="fr-fr" Text="Shop"/></TextBlock>
-        <Button Content="Home" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click"/>
-
-        <TextBlock HorizontalAlignment="Left" Margin="21,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-             <Run Text="Money: " />
+        <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+                   Margin="441,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="426">
+             <Run Text="ARGENT: " />
              <Run Text="{Binding Player.MoneyController.Money}" />
              <Run Text="$" />
         </TextBlock>
 
-        <Button HorizontalAlignment="Left" Margin="300,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[0].AttackName}">
-            <TextBlock>
-                <Run Text="{Binding Shop.AttacksOnSale[0].AttackName}" />
-                <Run Text=" Acheter"/>
-            </TextBlock>
-        </Button>
-        <Button HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[1].AttackName}">
-            <TextBlock>
-                <Run Text="{Binding Shop.AttacksOnSale[1].AttackName}" />
-                <Run Text=" Acheter"/>
-            </TextBlock>
-        </Button>
-        <Button HorizontalAlignment="Left" Margin="300,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[2].AttackName}">
-            <TextBlock>
-        <Run Text="{Binding Shop.AttacksOnSale[2].AttackName}" />
-        <Run Text=" Acheter"/>
-            </TextBlock>
-        </Button>
-
-        <Button HorizontalAlignment="Left" Margin="300,500,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyTotemButton_Click">
+        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[2].AttackName}" Height="48">
             <StackPanel>
-                <TextBlock Width="232">
-            <Run Text="Totem booster" />
-            <Run Text="Augmente les dégâts de 15%" />
-            <Run Text=" Acheter"/>
+                <TextBlock> 
+             <Run Text="{Binding Shop.AttacksOnSale[0].AttackName}" />
+                </TextBlock>
+                <TextBlock> 
+             <Run Text=" 1000$"/>
+                </TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[0].AttackName}" Height="48">
+            <StackPanel>
+                <TextBlock> 
+                    <Run Text="{Binding Shop.AttacksOnSale[1].AttackName}" />
+                </TextBlock>
+                <TextBlock> 
+                    <Run Text=" 1000$"/>
+                </TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[1].AttackName}" Height="48">
+            <StackPanel>
+                <TextBlock> 
+        <Run Text="{Binding Shop.AttacksOnSale[2].AttackName}" />
+                </TextBlock>
+                <TextBlock> 
+        <Run Text=" 1000$"/>
+                </TextBlock>
+            </StackPanel>
+        </Button>
+       
+
+        <Button HorizontalAlignment="Left" Margin="912,267,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyTotemButton_Click">
+            <StackPanel>
+                <TextBlock Width="49">
+                    <Run Text="POCHITA" />
+                </TextBlock>
+                <TextBlock Width="158">
+                    <Run Text="Augmente les dégâts de 15%" />
                 </TextBlock>
                 <Image Source="/photos/pochita.png" Height="72" Width="166"/>
+                <TextBlock Width="34">
+                    <Run Text="5000$"/>
+                </TextBlock>
             </StackPanel>
         </Button>
 
