@@ -1,12 +1,12 @@
 ﻿namespace Game.Model;
 
-public class Punch : ASpell
+public class ChainsawSlash : AAttack
 {
-    public Punch()
+    public ChainsawSlash()
     {
-        SpellName = "Punch";
+        AttackName = "Slash";
         Damage = 30;
-        ManaNeeded = 0;
+        BloodNeeded = 0;
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {

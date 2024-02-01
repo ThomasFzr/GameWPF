@@ -1,19 +1,19 @@
 ﻿namespace Game.Model
 {
-    public class Freeze : ASpell
+    public class Freeze : AAttack
     {
         public Freeze()
         {
-            SpellName = "Freeze";
-            ManaNeeded = 20;
+            AttackName = "Freeze";
+            BloodNeeded = 20;
         }
 
         public override void Execute(Character sender, Character receiver, bool totem)
         {
-            if (sender.ManaController.Mana >= ManaNeeded)
+            if (sender.BloodController.Blood >= BloodNeeded)
             {
                 receiver.State = Character.EnumState.freeze;
-                sender.ManaController.ManaLoss(ManaNeeded);
+                sender.BloodController.BloodLoss(BloodNeeded);
             }
         }
     }

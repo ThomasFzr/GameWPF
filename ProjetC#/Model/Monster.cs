@@ -6,7 +6,7 @@ namespace Game.Model;
 public class Monster : Character
 {
     private int monsterLevel = 1;
-    public int monsterSpellLevel = 1;
+    public int monsterAttackLevel = 1;
     public Action<int> MonsterIsDead;
     public bool IsDead { get; set; }
 
@@ -25,9 +25,9 @@ public class Monster : Character
     {
         HealthController = new(100);
         MaxHp = (int)HealthController.Hp;
-        ManaController = new(100);
+        BloodController = new(100);
         State = Character.EnumState.nothing;
-        Spells.Add(new Fireball());
+        Attacks.Add(new Fireball());
         HealthController.IsDead += DeathManager;
         IsDead = false;
     }
@@ -39,17 +39,17 @@ public class Monster : Character
         monsterLevel++;
         HealthController.Hp = (100 + monsterLevel * 10);
         MaxHp = (int)HealthController.Hp;
-        ManaController.Mana = (100 + monsterLevel * 10);
+        BloodController.Blood = (100 + monsterLevel * 10);
         switch (monsterLevel)
         {
             case 2:
-                Spells.Add(new Heal());
-                monsterSpellLevel++;
+                Attacks.Add(new Heal());
+                monsterAttackLevel++;
                 break;
 
             case 5:
-                Spells.Add(new Kamehameha());
-                monsterSpellLevel++;
+                Attacks.Add(new ChainsawHurricane());
+                monsterAttackLevel++;
                 break;
         }
     }

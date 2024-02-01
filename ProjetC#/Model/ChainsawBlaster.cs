@@ -1,17 +1,17 @@
 ﻿namespace Game.Model
 {
-    public class Kamehameha : ASpell
+    public class ChainsawBlaster : AAttack
     {
-        public Kamehameha()
+        public ChainsawBlaster()
         {
-            SpellName = "Kamehameha ";
+            AttackName = "Blaster ";
             Damage = 50;
-            ManaNeeded = 30;
+            BloodNeeded = 30;
 
         }
         public override void Execute(Character sender, Character receiver, bool totem)
         {
-            if (sender.ManaController.Mana >= ManaNeeded)
+            if (sender.BloodController.Blood >= BloodNeeded)
             {
                 if (totem)
                 {
@@ -21,7 +21,7 @@
                 {
                     receiver.HealthController.HealthLoss(Damage);
                 }
-                sender.ManaController.ManaLoss(ManaNeeded);
+                sender.BloodController.BloodLoss(BloodNeeded);
             }
         }
     }

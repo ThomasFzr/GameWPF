@@ -9,7 +9,7 @@ public partial class ShopWindow : Window
 {
     public ShopViewModel ShopViewModel { get; private set; }
     private Player Player { get; set; }
-    private ASpell spellToAdd;
+    private AAttack attackToAdd;
 
     public ShopWindow(Player player)
     {
@@ -25,17 +25,17 @@ public partial class ShopWindow : Window
         Hide();
     }
 
-    private void BuySpellButton_Click(object sender, RoutedEventArgs e)
+    private void BuyAttackButton_Click(object sender, RoutedEventArgs e)
     {
-        string spellName = (sender as Button)?.Tag?.ToString();
+        string attackName = (sender as Button)?.Tag?.ToString();
 
-        if (!string.IsNullOrEmpty(spellName))
+        if (!string.IsNullOrEmpty(attackName))
         {
-            ASpell spellToBuy = ShopViewModel.Shop.SpellOnSale.Find(s => s.SpellName == spellName);
+            AAttack attackToBuy = ShopViewModel.Shop.AttacksOnSale.Find(s => s.AttackName == attackName);
 
-            if (spellToBuy != null)
+            if (attackToBuy != null)
             {
-                if (ShopViewModel.Shop.Buy(Player, spellToBuy))
+                if (ShopViewModel.Shop.Buy(Player, attackToBuy))
                 {
                     (sender as Button).Visibility = Visibility.Collapsed;
                 }
@@ -43,10 +43,10 @@ public partial class ShopWindow : Window
         }
     }
 
-    private void EnableDialogBox(ASpell spell)
+    private void EnableDialogBox(AAttack attack)
     {
         InputBox.Visibility = Visibility.Visible;
-        spellToAdd = spell;
+        attackToAdd = attack;
     }
 
     private void YesButton_Click(object sender, RoutedEventArgs e)
@@ -65,10 +65,10 @@ public partial class ShopWindow : Window
 
         if (checkedRadioButton != null)
         {
-            string selectedSpellName = checkedRadioButton.Content.ToString();
-            int index = Player.SpellsEquipped.FindIndex(spell => spell.SpellName == selectedSpellName);
-            Player.SpellsEquipped[index] = spellToAdd;
-            Player.OnPropertyChanged("SpellsEquipped");
+            string selectedAttackName = checkedRadioButton.Content.ToString();
+            int index = Player.AttacksEquipped.FindIndex(attack => attack.AttackName == selectedAttackName);
+            Player.AttacksEquipped[index] = attackToAdd;
+            Player.OnPropertyChanged("AttacksEquipped");
         }
 
     }

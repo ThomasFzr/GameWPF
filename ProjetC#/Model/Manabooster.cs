@@ -1,16 +1,16 @@
 ﻿namespace Game.Model
 {
-    public class ManaBooster : ASpell
+    public class ManaBooster : AAttack
     {
         public ManaBooster()
         {
-            SpellName = "ManaBooster";
-            ManaNeeded = 0;
+            AttackName = "ManaBooster";
+            BloodNeeded = 0;
 
         }
         public override void Execute(Character sender, Character receiver, bool totem)
         {
-            sender.ManaController.ManaGain(25);
+            sender.BloodController.BloodGain(25);
         }
     }
 }

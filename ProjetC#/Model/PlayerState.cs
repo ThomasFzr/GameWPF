@@ -6,7 +6,7 @@ public class PlayerState : AState
 {
     private static PlayerState instance;
 
-    public Action<int>? OnClickedSpell;
+    public Action<int>? OnClickedAttack;
     public Action? OnArrowToShow;
     public Action? OnBtnToShow;
 
@@ -25,18 +25,18 @@ public class PlayerState : AState
 
     public override void OnEnter()
     {
-        OnClickedSpell += ExecuteSpell;
+        OnClickedAttack += ExecuteAttack;
         OnArrowToShow?.Invoke();
         OnBtnToShow?.Invoke();
     }
 
-    public void ExecuteSpell(int spellNbr)
+    public void ExecuteAttack(int attackNbr)
     {
-        GameManager.Instance.Player.SpellsEquipped[spellNbr]?.Execute(GameManager.Instance.Player, GameManager.Instance.Monster, GameManager.Instance.Player.IsTotemActivated);
+        GameManager.Instance.Player.AttacksEquipped[attackNbr]?.Execute(GameManager.Instance.Player, GameManager.Instance.Monster, GameManager.Instance.Player.IsTotemActivated);
     }
     public override void OnLeave()
     {
-        OnClickedSpell -= ExecuteSpell;
+        OnClickedAttack -= ExecuteAttack;
         OnArrowToShow?.Invoke();
     }
 

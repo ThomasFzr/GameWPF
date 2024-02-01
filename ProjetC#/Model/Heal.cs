@@ -1,18 +1,18 @@
 ﻿namespace Game.Model
 {
-    public class Heal : ASpell
+    public class Heal : AAttack
     {
         public Heal()
         {
-            SpellName = "Heal";
-            ManaNeeded = 15;
+            AttackName = "Heal";
+            BloodNeeded = 15;
         }
         public override void Execute(Character sender, Character receiver, bool totem)
         {
-            if (sender.ManaController.Mana >= ManaNeeded)
+            if (sender.BloodController.Blood >= BloodNeeded)
             {
                 sender.HealthController.HealthGain(25);
-                sender.ManaController.ManaLoss(ManaNeeded);
+                sender.BloodController.BloodLoss(BloodNeeded);
             }
         }
     }

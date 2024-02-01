@@ -7,7 +7,7 @@ namespace Game.Model;
 public class Character : INotifyPropertyChanged
 {
    public  HealthController? HealthController { get;protected set; }
-   public ManaController? ManaController { get; protected set; }
+   public BloodController? BloodController { get; protected set; }
 
 
 
@@ -29,13 +29,13 @@ public class Character : INotifyPropertyChanged
         nothing
     };
 
-    private List<ASpell> spells = new();
-    public List<ASpell> Spells
+    private List<AAttack> attacks = new();
+    public List<AAttack> Attacks
     {
-        get { return spells; }
+        get { return attacks; }
         set
         {
-            spells = value;
+            attacks = value;
             OnPropertyChanged();
         }
     }

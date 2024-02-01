@@ -28,8 +28,8 @@ public class MonsterState : AState
         Task.Delay(2500).ContinueWith(t =>
         {
             if(!GameManager.Instance.Monster.IsDead) {
-                randomNumber = random.Next(0, GameManager.Instance.Monster.monsterSpellLevel);
-                GameManager.Instance.Monster.Spells[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
+                randomNumber = random.Next(0, GameManager.Instance.Monster.monsterAttackLevel);
+                GameManager.Instance.Monster.Attacks[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
             }
             else
             {

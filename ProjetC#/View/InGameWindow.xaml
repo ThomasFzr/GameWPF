@@ -20,10 +20,10 @@
     <Grid RenderTransformOrigin="0.92,0.5">
         <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top"/>
 
-        <Button Content="{Binding Player.SpellsEquipped[0].SpellName}" x:Name="btn1" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="SpellButton_Click" Tag="0" Height="29" Width="100" IsEnabled="true" />
-        <Button Content="{Binding Player.SpellsEquipped[1].SpellName}" x:Name="btn2" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="SpellButton_Click" Tag="1" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
-        <Button Content="{Binding Player.SpellsEquipped[2].SpellName}" x:Name="btn3" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="SpellButton_Click" Tag="2" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
-        <Button Content="{Binding Player.SpellsEquipped[3].SpellName}" x:Name="btn4" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="SpellButton_Click" Tag="3" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
+        <Button Content="{Binding Player.AttacksEquipped[0].AttackName}" x:Name="btn1" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="AttackButton_Click" Tag="0" Height="29" Width="100" IsEnabled="true" />
+        <Button Content="{Binding Player.AttacksEquipped[1].AttackName}" x:Name="btn2" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="AttackButton_Click" Tag="1" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
+        <Button Content="{Binding Player.AttacksEquipped[2].AttackName}" x:Name="btn3" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="AttackButton_Click" Tag="2" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
+        <Button Content="{Binding Player.AttacksEquipped[3].AttackName}" x:Name="btn4" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="AttackButton_Click" Tag="3" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
 
         <TextBlock x:Name="HpPlayer" HorizontalAlignment="Left" Margin="29,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Text="HP: " />
@@ -40,16 +40,16 @@
             <Run Text="$" />
         </TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="31,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="Mana: " />
-            <Run Text="{Binding Player.ManaController.Mana}" />
+            <Run Text="Sang: " />
+            <Run Text="{Binding Player.BloodController.Blood}" />
         </TextBlock>
         <TextBlock x:Name="HpMonster" HorizontalAlignment="Left" Margin="1052,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="Monster HP: " />
+            <Run Text="HP monstre: " />
             <Run Text="{Binding Monster.HealthController.Hp}" />
         </TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="1052,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="Monster Mana: " />
-            <Run Text="{Binding Monster.ManaController.Mana}" />
+            <Run Text="Sang monstre: " />
+            <Run Text="{Binding Monster.BloodController.Blood}" />
         </TextBlock>
 
         <Button Content="Shop" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click" Height="50" Width="95"/>

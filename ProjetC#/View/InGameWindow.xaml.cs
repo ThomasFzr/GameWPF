@@ -31,7 +31,7 @@ public partial class InGameWindow : Window
         shopWindow = new ShopWindow(GameManager.Instance.Player);
         PlayerState.Instance.OnArrowToShow += PlayerTurn;
         PlayerState.Instance.OnBtnToShow += SwitchBtn;
-        shopWindow.ShopViewModel.Shop.OnBuySpell += ShowBtnWhenBuy;
+        shopWindow.ShopViewModel.Shop.OnBuyAttack += ShowBtnWhenBuy;
         shopWindow.ShopViewModel.Shop.OnBuyDamageBooster += ShowPochitaDmgBooster;
         GameManager.Instance.Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
         GameManager.Instance.Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
@@ -85,9 +85,9 @@ public partial class InGameWindow : Window
         }
     }
 
-    private void SpellButton_Click(object sender, RoutedEventArgs e)
+    private void AttackButton_Click(object sender, RoutedEventArgs e)
     {
-        if (int.TryParse((sender as Button)?.Tag?.ToString(), out int spellNumber))
+        if (int.TryParse((sender as Button)?.Tag?.ToString(), out int attackNumber))
         {
             attackSoundPlayer.Play();
 
@@ -95,7 +95,7 @@ public partial class InGameWindow : Window
             timer.Start();
             Task.Delay(1000).ContinueWith(t =>
             {
-                PlayerState.Instance.OnClickedSpell?.Invoke(spellNumber);
+                PlayerState.Instance.OnClickedAttack?.Invoke(attackNumber);
                 App.Current.Dispatcher.Invoke(() =>
                 {
                     StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
@@ -126,28 +126,28 @@ public partial class InGameWindow : Window
         btn4.IsEnabled = btn4.IsEnabled == true ? false : true;
         if (btn1.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[0].ManaNeeded)
+            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[0].BloodNeeded)
             {
                 btn1.IsEnabled = false;
             }
         }
         if (btn2.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[1]?.ManaNeeded)
+            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[1]?.BloodNeeded)
             {
                 btn2.IsEnabled = false;
             }
         }
         if (btn3.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[2]?.ManaNeeded)
+            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[2]?.BloodNeeded)
             {
                 btn3.IsEnabled = false;
             }
         }
         if (btn4.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.ManaController.Mana < GameManager.Instance.Player.SpellsEquipped[3]?.ManaNeeded)
+            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[3]?.BloodNeeded)
             {
                 btn4.IsEnabled = false;
             }

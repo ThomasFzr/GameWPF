@@ -1,17 +1,17 @@
 ﻿namespace Game.Model;
 
-public class Fireball : ASpell
+public class Fireball : AAttack
 {
     public Fireball()
     {
-        SpellName = "Fireball";
+        AttackName = "Fireball";
         Damage = 35;
-        ManaNeeded = 20;
+        BloodNeeded = 20;
 
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {
-        if (sender.ManaController.Mana >= ManaNeeded)
+        if (sender.BloodController.Blood >= BloodNeeded)
         {
             if (totem)
             {
@@ -21,7 +21,7 @@ public class Fireball : ASpell
             {
                 receiver.HealthController.HealthLoss(Damage);
             }
-            sender.ManaController.ManaLoss(ManaNeeded);
+            sender.BloodController.BloodLoss(BloodNeeded);
         }
     }
 }

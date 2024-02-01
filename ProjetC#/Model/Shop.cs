@@ -7,31 +7,31 @@ namespace Game.Model;
 
 public class Shop : INotifyPropertyChanged
 {
-    private Action<ASpell>? OnSpellAdded;
-    public Action? OnBuySpell;
+    private Action<AAttack>? OnAttackAdded;
+    public Action? OnBuyAttack;
     public Action? OnBuyDamageBooster;
 
-    private List<ASpell> spellOnSale = new();
-    public List<ASpell> SpellOnSale
+    private List<AAttack> attacksOnSale = new();
+    public List<AAttack> AttacksOnSale
     {
-        get { return spellOnSale; }
+        get { return attacksOnSale; }
         set
         {
-            spellOnSale = value;
+            attacksOnSale = value;
             OnPropertyChanged();
         }
     }
 
-    public bool Buy(Player buyer, ASpell spell) {
+    public bool Buy(Player buyer, AAttack attack) {
         if(buyer.MoneyController.Money >= 1000)
         {
-            buyer.Spells.Add(spell);
-            OnSpellAdded -= buyer.EquipNewSpell;
-            OnSpellAdded += buyer.EquipNewSpell;
-            OnSpellAdded.Invoke(spell);
-            SpellOnSale.Remove(spell);
+            buyer.Attacks.Add(attack);
+            OnAttackAdded -= buyer.EquipNewAttack;
+            OnAttackAdded += buyer.EquipNewAttack;
+            OnAttackAdded.Invoke(attack);
+            AttacksOnSale.Remove(attack);
             buyer.MoneyController.Money-=1000;
-            OnBuySpell?.Invoke();
+            OnBuyAttack?.Invoke();
             return true;
         }
         return false;
@@ -39,8 +39,9 @@ public class Shop : INotifyPropertyChanged
 
     public Shop()
     {
-        SpellOnSale.Add(new ManaBooster());
-        SpellOnSale.Add(new Kamehameha());
+        AttacksOnSale.Add(new Heal());
+        AttacksOnSale.Add(new ChainsawHurricane());
+        AttacksOnSale.Add(new ChainsawBlaster());
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
