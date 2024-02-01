@@ -8,7 +8,7 @@
         ResizeMode="NoResize">
 
     <Grid>
-        <MediaElement x:Name="backgroundVideo" Source="pack://siteoforigin:,,,/video/backgroundVideo.mp4" Stretch="UniformToFill" LoadedBehavior="Play" UnloadedBehavior="Stop" MediaEnded="BackgroundVideo_MediaEnded"/>
+        <MediaElement x:Name="backgroundVideo" Source="pack://siteoforigin:,,,/video/backgroundVideo.mp4" Stretch="UniformToFill" LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="BackgroundVideo_MediaEnded"/>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="155">
             <Button Content="JOUER" FontSize="30" FontFamily="Meiryo" Width="287" Background="{x:Null}" 
