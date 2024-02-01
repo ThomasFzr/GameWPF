@@ -54,7 +54,8 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <Image Margin="658,250,658,744" Source="/photos/Chainsaw-Man-Logo.png" Stretch="Fill"/>
+        
+		<MediaElement x:Name="backgroundVideo" Source="/videos/your_video.mp4" Stretch="UniformToFill" LoadedBehavior="Play" UnloadedBehavior="Stop" />
 
         <Image x:Name="monsterImage" Margin="54,0,0,744" Source="/photos/2.png" Stretch="Fill" Height="297" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="266">
             <Image.RenderTransform>
