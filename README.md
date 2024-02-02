@@ -1,3 +1,5 @@
+Dans le cadre du module C#, nous avons dû réaliser une application WPF, en équipe de 2 pour notre part.
+
 Notre projet est un jeu vidéo tour par tour contre une IA inspiré de l'animé Chainsaw Man.
 
 Vous incarné le personnage principal de l'animé, Denji et vous affronté un des méchants de cet uninvers, Katana Man, aussi connu sous le nom de Samurai Sword.
@@ -22,3 +24,6 @@ En jeu vous avez accès à votre inventaire, vous permettant d'interchangé une 
 Le jeu s'arrête lorsque vous mourrez.
 
 Bonne chance!
+
+
+Thomas FOLTZER (ThomasFzr) et Sam Bernolle (F4senna)
