@@ -1,10 +1,10 @@
 ﻿namespace Game.Model
 {
-    public class BloodBooster : AAttack
+    public class BloodBoost : AAttack
     {
-        public BloodBooster()
+        public BloodBoost()
         {
-            AttackName = "BLOODBOOSTER";
+            AttackName = "BLOODBOOST";
             BloodNeeded = 0;
 
         }

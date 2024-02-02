@@ -1,12 +1,8 @@
-﻿using Game.View;
-
-namespace Game.Model;
+﻿namespace Game.Model;
 
 public class GameManager
 {
     private static GameManager instance;
-
-    private static InGameWindow inGameWindowInstance;
 
     public Player Player { get; set; }
     public Monster Monster { get; set; }
@@ -28,13 +24,6 @@ public class GameManager
             instance ??= new GameManager();
             return instance;
         }
-    }
-
-    public static InGameWindow InGameWindowInstance
-    {
-        get { return inGameWindowInstance; }
-        set { inGameWindowInstance = value; }
-
     }
 
     private void AddMoneytoPlayer(int monsterLevel)
