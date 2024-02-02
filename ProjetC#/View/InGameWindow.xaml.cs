@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Media;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,7 @@ public partial class InGameWindow : Window
     private SoundPlayer attackSoundPlayer;
     private SoundPlayer attackSoundMonster;
     private Storyboard monsterMoveAnimation;
+    private bool isInventoryOpen;
     public InGameWindow()
     {
         InitializeComponent();
@@ -53,6 +55,7 @@ public partial class InGameWindow : Window
         backgroundMusic.UnloadedBehavior = MediaState.Manual;
         backgroundMusic.Play();
         currentImageIndex = 0;
+        isInventoryOpen = false;
         timer.Start();
 
         Closing += InGameWindow_Closing;
@@ -110,31 +113,38 @@ public partial class InGameWindow : Window
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int attackNumber))
         {
-            attackSoundPlayer.Play();
-
-
-            currentImageIndex = 0;
-            timer.Start();
-            BubbleDenji.Visibility = Visibility.Visible;
-            AttackDenji.Text = GameManager.Instance.Player.AttacksEquipped[attackNumber].AttackName;
-            Task.Delay(1000).ContinueWith(t =>
+            if (isInventoryOpen && GameManager.Instance.Player.Attacks.Count != 0)
             {
-                PlayerState.Instance.OnClickedAttack?.Invoke(attackNumber);
-                App.Current.Dispatcher.Invoke(() =>
+                SwapAttackInventory(attackNumber);
+            }
+            else
+            {
+                attackSoundPlayer.Play();
+
+                currentImageIndex = 0;
+                timer.Start();
+                BubbleDenji.Visibility = Visibility.Visible;
+                AttackDenji.Text = GameManager.Instance.Player.AttacksEquipped[attackNumber].AttackName;
+                Task.Delay(1000).ContinueWith(t =>
                 {
-                    BubbleDenji.Visibility = Visibility.Collapsed;
-                    if (!GameManager.Instance.Monster.IsDead)
+                    PlayerState.Instance.OnClickedAttack?.Invoke(attackNumber);
+                    App.Current.Dispatcher.Invoke(() =>
                     {
-                        StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
-                    }
-                    else
-                    {
-                        StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);
-                        GameManager.Instance.Monster.IsDead = false;
-                    }
+                        BubbleDenji.Visibility = Visibility.Collapsed;
+                        if (!GameManager.Instance.Monster.IsDead)
+                        {
+                            StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
+                        }
+                        else
+                        {
+                            StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);
+                            GameManager.Instance.Monster.IsDead = false;
+                        }
+                    });
                 });
-            });
-            this.SwitchBtn();
+                this.SwitchBtn();
+            }
+
         }
     }
 
@@ -253,31 +263,16 @@ public partial class InGameWindow : Window
     private void Inventory_Click(object sender, RoutedEventArgs e)
     {
         InputBox.Visibility = InputBox.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        isInventoryOpen = isInventoryOpen == false ? true : false;
     }
 
-    private void YesButton_Click(object sender, RoutedEventArgs e)
+    private void SwapAttackInventory(int attackNbr)
     {
-        InputBox.Visibility = Visibility.Collapsed;
-
-        RadioButton checkedRadioButton = null;
-        foreach (UIElement element in listChoice.Children)
-        {
-            if (element is RadioButton radioButton && radioButton.IsChecked == true)
-            {
-                checkedRadioButton = radioButton;
-                break;
-            }
-        }
-
-        if (checkedRadioButton != null)
-        {
-            string selectedAttackName = checkedRadioButton.Content.ToString();
-            int index = GameManager.Instance.Player.Attacks.FindIndex(attack => attack.AttackName == selectedAttackName);
-            GameManager.Instance.Player.Attacks.Add(GameManager.Instance.Player.AttacksEquipped[index]);
-            GameManager.Instance.Player.OnPropertyChanged("Attacks");
-
-            //GameManager.Instance.Player.AttacksEquipped[index] = GameManager.Instance.attackToAdd;
-            GameManager.Instance.Player.OnPropertyChanged("AttacksEquipped");
-        }
+        AAttack temp = GameManager.Instance.Player.Attacks[0];
+        GameManager.Instance.Player.Attacks[0] = GameManager.Instance.Player.AttacksEquipped[attackNbr];
+        GameManager.Instance.Player.OnPropertyChanged("Attacks");
+        GameManager.Instance.Player.AttacksEquipped[attackNbr] = temp;
+        GameManager.Instance.Player.OnPropertyChanged("AttacksEquipped");
     }
+
 }

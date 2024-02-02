@@ -54,10 +54,6 @@
             <Image x:Name="animatedImage" Stretch="Fill" Height="231" HorizontalAlignment="Left" Width="217" Canvas.Left="54" VerticalAlignment="Top" Canvas.Top="-86"/>
         </Canvas>
 
-        <ProgressBar Width="100" Height="20" Panel.ZIndex="2"
-            Name="progressBarPlayer" Value="{Binding Player.HealthController.Hp}" Margin="52,357,1098,357">
-        </ProgressBar>
-
         <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
              x:Name="HpPlayer" HorizontalAlignment="Left" Margin="70,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
              <Run Text="HP: " />
@@ -72,10 +68,6 @@
         <Image x:Name="playerArrow" Margin="124,270,1048,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
 
         <!--MONSTER-->
-      
-        <ProgressBar Width="{Binding Monster.MaxHp}" Height="20" Panel.ZIndex="2" Visibility="Visible"
-            Name="progressBarMonster" Value="{Binding Monster.HealthController.Hp}" Margin="-10,101,10,613" >
-        </ProgressBar>
 
         <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
             x:Name="HpMonster" HorizontalAlignment="Left" Margin="1051,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
@@ -93,15 +85,11 @@
             <Run Text="{Binding Monster.MonsterLevel}" />
         </TextBlock>
 
-
-
         <Image x:Name="monsterImage1" Margin="997,382,0,0" Source="/photos/saw.png" Stretch="Fill" Height="304" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182">
             <Image.RenderTransform>
                 <TranslateTransform x:Name="monsterTranslateTransform" X="0" Y="0"/>
             </Image.RenderTransform>
         </Image>
-
-
 
         <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed" RenderTransformOrigin="7.042,0.692"/>
 
@@ -126,7 +114,6 @@
 
 
         <Grid x:Name="InputBox" Visibility="Collapsed" Margin="349,300,394,200" >
-            <Grid Background="Black" Opacity="0.5"/>
             <Border
             MinWidth="250"
             Background="NavajoWhite" 
@@ -135,13 +122,13 @@
             CornerRadius="0,55,0,55" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center">
-                    <StackPanel Width="214" x:Name="listChoice">
-                        <TextBlock Margin="5" Text="Vos attaques non equipees:" FontWeight="Bold" FontFamily="Cambria" />
-                        <RadioButton Content="{Binding Player.Attacks[0].AttackName}"/>
-                        <!--<RadioButton Content="{Binding Player.Attacks[1].AttackName}"/>
-                        <RadioButton Content="{Binding Player.Attacks[2].AttackName}"/>
-                        <RadioButton Content="{Binding Player.Attacks[3].AttackName}"/>-->
-                        <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
+                <StackPanel Width="214" x:Name="listChoice">
+                    <TextBlock Margin="5" Text="Vos attaques non equipees:" FontWeight="Bold" FontFamily="Cambria" FontSize="15" />
+                    <TextBlock Text="{Binding Player.Attacks[0].AttackName}" Width="72" FontSize="12" FontFamily="Bold"/>
+                    <TextBlock Margin="5" TextWrapping="Wrap"
+                               Text="(Cliquer sur le bouton d'attaque de votre choix pour intervertir les attaques)" FontWeight="Light" FontFamily="Cambria" Height="44" Width="181" />
+                    
+                    
                 </StackPanel>
             </Border>
         </Grid>
