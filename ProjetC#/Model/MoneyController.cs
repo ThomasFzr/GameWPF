@@ -6,7 +6,7 @@ namespace Game.Model;
 
 public class MoneyController :INotifyPropertyChanged
 {
-    public Action? OnMoneyChanged;
+    public Action<bool>? OnMoneyChanged;
 
     private int money;
     public int Money
@@ -24,15 +24,15 @@ public class MoneyController :INotifyPropertyChanged
         Money = money;
     }
 
-    public void ManaLoss(int amount)
+    public void MoneyLoss(int amount)
     {
-        OnMoneyChanged?.Invoke();
+        OnMoneyChanged?.Invoke(false);
         Money -= amount;
     }
 
-    public void ManaGain(int amount)
+    public void MoneyGain(int amount)
     {
-        OnMoneyChanged?.Invoke();
+        OnMoneyChanged?.Invoke(true);
         Money += amount;
     }
 

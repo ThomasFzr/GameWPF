@@ -34,7 +34,7 @@ public partial class InGameWindow : Window
         shopWindow.ShopViewModel.Shop.OnBuyDamageBooster += ShowPochitaDmgBooster;
         GameManager.Instance.Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
         GameManager.Instance.Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
-
+        GameManager.Instance.Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
 
 
         Storyboard monsterAnimation = (Storyboard)this.Resources["monsterAnimation"];
@@ -55,6 +55,7 @@ public partial class InGameWindow : Window
         currentImageIndex = 0;
         timer.Start();
 
+        Closing += InGameWindow_Closing;
 
     }
 
@@ -92,11 +93,14 @@ public partial class InGameWindow : Window
 
             currentImageIndex = 0;
             timer.Start();
+            BubbleDenji.Visibility = Visibility.Visible;
+            AttackDenji.Text = GameManager.Instance.Player.AttacksEquipped[attackNumber].AttackName;
             Task.Delay(1000).ContinueWith(t =>
             {
                 PlayerState.Instance.OnClickedAttack?.Invoke(attackNumber);
                 App.Current.Dispatcher.Invoke(() =>
                 {
+                    BubbleDenji.Visibility = Visibility.Collapsed;
                     StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
                 });
             });
@@ -165,11 +169,11 @@ public partial class InGameWindow : Window
         pochitaDmgBooster.Visibility = Visibility.Visible;
     }
 
-    private void ChangeHpColorPlayer()
+    private void ChangeHpColorPlayer(bool isGained)
     {
         App.Current.Dispatcher.Invoke(() =>
         {
-            HpPlayer.Foreground = Brushes.Red;
+            HpPlayer.Foreground = isGained ? Brushes.Green : Brushes.Red;
         });
         Task.Delay(250).ContinueWith(t =>
         {
@@ -178,13 +182,29 @@ public partial class InGameWindow : Window
                 HpPlayer.Foreground = Brushes.White;
             });
         });
-    }
 
-    private void ChangeHpColorMonster()
+    }
+    private void ChangeMoneyColorPlayer(bool isGained)
     {
         App.Current.Dispatcher.Invoke(() =>
         {
-            HpMonster.Foreground = Brushes.Red;
+
+            MoneyPlayer.Foreground = isGained ? Brushes.Green : Brushes.Red;
+        });
+        Task.Delay(250).ContinueWith(t =>
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                MoneyPlayer.Foreground = Brushes.White;
+            });
+        });
+    }
+
+    private void ChangeHpColorMonster(bool isGained)
+    {
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            HpMonster.Foreground = isGained ? Brushes.Green : Brushes.Red;
         });
         Task.Delay(250).ContinueWith(t =>
             {
@@ -193,5 +213,10 @@ public partial class InGameWindow : Window
                     HpMonster.Foreground = Brushes.White;
                 });
             });
+    }
+
+    private void InGameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        Application.Current.Shutdown();
     }
 }

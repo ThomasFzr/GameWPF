@@ -12,13 +12,13 @@
         <Button Content="RETOUR" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click" Height="44" Width="113"/>
 
         <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
-                   Margin="441,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="426">
+               x:Name="MoneyPlayer" Margin="441,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="426">
              <Run Text="ARGENT: " />
              <Run Text="{Binding Player.MoneyController.Money}" />
              <Run Text="$" />
         </TextBlock>
 
-        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[2].AttackName}" Height="48">
+        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[0].AttackName}" Height="48">
             <StackPanel>
                 <TextBlock> 
              <Run Text="{Binding Shop.AttacksOnSale[0].AttackName}" />
@@ -28,7 +28,7 @@
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[0].AttackName}" Height="48">
+        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[1].AttackName}" Height="48">
             <StackPanel>
                 <TextBlock> 
                     <Run Text="{Binding Shop.AttacksOnSale[1].AttackName}" />
@@ -38,7 +38,7 @@
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[1].AttackName}" Height="48">
+        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[2].AttackName}" Height="48">
             <StackPanel>
                 <TextBlock> 
         <Run Text="{Binding Shop.AttacksOnSale[2].AttackName}" />

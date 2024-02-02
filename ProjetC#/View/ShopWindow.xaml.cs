@@ -1,7 +1,9 @@
 ﻿using Game.Model;
 using Game.ViewModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Game.View;
 
@@ -18,6 +20,7 @@ public partial class ShopWindow : Window
         DataContext = ShopViewModel;
         Player = player;
         Player.OnYesClickedAction += EnableDialogBox;
+        GameManager.Instance.Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
     }
 
     private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -81,11 +84,26 @@ public partial class ShopWindow : Window
             Player.IsTotemActivated = true;
             (sender as Button).Visibility = Visibility.Collapsed;
             ShopViewModel.Shop.OnBuyDamageBooster.Invoke();
-            Player.MoneyController.Money -= priceTotem;
+            Player.MoneyController.MoneyLoss(priceTotem);
         }
 
     }
 
+    private void ChangeMoneyColorPlayer(bool isGained)
+    {
+        App.Current.Dispatcher.Invoke(() =>
+        {
+
+            MoneyPlayer.Foreground = isGained ? Brushes.Green : Brushes.Red;
+        });
+        Task.Delay(250).ContinueWith(t =>
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                MoneyPlayer.Foreground = Brushes.White;
+            });
+        });
+    }
     private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
         e.Cancel = true;

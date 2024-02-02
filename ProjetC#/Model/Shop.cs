@@ -37,7 +37,7 @@ public class Shop : INotifyPropertyChanged
             OnAttackAdded += buyer.EquipNewAttack;
             OnAttackAdded.Invoke(attack);
             AttacksOnSale.Remove(attack);
-            buyer.MoneyController.Money-=1000;
+            buyer.MoneyController.MoneyLoss(1000);
             OnBuyAttack?.Invoke();
             return true;
         }

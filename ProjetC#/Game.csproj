@@ -18,6 +18,7 @@
     <None Remove="photos\arrow.png" />
     <None Remove="photos\background.png" />
     <None Remove="photos\background2.png" />
+    <None Remove="photos\bubble.png" />
     <None Remove="photos\Chainsaw-Man-Logo.png" />
     <None Remove="photos\denji.png" />
     <None Remove="photos\gggg.gif" />
@@ -35,6 +36,7 @@
     <Resource Include="music\menu.mp3" />
     <Resource Include="music\metal.wav" />
     <Resource Include="photos\1.png" />
+    <Resource Include="photos\bubble.png" />
     <Resource Include="photos\street.jpg" />
     <Resource Include="photos\2.png" />
     <Resource Include="photos\3.png" />
