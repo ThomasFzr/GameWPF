@@ -8,14 +8,27 @@
         ResizeMode="NoResize">
 
     <Window.Resources>
-        <Storyboard x:Key="monsterAnimation">
-            <DoubleAnimation Storyboard.TargetName="monsterImage"
-                         Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.Y)"
-                         From="0" To="10" Duration="0:0:0.6"
-                         AutoReverse="True" RepeatBehavior="Forever"/>
+
+        <Storyboard x:Key="monsterMoveAnimation">
+            <DoubleAnimation
+        Storyboard.TargetName="monsterTranslateTransform"
+        Storyboard.TargetProperty="X"
+        From="0"
+        To="-100"
+        Duration="0:0:0.25" />
+
+            <DoubleAnimation
+        Storyboard.TargetName="monsterTranslateTransform"
+        Storyboard.TargetProperty="X"
+        From="-100"
+        To="0"
+        Duration="0:0:0.25"
+        BeginTime="0:0:1" />
         </Storyboard>
         <Storyboard x:Key="monsterAnimation1"/>
     </Window.Resources>
+
+
 
     <Grid>
         <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top" Panel.ZIndex="-1"/>
@@ -59,12 +72,7 @@
         <Image x:Name="playerArrow" Margin="124,251,1048,386" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
 
         <!--MONSTER-->
-        <Image x:Name="monsterImage" Margin="997,382,0,0" Source="/photos/saw.png" Stretch="Fill" Height="304" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182">
-            <Image.RenderTransform>
-                <TranslateTransform/>
-            </Image.RenderTransform>
-        </Image>
-
+      
         <ProgressBar Width="{Binding Monster.MaxHp}" Height="20" Panel.ZIndex="2" Visibility="Visible"
             Name="progressBarMonster" Value="{Binding Monster.HealthController.Hp}" Margin="-10,101,10,613" >
         </ProgressBar>
@@ -79,6 +87,16 @@
             <Run Text="SANG: " />
             <Run Text="{Binding Monster.BloodController.Blood}" />
         </TextBlock>
+
+
+
+        <Image x:Name="monsterImage1" Margin="997,382,0,0" Source="/photos/saw.png" Stretch="Fill" Height="304" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182">
+            <Image.RenderTransform>
+                <TranslateTransform x:Name="monsterTranslateTransform" X="0" Y="0"/>
+            </Image.RenderTransform>
+        </Image>
+
+
 
         <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed" RenderTransformOrigin="7.042,0.692"/>
 

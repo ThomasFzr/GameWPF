@@ -30,6 +30,8 @@ public class Monster : Character
         Attacks.Add(new ChainsawSlash());
         HealthController.IsDead += DeathManager;
         IsDead = false;
+
+
     }
 
     public void DeathManager()

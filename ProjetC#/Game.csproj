@@ -12,6 +12,7 @@
     <None Remove="music\background.mp3" />
     <None Remove="music\menu.mp3" />
     <None Remove="music\metal.wav" />
+    <None Remove="music\monsterattack.wav" />
     <None Remove="photos\1.png" />
     <None Remove="photos\2.png" />
     <None Remove="photos\3.png" />
@@ -35,6 +36,9 @@
     <Resource Include="music\background.mp3" />
     <Resource Include="music\menu.mp3" />
     <Resource Include="music\metal.wav" />
+    <Resource Include="music\monsterattack.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="photos\1.png" />
     <Resource Include="photos\bubble.png" />
     <Resource Include="photos\street.jpg" />
