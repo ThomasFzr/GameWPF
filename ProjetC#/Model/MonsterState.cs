@@ -25,7 +25,7 @@ public class MonsterState : AState
 
     public override void OnEnter()
     {
-        Task.Delay(1500).ContinueWith(t =>
+        Task.Delay(1250).ContinueWith(t =>
         {
 
             OnMonsterAttack?.Invoke();

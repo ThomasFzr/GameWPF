@@ -69,7 +69,7 @@
             <Run Text="{Binding Player.BloodController.Blood}" />
         </TextBlock>
 
-        <Image x:Name="playerArrow" Margin="124,251,1048,386" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
+        <Image x:Name="playerArrow" Margin="124,270,1048,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
 
         <!--MONSTER-->
       
@@ -86,6 +86,11 @@
             HorizontalAlignment="Left" Margin="1010,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.517,-0.487">
             <Run Text="SANG: " />
             <Run Text="{Binding Monster.BloodController.Blood}" />
+        </TextBlock>
+        <TextBlock FontSize="25" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+            HorizontalAlignment="Left" Margin="1062,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.517,-0.487">
+            <Run Text="LEVEL : " />
+            <Run Text="{Binding Monster.MonsterLevel}" />
         </TextBlock>
 
 

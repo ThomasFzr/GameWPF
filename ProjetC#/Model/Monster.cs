@@ -4,7 +4,7 @@ namespace Game.Model;
 
 public class Monster : Character
 {
-    private int monsterLevel = 1;
+    public int MonsterLevel { get; set; } = 1;
     public int monsterAttackLevel = 1;
     public Action<int> MonsterIsDead;
     public bool IsDead { get; set; }
@@ -36,12 +36,13 @@ public class Monster : Character
     public void DeathManager()
     {
         IsDead = true;
-        MonsterIsDead.Invoke(monsterLevel);
-        monsterLevel++;
-        HealthController.Hp = (100 + monsterLevel * 10);
+        MonsterIsDead.Invoke(MonsterLevel);
+        MonsterLevel++;
+        OnPropertyChanged("MonsterLevel");
+        HealthController.Hp = (100 + MonsterLevel * 10);
         MaxHp = (int)HealthController.Hp;
-        BloodController.Blood = (100 + monsterLevel * 10);
-        switch (monsterLevel)
+        BloodController.Blood = (100 + MonsterLevel * 10);
+        switch (MonsterLevel)
         {
             case 2:
                 Attacks.Add(new Heal());
