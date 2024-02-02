@@ -22,11 +22,13 @@ public partial class InGameWindow : Window
     private DispatcherTimer timer;
     private MediaElement backgroundMusic;
     private SoundPlayer attackSoundPlayer;
+    private Storyboard monsterMoveAnimation;
 
     public InGameWindow()
     {
         InitializeComponent();
         InitializeTimer();
+        monsterMoveAnimation = (Storyboard)FindResource("monsterMoveAnimation");  // Ajoutez cette ligne
         DataContext = GameManager.Instance;
         shopWindow = new ShopWindow(GameManager.Instance.Player);
         PlayerState.Instance.OnArrowToShow += PlayerTurn;
@@ -36,10 +38,9 @@ public partial class InGameWindow : Window
         GameManager.Instance.Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
         GameManager.Instance.Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
         GameManager.Instance.Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
+        GameManager.InGameWindowInstance = this;
 
 
-        Storyboard monsterAnimation = (Storyboard)this.Resources["monsterAnimation"];
-        monsterAnimation.Begin();
 
         string workingDirectory = Environment.CurrentDirectory;
         var attackSoundPlayerPath = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\music\\metal.wav";
@@ -60,6 +61,17 @@ public partial class InGameWindow : Window
 
     }
 
+    public void AdvanceMonster()
+    {
+        Dispatcher.Invoke(() =>
+        {
+            var monsterMoveAnimation = (Storyboard)FindResource("monsterMoveAnimation");
+            monsterMoveAnimation.Begin();
+        });
+
+    } 
+
+
 
     private void BackgroundMusic_MediaEnded(object sender, RoutedEventArgs e)
     {
@@ -67,7 +79,11 @@ public partial class InGameWindow : Window
         backgroundMusic.Play();
     }
 
-    private void InitializeTimer()
+
+
+
+
+private void InitializeTimer()
     {
         timer = new DispatcherTimer();
         timer.Interval = TimeSpan.FromSeconds(0.2);
@@ -76,15 +92,19 @@ public partial class InGameWindow : Window
 
     private void Timer_Tick(object sender, EventArgs e)
     {
-        animatedImage.Source = new BitmapImage(new Uri(imagePaths[currentImageIndex], UriKind.RelativeOrAbsolute));
-
-        currentImageIndex = (currentImageIndex + 1) % imagePaths.Length;
-
-        if (currentImageIndex == 0)
+        Dispatcher.Invoke(() =>
         {
-            timer.Stop();
-        }
+            animatedImage.Source = new BitmapImage(new Uri(imagePaths[currentImageIndex], UriKind.RelativeOrAbsolute));
+
+            currentImageIndex = (currentImageIndex + 1) % imagePaths.Length;
+
+            if (currentImageIndex == 0)
+            {
+                timer.Stop();
+            }
+        });
     }
+
 
     private void AttackButton_Click(object sender, RoutedEventArgs e)
     {
@@ -92,6 +112,7 @@ public partial class InGameWindow : Window
         {
             attackSoundPlayer.Play();
 
+     
             currentImageIndex = 0;
             timer.Start();
             BubbleDenji.Visibility = Visibility.Visible;
@@ -107,8 +128,8 @@ public partial class InGameWindow : Window
             });
             this.SwitchBtn();
         }
-
     }
+   
 
     private void ShopButton_Click(object sender, RoutedEventArgs e)
     {
