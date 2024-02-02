@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Media;
+using System.Printing;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -218,5 +219,36 @@ public partial class InGameWindow : Window
     private void InGameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
         Application.Current.Shutdown();
+    }
+
+    private void Inventory_Click(object sender, RoutedEventArgs e)
+    {
+        InputBox.Visibility = InputBox.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void YesButton_Click(object sender, RoutedEventArgs e)
+    {
+        InputBox.Visibility = Visibility.Collapsed;
+
+        RadioButton checkedRadioButton = null;
+        foreach (UIElement element in listChoice.Children)
+        {
+            if (element is RadioButton radioButton && radioButton.IsChecked == true)
+            {
+                checkedRadioButton = radioButton;
+                break;
+            }
+        }
+
+        if (checkedRadioButton != null)
+        {
+            string selectedAttackName = checkedRadioButton.Content.ToString();
+            int index = GameManager.Instance.Player.Attacks.FindIndex(attack => attack.AttackName == selectedAttackName);
+            GameManager.Instance.Player.Attacks.Add(GameManager.Instance.Player.AttacksEquipped[index]);
+            GameManager.Instance.Player.OnPropertyChanged("Attacks");
+
+            //GameManager.Instance.Player.AttacksEquipped[index] = GameManager.Instance.attackToAdd;
+            GameManager.Instance.Player.OnPropertyChanged("AttacksEquipped");
+        }
     }
 }

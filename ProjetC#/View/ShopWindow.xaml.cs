@@ -70,6 +70,9 @@ public partial class ShopWindow : Window
         {
             string selectedAttackName = checkedRadioButton.Content.ToString();
             int index = Player.AttacksEquipped.FindIndex(attack => attack.AttackName == selectedAttackName);
+            Player.Attacks.Add(Player.AttacksEquipped[index]);
+            Player.OnPropertyChanged("Attacks");
+
             Player.AttacksEquipped[index] = attackToAdd;
             Player.OnPropertyChanged("AttacksEquipped");
         }

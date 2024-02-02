@@ -27,12 +27,12 @@ public class Shop : INotifyPropertyChanged
         AttacksOnSale.Add(new Heal());
         AttacksOnSale.Add(new ChainsawHurricane());
         AttacksOnSale.Add(new ChainsawBlaster());
+        AttacksOnSale.Add(new BloodBooster());
     }
 
     public bool Buy(Player buyer, AAttack attack) {
         if(buyer.MoneyController.Money >= 1000)
         {
-            buyer.Attacks.Add(attack);
             OnAttackAdded -= buyer.EquipNewAttack;
             OnAttackAdded += buyer.EquipNewAttack;
             OnAttackAdded.Invoke(attack);

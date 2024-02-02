@@ -24,12 +24,11 @@ public class Player : Character
     {
         HealthController = new(200);
         BloodController = new(200);
-        MoneyController = new(0);
+        MoneyController = new(100000); //TODO CHNANGE
 
         State = Character.EnumState.nothing;
         IsTotemActivated = false;
 
-        Attacks.Add(new ChainsawSlash());
         AttacksEquipped.Add(new ChainsawSlash());
     }
 
@@ -46,7 +45,10 @@ public class Player : Character
         }
         else
         {
-            MessageBox.Show("Attaque ajouté à votre liste mais non équipé.");
+            Attacks.Add(newAttack);
+            MessageBox.Show("Attaque ajoutée à votre inventaire mais non équipé.");
+            OnPropertyChanged("Attacks");
+
         }
         OnPropertyChanged("AttacksEquipped");
     }

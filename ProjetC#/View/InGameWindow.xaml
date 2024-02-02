@@ -90,6 +90,34 @@
             <Image Source="/photos/bubble.png" Stretch="Fill" Margin="250,194,666,317" Panel.ZIndex="5" RenderTransformOrigin="0.914,0.748"/>
             <TextBlock x:Name="AttackDenji"  Margin="337,279,732,367"  FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"/>
         </Grid>
+
+        <Button Margin="10,610,0,0" Background="{x:Null}" BorderThickness="0" Click="Inventory_Click"  
+            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/photos/backpack.png" Height="52" Width="57"></Image>
+        </Button>
+
+
+        <Grid x:Name="InputBox" Visibility="Collapsed" Margin="349,300,394,200" >
+            <Grid Background="Black" Opacity="0.5"/>
+            <Border
+            MinWidth="250"
+            Background="NavajoWhite" 
+            BorderBrush="Black" 
+            BorderThickness="1" 
+            CornerRadius="0,55,0,55" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+                    <StackPanel Width="214" x:Name="listChoice">
+                        <TextBlock Margin="5" Text="Vos attaques non equipees:" FontWeight="Bold" FontFamily="Cambria" />
+                        <RadioButton Content="{Binding Player.Attacks[0].AttackName}"/>
+                        <!--<RadioButton Content="{Binding Player.Attacks[1].AttackName}"/>
+                        <RadioButton Content="{Binding Player.Attacks[2].AttackName}"/>
+                        <RadioButton Content="{Binding Player.Attacks[3].AttackName}"/>-->
+                        <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
     </Grid>
 </Window>
 

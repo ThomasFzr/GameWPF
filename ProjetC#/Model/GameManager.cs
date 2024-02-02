@@ -30,6 +30,7 @@ public class GameManager
     {
         Player.MoneyController.MoneyGain(monsterLevel * 1000);
         Player.BloodController.BloodGain(monsterLevel * 10);
+        Player.HealthController.HealthGain(monsterLevel * 10);
     }
 
     public void StartGame()
