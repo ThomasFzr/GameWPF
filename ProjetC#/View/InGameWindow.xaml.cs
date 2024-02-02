@@ -59,13 +59,21 @@ public partial class InGameWindow : Window
 
     }
 
-    public void AdvanceMonster()
+    public void AdvanceMonster(int attackNumber)
     {
-        attackSoundMonster.Play();
-
         Dispatcher.Invoke(() =>
         {
+            BubbleMonster.Visibility = Visibility.Visible;
+            AttackMonster.Text = GameManager.Instance.Monster.Attacks[attackNumber].AttackName;
+            attackSoundMonster.Play();
             monsterMoveAnimation.Begin();
+            Task.Delay(1000).ContinueWith(t =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    BubbleMonster.Visibility = Visibility.Collapsed;
+                });
+            });
         });
     }
 

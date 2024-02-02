@@ -8,7 +8,7 @@ public class MonsterState : AState
     private static MonsterState instance;
     private int randomNumber;
     private Random random = new();
-    public Action OnMonsterAttack;
+    public Action<int> OnMonsterAttack;
 
     private MonsterState()
     {
@@ -28,13 +28,17 @@ public class MonsterState : AState
         Task.Delay(1250).ContinueWith(t =>
         {
 
-            OnMonsterAttack?.Invoke();
+
             randomNumber = random.Next(0, GameManager.Instance.Monster.monsterAttackLevel);
+            OnMonsterAttack?.Invoke(randomNumber);
             GameManager.Instance.Monster.Attacks[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
 
-            App.Current.Dispatcher.Invoke(() =>
+            Task.Delay(550).ContinueWith(t =>
+            {
+                App.Current.Dispatcher.Invoke(() =>
             {
                 StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);
+            });
             });
         });
     }

@@ -19,8 +19,10 @@
     <None Remove="photos\arrow.png" />
     <None Remove="photos\background.png" />
     <None Remove="photos\background2.png" />
+    <None Remove="photos\backpack - Copie.png" />
     <None Remove="photos\backpack.png" />
     <None Remove="photos\bubble.png" />
+    <None Remove="photos\bubble2.png" />
     <None Remove="photos\Chainsaw-Man-Logo.png" />
     <None Remove="photos\denji.png" />
     <None Remove="photos\gggg.gif" />
@@ -42,20 +44,15 @@
     </Resource>
     <Resource Include="photos\1.png" />
     <Resource Include="photos\backpack.png" />
+    <Resource Include="photos\bubble2.png" />
     <Resource Include="photos\bubble.png" />
     <Resource Include="photos\street.jpg" />
     <Resource Include="photos\2.png" />
     <Resource Include="photos\3.png" />
     <Resource Include="photos\arrow.png" />
-    <Resource Include="photos\background.png" />
-    <Resource Include="photos\background2.png" />
-    <Resource Include="photos\Chainsaw-Man-Logo.png" />
     <Resource Include="photos\denji.png" />
-    <Resource Include="photos\gggg.gif" />
     <Resource Include="photos\market.gif" />
-    <Resource Include="photos\menu.png" />
     <Resource Include="photos\pochita.png" />
-    <Resource Include="photos\qqq.png" />
     <Resource Include="photos\saw.png" />
     <Content Include="video\backgroundVideo.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
