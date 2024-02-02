@@ -36,6 +36,7 @@ public partial class InGameWindow : Window
         shopWindow.ShopViewModel.Shop.OnBuyAttack += ShowBtnWhenBuy;
         shopWindow.ShopViewModel.Shop.OnBuyDamageBooster += ShowPochitaDmgBooster;
         GameManager.Instance.Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
+        GameManager.Instance.Player.HealthController.IsDead += ShowDeath;
         GameManager.Instance.Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
         GameManager.Instance.Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
         MonsterState.Instance.OnMonsterAttack += AdvanceMonster;
@@ -131,7 +132,7 @@ public partial class InGameWindow : Window
                     App.Current.Dispatcher.Invoke(() =>
                     {
                         BubbleDenji.Visibility = Visibility.Collapsed;
-                        if (!GameManager.Instance.Monster.IsDead)
+                        if (!GameManager.Instance.Monster.IsDead && GameManager.Instance.Monster.BloodController.Blood>0)
                         {
                             StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
                         }
@@ -275,4 +276,16 @@ public partial class InGameWindow : Window
         GameManager.Instance.Player.OnPropertyChanged("AttacksEquipped");
     }
 
+    private void ShowDeath()
+    {
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            deathView.Visibility = Visibility.Visible;
+        });
+    }
+
+    private void QuitterBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
 }

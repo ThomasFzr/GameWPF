@@ -6,10 +6,14 @@ public class Dash : AAttack
     {
         AttackName = "Dash";
         Damage = 30;
-        BloodNeeded = 0;
+        BloodNeeded = 15;
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {
-        receiver.HealthController.HealthLoss(Damage);
+        if (sender.BloodController.Blood >= BloodNeeded)
+        {
+            receiver.HealthController.HealthLoss(Damage);
+            sender.BloodController.BloodLoss(BloodNeeded);
+        }
     }
 }

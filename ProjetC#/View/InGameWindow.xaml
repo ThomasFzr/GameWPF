@@ -1,4 +1,4 @@
-<Window x:Class="Game.View.InGameWindow"
+﻿<Window x:Class="Game.View.InGameWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -122,18 +122,24 @@
             CornerRadius="0,55,0,55" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center">
-                <StackPanel Width="214" x:Name="listChoice">
-                    <TextBlock Margin="5" Text="Vos attaques non equipees:" FontWeight="Bold" FontFamily="Cambria" FontSize="15" />
+                <StackPanel Width="214">
+                    <TextBlock Margin="5" Text="Vos attaques non équipées:" FontWeight="Bold" FontFamily="Cambria" FontSize="15" />
                     <TextBlock Text="{Binding Player.Attacks[0].AttackName}" Width="72" FontSize="12" FontFamily="Bold"/>
                     <TextBlock Margin="5" TextWrapping="Wrap"
                                Text="(Cliquer sur le bouton d'attaque de votre choix pour intervertir les attaques)" FontWeight="Light" FontFamily="Cambria" Height="44" Width="181" />
-                    
-                    
                 </StackPanel>
             </Border>
         </Grid>
 
+        <Grid Background="Black" Opacity="0.5"  x:Name="deathView" Visibility="Collapsed">
+            <StackPanel Width="1018" Height="267" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Vous êtes mort" FontWeight="Bold" FontFamily="Cambria" Foreground="White" FontSize="70" Width="483"/>
+                <Button Margin="5" Click="QuitterBtn_Click" Content="Quitter" Background="{x:Null}" Width="206" Foreground="White" FontSize="35" Height="50"/>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
+
 </Window>
 
 

@@ -24,7 +24,7 @@ public class Player : Character
     {
         HealthController = new(200);
         BloodController = new(200);
-        MoneyController = new(100000); //TODO CHNANGE
+        MoneyController = new(0);
 
         State = Character.EnumState.nothing;
         IsTotemActivated = false;
