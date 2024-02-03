@@ -2,7 +2,7 @@
 
 public class StateMachine
 {
-    private static StateMachine? instance;
+    private static StateMachine? _instance;
     public AState? m_currentState;
 
     private StateMachine()
@@ -13,8 +13,8 @@ public class StateMachine
     {
         get
         {
-            instance ??= new StateMachine();
-            return instance;
+            _instance ??= new StateMachine();
+            return _instance;
         }
     }
 

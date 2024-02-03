@@ -1,43 +1,39 @@
 ﻿using System;
+using System.IO;
+using System.Media;
 
 namespace Game.Model;
 
 public class Monster : Character
 {
+    private readonly SoundPlayer _monsterLevelUpSound;
+
     public int MonsterLevel { get; set; } = 1;
     public int monsterAttackLevel = 1;
     public Action<int>? MonsterIsDead;
     public bool IsDead { get; set; }
 
-    private int maxHp = new();
-    public int MaxHp
-    {
-        get { return maxHp; }
-        set
-        {
-            maxHp = value;
-            OnPropertyChanged();
-        }
-    }
-
     public Monster()
     {
         HealthController = new(100);
-        MaxHp = (int)HealthController.Hp;
         BloodController = new(100);
         Attacks.Add(new Dash());
-        HealthController.IsDead += DeathManager;
+        HealthController.OnDie += DeathManager;
         IsDead = false;
+
+        string workingDirectory = Environment.CurrentDirectory;
+        var _monsterLevelUpSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "level-up.wav");
+        _monsterLevelUpSound = new SoundPlayer(_monsterLevelUpSoundPath);
     }
 
     public void DeathManager()
     {
         IsDead = true;
         MonsterIsDead?.Invoke(MonsterLevel);
+        _monsterLevelUpSound.Play();
         MonsterLevel++;
         OnPropertyChanged("MonsterLevel");
         HealthController.Hp = (100 + MonsterLevel * 10);
-        MaxHp = (int)HealthController.Hp;
         BloodController.Blood = (100 + MonsterLevel * 10);
         switch (MonsterLevel)
         {

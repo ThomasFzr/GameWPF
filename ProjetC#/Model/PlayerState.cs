@@ -4,11 +4,11 @@ namespace Game.Model;
 
 public class PlayerState : AState
 {
-    private static PlayerState? instance;
+    private static PlayerState? _instance;
 
     public Action<int>? OnClickedAttack;
     public Action? OnArrowToShow;
-    public Action? OnBtnToShow;
+    public Action<GameManager.EnumTurn>? OnBtnToShow;
 
     private PlayerState()
     {
@@ -18,8 +18,8 @@ public class PlayerState : AState
     {
         get
         {
-            instance ??= new ();
-            return instance;
+            _instance ??= new ();
+            return _instance;
         }
     }
 
@@ -27,7 +27,7 @@ public class PlayerState : AState
     {
         OnClickedAttack += ExecuteAttack;
         OnArrowToShow?.Invoke();
-        OnBtnToShow?.Invoke();
+        OnBtnToShow?.Invoke(GameManager.EnumTurn.PlayerTurn);
     }
 
     public void ExecuteAttack(int attackNbr)

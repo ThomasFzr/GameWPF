@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Game.ViewModel;
+using System;
 using System.Windows;
 
 namespace Game.View;
 
 public partial class MainWindow : Window
 {
-    private InGameWindow? inGameWindow;
-
     public MainWindow()
     {
         InitializeComponent();
+        DataContext = new MainViewModel();
         backgroundVideo.Position = TimeSpan.Zero;
         backgroundVideo.Play();
     }
@@ -18,18 +18,5 @@ public partial class MainWindow : Window
     {
         backgroundVideo.Position = TimeSpan.Zero;
         backgroundVideo.Play();
-    }
-
-    private void JouerButton_Click(object sender, RoutedEventArgs e)
-    {
-        inGameWindow = new();
-        inGameWindow.Show();
-        Close();
-        ((App)Application.Current).StartGame();
-    }
-
-    private void QuitterButton_Click(object sender, RoutedEventArgs e)
-    {
-        Close();
     }
 }

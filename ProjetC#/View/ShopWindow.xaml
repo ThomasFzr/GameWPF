@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Height="750" Width="1250"
-        ResizeMode="NoResize" Closing="MainWindow_Closing">
+        ResizeMode="NoResize">
 
     <Grid>
         <Image Source="/photos/market.gif" Stretch="UniformToFill" Opacity="0.7" />
-        <Button Content="RETOUR" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="HomeButton_Click" Height="44" Width="113"/>
+        <Button Content="RETOUR" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Command="{Binding HomeCommand}" Height="44" Width="113"/>
 
-        <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+        <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="{Binding MoneyPlayerForeground}" FontWeight="DemiBold"
                x:Name="MoneyPlayer" Margin="441,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="426">
              <Run Text="ARGENT: " />
              <Run Text="{Binding Player.MoneyController.Money}" />
              <Run Text="$" />
         </TextBlock>
 
-        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[0].AttackName}" Height="48">
+        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[0].AttackName}" Height="48" Visibility="{Binding ShopItem1Visibility}">
             <StackPanel>
                 <TextBlock> 
              <Run Text="{Binding Shop.AttacksOnSale[0].AttackName}" />
@@ -28,7 +28,7 @@
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[1].AttackName}" Height="48">
+        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[1].AttackName}" Height="48" Visibility="{Binding ShopItem2Visibility}">
             <StackPanel>
                 <TextBlock> 
                     <Run Text="{Binding Shop.AttacksOnSale[1].AttackName}" />
@@ -38,7 +38,7 @@
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[2].AttackName}" Height="48">
+        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[2].AttackName}" Height="48" Visibility="{Binding ShopItem3Visibility}">
             <StackPanel>
                 <TextBlock> 
         <Run Text="{Binding Shop.AttacksOnSale[2].AttackName}" />
@@ -48,7 +48,7 @@
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="901,0,179,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Click="BuyAttackButton_Click" Tag="{Binding Shop.AttacksOnSale[3].AttackName}" Height="48">
+        <Button Margin="901,0,179,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[3].AttackName}" Height="48" Visibility="{Binding ShopItem4Visibility}">
             <StackPanel>
                 <TextBlock> 
         <Run Text="{Binding Shop.AttacksOnSale[3].AttackName}" />
@@ -60,7 +60,7 @@
         </Button>
 
 
-        <Button HorizontalAlignment="Center" Margin="0,481,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="BuyTotemButton_Click">
+        <Button HorizontalAlignment="Center" Margin="0,481,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyTotemCommand}" Visibility="{Binding PochitaVisibility}">
             <StackPanel>
                 <TextBlock Width="49">
                     <Run Text="POCHITA" />
@@ -76,7 +76,7 @@
         </Button>
 
 
-        <Grid x:Name="InputBox" Visibility="Collapsed" >
+        <Grid Visibility="{Binding AttacksEquipedListVisibility}" >
             <Grid Background="Black" Opacity="0.5"/>
             <Border
                 MinWidth="250"
@@ -88,11 +88,11 @@
                 VerticalAlignment="Center">
                 <StackPanel Width="214" x:Name="listChoice">
                     <TextBlock Margin="5" Text="Choisir un sort à remplacer:" FontWeight="Bold" FontFamily="Cambria" />
-                    <RadioButton Content="{Binding Player.AttacksEquipped[0].AttackName}"/>
-                    <RadioButton Content="{Binding Player.AttacksEquipped[1].AttackName}"/>
-                    <RadioButton Content="{Binding Player.AttacksEquipped[2].AttackName}"/>
-                    <RadioButton Content="{Binding Player.AttacksEquipped[3].AttackName}"/>
-                    <Button  Margin="5" Content="Remplacer" Background="{x:Null}" Click="ReplaceButton_Click" Width="69"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[0].AttackName}" IsChecked="{Binding AttackIsChecked1}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[1].AttackName}" IsChecked="{Binding AttackIsChecked2}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[2].AttackName}" IsChecked="{Binding AttackIsChecked3}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[3].AttackName}" IsChecked="{Binding AttackIsChecked4}"/>
+                    <Button  Margin="5" Content="Remplacer" Background="{x:Null}" Command="{Binding ReplaceAttackCommand}" Width="69"/>
                 </StackPanel>
             </Border>
         </Grid>

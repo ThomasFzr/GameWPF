@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -9,13 +10,13 @@ public class Character : INotifyPropertyChanged
     public HealthController? HealthController { get; protected set; }
     public BloodController? BloodController { get; protected set; }
 
-    private List<AAttack> attacks = new();
-    public List<AAttack> Attacks
+    private ObservableCollection<AAttack> _attacks = new();
+    public ObservableCollection<AAttack> Attacks
     {
-        get { return attacks; }
+        get { return _attacks; }
         set
         {
-            attacks = value;
+            _attacks = value;
             OnPropertyChanged();
         }
     }
