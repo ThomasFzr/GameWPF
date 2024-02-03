@@ -7,17 +7,17 @@ namespace Game.Model;
 
 public class Shop : INotifyPropertyChanged
 {
-    private Action<AAttack>? OnAttackAdded;
+    private Action<AAttack>? _OnAttackAdded;
     public Action? OnBuyAttack;
     public Action? OnBuyDamageBooster;
 
-    private List<AAttack> attacksOnSale = new();
+    private List<AAttack> _attacksOnSale = new();
     public List<AAttack> AttacksOnSale
     {
-        get { return attacksOnSale; }
+        get { return _attacksOnSale; }
         set
         {
-            attacksOnSale = value;
+            _attacksOnSale = value;
             OnPropertyChanged();
         }
     }
@@ -33,9 +33,9 @@ public class Shop : INotifyPropertyChanged
     public bool Buy(Player buyer, AAttack attack) {
         if(buyer.MoneyController.Money >= 1000)
         {
-            OnAttackAdded -= buyer.EquipNewAttack;
-            OnAttackAdded += buyer.EquipNewAttack;
-            OnAttackAdded.Invoke(attack);
+            _OnAttackAdded -= buyer.EquipNewAttack;
+            _OnAttackAdded += buyer.EquipNewAttack;
+            _OnAttackAdded.Invoke(attack);
             AttacksOnSale.Remove(attack);
             buyer.MoneyController.MoneyLoss(1000);
             OnBuyAttack?.Invoke();

@@ -459,7 +459,6 @@ public class InGameViewModel : INotifyPropertyChanged
 
     private void OnOpenShop(object? parameter)
     {
-        OnInventory(null);
         _shopWindow.ShowDialog();
     }
 
@@ -570,9 +569,7 @@ public class InGameViewModel : INotifyPropertyChanged
 
     private void SwapAttackInventory(int attackNbr)
     {
-        AAttack temp = Player.Attacks[0];
-        Player.Attacks[0] = Player.AttacksEquipped[attackNbr];
-        Player.AttacksEquipped[attackNbr] = temp;
+        (Player.AttacksEquipped[attackNbr], Player.Attacks[0]) = (Player.Attacks[0], Player.AttacksEquipped[attackNbr]);
     }
 
     private void ShowDeath()

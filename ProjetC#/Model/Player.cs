@@ -6,9 +6,9 @@ namespace Game.Model;
 
 public class Player : Character
 {
-    const int HP = 10;
-    const int BLOOD = 0;
-    const int MONEY = 10000;
+    const int HP = 200;
+    const int BLOOD = 200;
+    const int MONEY = 0;
     public MoneyController MoneyController { get; set; }
     public bool IsTotemActivated { get; set; }
     public Action<AAttack>? OnYesClickedAction;

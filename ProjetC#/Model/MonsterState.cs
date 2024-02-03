@@ -5,9 +5,9 @@ namespace Game.Model;
 
 public class MonsterState : AState
 {
-    private static MonsterState? instance;
-    private int randomNumber;
-    private Random random = new();
+    private static MonsterState? _instance;
+    private int _randomNumber;
+    private Random _random = new();
     public Action<int> OnMonsterAttack;
 
     private MonsterState()
@@ -18,8 +18,8 @@ public class MonsterState : AState
     {
         get
         {
-            instance ??= new();
-            return instance;
+            _instance ??= new();
+            return _instance;
         }
     }
 
@@ -29,9 +29,9 @@ public class MonsterState : AState
         {
 
 
-            randomNumber = random.Next(0, GameManager.Instance.Monster.monsterAttackLevel);
-            OnMonsterAttack?.Invoke(randomNumber);
-            GameManager.Instance.Monster.Attacks[randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
+            _randomNumber = _random.Next(0, GameManager.Instance.Monster.monsterAttackLevel);
+            OnMonsterAttack?.Invoke(_randomNumber);
+            GameManager.Instance.Monster.Attacks[_randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
 
             Task.Delay(550).ContinueWith(t =>
             {

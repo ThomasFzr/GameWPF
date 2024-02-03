@@ -126,7 +126,7 @@
             </Border>
         </Grid>
 
-        <Grid Background="Black" Opacity="0.5"  x:Name="deathView" Visibility="{Binding DeathScreenVisibility}">
+        <Grid Background="Black" Opacity="0.8"  x:Name="deathView" Visibility="{Binding DeathScreenVisibility}">
             <StackPanel Width="1018" Height="267" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Vous êtes mort" FontWeight="Bold" FontFamily="Cambria" Foreground="White" FontSize="70" Width="483"/>
                 <Button Margin="5" Command="{Binding QuitCommand}" Content="Quitter" Background="{x:Null}" Width="206" Foreground="White" FontSize="35" Height="50"/>

@@ -6,7 +6,7 @@ namespace Game.ViewModel;
 
 public class MainViewModel
 {
-    private InGameWindow? inGameWindow;
+    private InGameWindow? _inGameWindow;
     public ICommand JouerCommand { get; }
     public ICommand QuitterCommand { get; }
 
@@ -18,8 +18,8 @@ public class MainViewModel
 
     private void OnJouer(object? parameter)
     {
-        inGameWindow = new();
-        inGameWindow.Show();
+        _inGameWindow = new();
+        _inGameWindow.Show();
         Application.Current.MainWindow?.Close();
         ((App)Application.Current).StartGame();
     }

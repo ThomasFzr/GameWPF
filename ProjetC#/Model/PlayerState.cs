@@ -4,7 +4,7 @@ namespace Game.Model;
 
 public class PlayerState : AState
 {
-    private static PlayerState? instance;
+    private static PlayerState? _instance;
 
     public Action<int>? OnClickedAttack;
     public Action? OnArrowToShow;
@@ -18,8 +18,8 @@ public class PlayerState : AState
     {
         get
         {
-            instance ??= new ();
-            return instance;
+            _instance ??= new ();
+            return _instance;
         }
     }
 
