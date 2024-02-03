@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.Media;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -159,7 +158,6 @@ public partial class InGameWindow : Window
         }
     }
 
-
     private void ShopButton_Click(object sender, RoutedEventArgs e)
     {
         shopWindow.ShowDialog();
@@ -169,7 +167,6 @@ public partial class InGameWindow : Window
     {
         playerArrow.Visibility = playerArrow.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         monsterArrow.Visibility = monsterArrow.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-
     }
 
     private void SwitchBtn()
