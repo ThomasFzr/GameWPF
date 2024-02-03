@@ -12,11 +12,11 @@ public class ChainsawSlash : AAttack
     {
         if (totem)
         {
-            receiver.HealthController.HealthLoss(Damage * (float)1.5);
+            receiver.HealthController?.HealthLoss(Damage * (float)1.5);
         }
         else
         {
-            receiver.HealthController.HealthLoss(Damage);
+            receiver.HealthController?.HealthLoss(Damage);
         }
     }
 }

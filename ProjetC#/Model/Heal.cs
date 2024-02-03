@@ -9,10 +9,10 @@
         }
         public override void Execute(Character sender, Character receiver, bool totem)
         {
-            if (sender.BloodController.Blood >= BloodNeeded)
+            if (sender.BloodController?.Blood >= BloodNeeded)
             {
-                sender.HealthController.HealthGain(25);
-                sender.BloodController.BloodLoss(BloodNeeded);
+                sender.HealthController?.HealthGain(25);
+                sender.BloodController?.BloodLoss(BloodNeeded);
             }
         }
     }

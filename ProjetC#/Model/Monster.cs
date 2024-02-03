@@ -6,7 +6,7 @@ public class Monster : Character
 {
     public int MonsterLevel { get; set; } = 1;
     public int monsterAttackLevel = 1;
-    public Action<int> MonsterIsDead;
+    public Action<int>? MonsterIsDead;
     public bool IsDead { get; set; }
 
     private int maxHp = new();
@@ -25,18 +25,15 @@ public class Monster : Character
         HealthController = new(100);
         MaxHp = (int)HealthController.Hp;
         BloodController = new(100);
-        State = Character.EnumState.nothing;
         Attacks.Add(new Dash());
         HealthController.IsDead += DeathManager;
         IsDead = false;
-
-
     }
 
     public void DeathManager()
     {
         IsDead = true;
-        MonsterIsDead.Invoke(MonsterLevel);
+        MonsterIsDead?.Invoke(MonsterLevel);
         MonsterLevel++;
         OnPropertyChanged("MonsterLevel");
         HealthController.Hp = (100 + MonsterLevel * 10);

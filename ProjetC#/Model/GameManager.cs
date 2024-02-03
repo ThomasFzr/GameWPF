@@ -2,7 +2,7 @@
 
 public class GameManager
 {
-    private static GameManager instance;
+    private static GameManager? instance;
 
     public Player Player { get; set; }
     public Monster Monster { get; set; }
@@ -28,9 +28,9 @@ public class GameManager
 
     private void AddMoneytoPlayer(int monsterLevel)
     {
-        Player.MoneyController.MoneyGain(monsterLevel * 1000);
-        Player.BloodController.BloodGain(monsterLevel * 10);
-        Player.HealthController.HealthGain(monsterLevel * 10);
+        Player.MoneyController?.MoneyGain(monsterLevel * 1000);
+        Player.BloodController?.BloodGain(monsterLevel * 10);
+        Player.HealthController?.HealthGain(monsterLevel * 10);
     }
 
     public void StartGame()

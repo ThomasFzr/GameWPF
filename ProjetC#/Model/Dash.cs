@@ -10,10 +10,10 @@ public class Dash : AAttack
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {
-        if (sender.BloodController.Blood >= BloodNeeded)
+        if (sender.BloodController?.Blood >= BloodNeeded)
         {
-            receiver.HealthController.HealthLoss(Damage);
-            sender.BloodController.BloodLoss(BloodNeeded);
+            receiver.HealthController?.HealthLoss(Damage);
+            sender.BloodController?.BloodLoss(BloodNeeded);
         }
     }
 }

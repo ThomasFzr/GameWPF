@@ -25,9 +25,9 @@ public class Shop : INotifyPropertyChanged
     public Shop()
     {
         AttacksOnSale.Add(new Heal());
-        AttacksOnSale.Add(new ChainsawHurricane());
-        AttacksOnSale.Add(new ChainsawBlaster());
         AttacksOnSale.Add(new BloodBoost());
+        AttacksOnSale.Add(new ChainsawBlaster());
+        AttacksOnSale.Add(new ChainsawHurricane());
     }
 
     public bool Buy(Player buyer, AAttack attack) {

@@ -26,7 +26,6 @@ public class Player : Character
         BloodController = new(200);
         MoneyController = new(0);
 
-        State = Character.EnumState.nothing;
         IsTotemActivated = false;
 
         AttacksEquipped.Add(new ChainsawSlash());
@@ -41,7 +40,7 @@ public class Player : Character
         else if (MessageBox.Show("Vous avez déjà le nombre maximum d'attaque équipée, voulez-vous quand même l'équiper? ",
         "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
         {
-            OnYesClickedAction.Invoke(newAttack);
+            OnYesClickedAction?.Invoke(newAttack);
         }
         else
         {

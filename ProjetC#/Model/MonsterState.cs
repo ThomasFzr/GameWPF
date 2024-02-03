@@ -5,7 +5,7 @@ namespace Game.Model;
 
 public class MonsterState : AState
 {
-    private static MonsterState instance;
+    private static MonsterState? instance;
     private int randomNumber;
     private Random random = new();
     public Action<int> OnMonsterAttack;

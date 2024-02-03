@@ -4,7 +4,7 @@ namespace Game.Model;
 
 public class PlayerState : AState
 {
-    private static PlayerState instance;
+    private static PlayerState? instance;
 
     public Action<int>? OnClickedAttack;
     public Action? OnArrowToShow;
@@ -42,6 +42,5 @@ public class PlayerState : AState
 
     public override void OnProcess()
     {
-
     }
 }

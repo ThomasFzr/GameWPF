@@ -11,7 +11,7 @@ public partial class ShopWindow : Window
 {
     public ShopViewModel ShopViewModel { get; private set; }
     private Player Player { get; set; }
-    private AAttack attackToAdd;
+    private AAttack? attackToAdd;
 
     public ShopWindow(Player player)
     {
@@ -30,7 +30,7 @@ public partial class ShopWindow : Window
 
     private void BuyAttackButton_Click(object sender, RoutedEventArgs e)
     {
-        string attackName = (sender as Button)?.Tag?.ToString();
+        string? attackName = (sender as Button)?.Tag?.ToString();
 
         if (!string.IsNullOrEmpty(attackName))
         {
@@ -52,7 +52,7 @@ public partial class ShopWindow : Window
         attackToAdd = attack;
     }
 
-    private void YesButton_Click(object sender, RoutedEventArgs e)
+    private void ReplaceButton_Click(object sender, RoutedEventArgs e)
     {
         InputBox.Visibility = Visibility.Collapsed;
 
@@ -86,7 +86,7 @@ public partial class ShopWindow : Window
         {
             Player.IsTotemActivated = true;
             (sender as Button).Visibility = Visibility.Collapsed;
-            ShopViewModel.Shop.OnBuyDamageBooster.Invoke();
+            ShopViewModel.Shop.OnBuyDamageBooster?.Invoke();
             Player.MoneyController.MoneyLoss(priceTotem);
         }
 

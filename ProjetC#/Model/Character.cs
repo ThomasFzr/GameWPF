@@ -6,28 +6,8 @@ namespace Game.Model;
 
 public class Character : INotifyPropertyChanged
 {
-   public  HealthController? HealthController { get;protected set; }
-   public BloodController? BloodController { get; protected set; }
-
-
-
-    private EnumState state;
-    public EnumState State
-    {
-        get { return state; }
-        set
-        {
-            state = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public enum EnumState
-    {
-        freeze,
-        fire,
-        nothing
-    };
+    public HealthController? HealthController { get; protected set; }
+    public BloodController? BloodController { get; protected set; }
 
     private List<AAttack> attacks = new();
     public List<AAttack> Attacks

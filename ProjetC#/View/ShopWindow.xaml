@@ -92,7 +92,7 @@
                     <RadioButton Content="{Binding Player.AttacksEquipped[1].AttackName}"/>
                     <RadioButton Content="{Binding Player.AttacksEquipped[2].AttackName}"/>
                     <RadioButton Content="{Binding Player.AttacksEquipped[3].AttackName}"/>
-                    <Button x:Name="YesButton" Margin="5" Content="Remplacer" Background="{x:Null}" Click="YesButton_Click" Width="69"/>
+                    <Button  Margin="5" Content="Remplacer" Background="{x:Null}" Click="ReplaceButton_Click" Width="69"/>
                 </StackPanel>
             </Border>
         </Grid>

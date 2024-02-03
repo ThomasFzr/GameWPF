@@ -25,21 +25,30 @@ public partial class InGameWindow : Window
     private SoundPlayer attackSoundMonster;
     private Storyboard monsterMoveAnimation;
     private bool isInventoryOpen;
+    private Player Player { get; set; }
+    private Monster Monster { get; set; }
+
     public InGameWindow()
     {
         InitializeComponent();
         InitializeTimer();
+
         DataContext = GameManager.Instance;
-        shopWindow = new ShopWindow(GameManager.Instance.Player);
+        Player = GameManager.Instance.Player;
+        Monster = GameManager.Instance.Monster;
+        shopWindow = new ShopWindow(Player);
+
         PlayerState.Instance.OnArrowToShow += PlayerTurn;
         PlayerState.Instance.OnBtnToShow += SwitchBtn;
+        MonsterState.Instance.OnMonsterAttack += AdvanceMonster;
+
         shopWindow.ShopViewModel.Shop.OnBuyAttack += ShowBtnWhenBuy;
         shopWindow.ShopViewModel.Shop.OnBuyDamageBooster += ShowPochitaDmgBooster;
-        GameManager.Instance.Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
-        GameManager.Instance.Player.HealthController.IsDead += ShowDeath;
-        GameManager.Instance.Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
-        GameManager.Instance.Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
-        MonsterState.Instance.OnMonsterAttack += AdvanceMonster;
+
+        Player.HealthController.OnHealthChanged += ChangeHpColorPlayer;
+        Player.HealthController.IsDead += ShowDeath;
+        Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
+        Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
 
         string workingDirectory = Environment.CurrentDirectory;
         var attackSoundPlayerPath = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\music\\metal.wav";
@@ -57,7 +66,7 @@ public partial class InGameWindow : Window
         backgroundMusic.Play();
         currentImageIndex = 0;
         isInventoryOpen = false;
-        timer.Start();
+        timer?.Start();
 
         Closing += InGameWindow_Closing;
 
@@ -68,7 +77,7 @@ public partial class InGameWindow : Window
         Dispatcher.Invoke(() =>
         {
             BubbleMonster.Visibility = Visibility.Visible;
-            AttackMonster.Text = GameManager.Instance.Monster.Attacks[attackNumber].AttackName;
+            AttackMonster.Text = Monster.Attacks[attackNumber].AttackName;
             attackSoundMonster.Play();
             monsterMoveAnimation.Begin();
             Task.Delay(1000).ContinueWith(t =>
@@ -89,8 +98,10 @@ public partial class InGameWindow : Window
 
     private void InitializeTimer()
     {
-        timer = new DispatcherTimer();
-        timer.Interval = TimeSpan.FromSeconds(0.2);
+        timer = new()
+        {
+            Interval = TimeSpan.FromSeconds(0.2)
+        };
         timer.Tick += Timer_Tick;
     }
 
@@ -109,12 +120,11 @@ public partial class InGameWindow : Window
         });
     }
 
-
     private void AttackButton_Click(object sender, RoutedEventArgs e)
     {
         if (int.TryParse((sender as Button)?.Tag?.ToString(), out int attackNumber))
         {
-            if (isInventoryOpen && GameManager.Instance.Player.Attacks.Count != 0)
+            if (isInventoryOpen && Player.Attacks.Count != 0)
             {
                 SwapAttackInventory(attackNumber);
             }
@@ -125,21 +135,21 @@ public partial class InGameWindow : Window
                 currentImageIndex = 0;
                 timer.Start();
                 BubbleDenji.Visibility = Visibility.Visible;
-                AttackDenji.Text = GameManager.Instance.Player.AttacksEquipped[attackNumber].AttackName;
+                AttackDenji.Text = Player.AttacksEquipped[attackNumber].AttackName;
                 Task.Delay(1000).ContinueWith(t =>
                 {
                     PlayerState.Instance.OnClickedAttack?.Invoke(attackNumber);
-                    App.Current.Dispatcher.Invoke(() =>
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
                         BubbleDenji.Visibility = Visibility.Collapsed;
-                        if (!GameManager.Instance.Monster.IsDead && GameManager.Instance.Monster.BloodController.Blood>0)
+                        if (!Monster.IsDead && Monster.BloodController?.Blood > 0)
                         {
                             StateMachine.Instance.HandleRequestStateChangement(MonsterState.Instance);
                         }
                         else
                         {
                             StateMachine.Instance.HandleRequestStateChangement(PlayerState.Instance);
-                            GameManager.Instance.Monster.IsDead = false;
+                            Monster.IsDead = false;
                         }
                     });
                 });
@@ -164,34 +174,34 @@ public partial class InGameWindow : Window
 
     private void SwitchBtn()
     {
-        btn1.IsEnabled = btn1.IsEnabled == true ? false : true;
-        btn2.IsEnabled = btn2.IsEnabled == true ? false : true;
-        btn3.IsEnabled = btn3.IsEnabled == true ? false : true;
-        btn4.IsEnabled = btn4.IsEnabled == true ? false : true;
+        btn1.IsEnabled = btn1.IsEnabled != true;
+        btn2.IsEnabled = btn2.IsEnabled != true;
+        btn3.IsEnabled = btn3.IsEnabled != true;
+        btn4.IsEnabled = btn4.IsEnabled != true;
         if (btn1.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[0].BloodNeeded)
+            if (Player.BloodController?.Blood < Player.AttacksEquipped[0].BloodNeeded)
             {
                 btn1.IsEnabled = false;
             }
         }
         if (btn2.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[1]?.BloodNeeded)
+            if (Player.BloodController?.Blood < Player.AttacksEquipped[1]?.BloodNeeded)
             {
                 btn2.IsEnabled = false;
             }
         }
         if (btn3.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[2]?.BloodNeeded)
+            if (Player.BloodController?.Blood < Player.AttacksEquipped[2]?.BloodNeeded)
             {
                 btn3.IsEnabled = false;
             }
         }
         if (btn4.Visibility == Visibility.Visible)
         {
-            if (GameManager.Instance.Player.BloodController.Blood < GameManager.Instance.Player.AttacksEquipped[3]?.BloodNeeded)
+            if (Player.BloodController?.Blood < Player.AttacksEquipped[3]?.BloodNeeded)
             {
                 btn4.IsEnabled = false;
             }
@@ -264,16 +274,16 @@ public partial class InGameWindow : Window
     private void Inventory_Click(object sender, RoutedEventArgs e)
     {
         InputBox.Visibility = InputBox.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-        isInventoryOpen = isInventoryOpen == false ? true : false;
+        isInventoryOpen = isInventoryOpen == false;
     }
 
     private void SwapAttackInventory(int attackNbr)
     {
-        AAttack temp = GameManager.Instance.Player.Attacks[0];
-        GameManager.Instance.Player.Attacks[0] = GameManager.Instance.Player.AttacksEquipped[attackNbr];
-        GameManager.Instance.Player.OnPropertyChanged("Attacks");
-        GameManager.Instance.Player.AttacksEquipped[attackNbr] = temp;
-        GameManager.Instance.Player.OnPropertyChanged("AttacksEquipped");
+        AAttack temp = Player.Attacks[0];
+        Player.Attacks[0] = Player.AttacksEquipped[attackNbr];
+        Player.OnPropertyChanged("Attacks");
+        Player.AttacksEquipped[attackNbr] = temp;
+        Player.OnPropertyChanged("AttacksEquipped");
     }
 
     private void ShowDeath()
