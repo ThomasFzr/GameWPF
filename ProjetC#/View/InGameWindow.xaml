@@ -31,13 +31,13 @@
     <Grid>
         <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top" Panel.ZIndex="-1"/>
 
-        <Button Content="{Binding Player.AttacksEquipped[0].AttackName}" x:Name="btn1" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Click="AttackButton_Click" Tag="0" Height="29" Width="100" IsEnabled="true" />
-        <Button Content="{Binding Player.AttacksEquipped[1].AttackName}" x:Name="btn2" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Click="AttackButton_Click" Tag="1" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
-        <Button Content="{Binding Player.AttacksEquipped[2].AttackName}" x:Name="btn3" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Click="AttackButton_Click" Tag="2" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
-        <Button Content="{Binding Player.AttacksEquipped[3].AttackName}" x:Name="btn4" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="AttackButton_Click" Tag="3" Height="29" Width="100" IsEnabled="true" Visibility="Collapsed"/>
+        <Button Content="{Binding Player.AttacksEquipped[0].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Tag="0" Height="29" Width="100" IsEnabled="{Binding Attack1IsEnabled}" Visibility="{Binding Attack1BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[1].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Tag="1" Height="29" Width="100" IsEnabled="{Binding Attack2IsEnabled}" Visibility="{Binding Attack2BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[2].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Tag="2" Height="29" Width="100" IsEnabled="{Binding Attack3IsEnabled}" Visibility="{Binding Attack3BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[3].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Tag="3" Height="29" Width="100" IsEnabled="{Binding Attack4IsEnabled}" Visibility="{Binding Attack4BtnVisibility}"/>
 
         <!--MONEY-->
-        <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+        <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="{Binding MoneyPlayerForeground}" FontWeight="DemiBold"
            x:Name="MoneyPlayer" Margin="10,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="426">
              <Run Text="ARGENT: " />
              <Run Text="{Binding Player.MoneyController.Money}" />
@@ -46,10 +46,10 @@
 
         <!--PLAYER-->
         <Canvas x:Name="imageCanvas" Height="273" VerticalAlignment="Top" Margin="10,451,10,0">
-            <Image x:Name="animatedImage" Stretch="Fill" Height="231" HorizontalAlignment="Left" Width="217" Canvas.Left="54" VerticalAlignment="Top" Canvas.Top="-86"/>
+            <Image Source="{Binding AnimatedImageSource}" Stretch="Fill" Height="231" HorizontalAlignment="Left" Width="217" Canvas.Left="54" VerticalAlignment="Top" Canvas.Top="-86"/>
         </Canvas>
 
-        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="{Binding HpPlayerForeground}" FontWeight="DemiBold"
              x:Name="HpPlayer" HorizontalAlignment="Left" Margin="70,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
              <Run Text="HP: " />
              <Run Text="{Binding Player.HealthController.Hp}" />
@@ -60,11 +60,11 @@
             <Run Text="{Binding Player.BloodController.Blood}" />
         </TextBlock>
 
-        <Image x:Name="playerArrow" Margin="124,270,1048,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Visible"/>
+        <Image x:Name="playerArrow" Margin="124,270,1048,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="{Binding PlayerArrowVisibility}"/>
 
         <!--MONSTER-->
 
-        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"
+        <TextBlock FontSize="30" FontFamily="Meiryo" Foreground="{Binding HpMonsterForeground}" FontWeight="DemiBold"
             x:Name="HpMonster" HorizontalAlignment="Left" Margin="1051,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Text="HP: " />
             <Run Text="{Binding Monster.HealthController.Hp}" />
@@ -86,29 +86,29 @@
             </Image.RenderTransform>
         </Image>
 
-        <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="Collapsed" RenderTransformOrigin="7.042,0.692"/>
+        <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="{Binding MonsterArrowVisibility}" RenderTransformOrigin="7.042,0.692"/>
 
-        <Button Content="Shop" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Click="ShopButton_Click" Height="50" Width="95"/>
+        <Button Content="Shop" Command="{Binding OpenShopCommand}" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Height="50" Width="95"/>
 
-        <Image x:Name="pochitaDmgBooster" Margin="-4,549,1148,108" Source="/photos/pochita.png" Stretch="Fill" Visibility="Collapsed"/>
+        <Image x:Name="pochitaDmgBooster" Margin="-4,549,1148,108" Source="/photos/pochita.png" Stretch="Fill" Visibility="{Binding PochitaDmgBoosterVisibility}"/>
 
-        <Grid x:Name="BubbleDenji" Visibility="Collapsed">
+        <Grid x:Name="BubbleDenji" Visibility="{Binding BubbleDenjiVisibility}">
             <Image Source="/photos/bubble.png" Stretch="Fill" Margin="250,194,666,317" Panel.ZIndex="5" RenderTransformOrigin="0.914,0.748"/>
-            <TextBlock x:Name="AttackDenji"  Margin="337,279,732,367"  FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding AttackDenjiText}" x:Name="AttackDenji"  Margin="337,279,732,367"  FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"/>
         </Grid>
 
-        <Grid x:Name="BubbleMonster" Visibility="Collapsed">
+        <Grid x:Name="BubbleMonster" Visibility="{Binding BubbleMonsterVisibility}">
             <Image Source="/photos/bubble2.png" Stretch="Fill" Margin="761,173,155,338" Panel.ZIndex="5" RenderTransformOrigin="0.914,0.748"/>
-            <TextBlock x:Name="AttackMonster" Margin="851,258,219,388"  FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding AttackMonsterText}" x:Name="AttackMonster" Margin="851,258,219,388"  FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"/>
         </Grid>
 
-        <Button Margin="10,610,0,0" Background="{x:Null}" BorderThickness="0" Click="Inventory_Click"  
-            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Command="{Binding OpenInventoryCommand}" Margin="10,610,0,0" Background="{x:Null}" BorderThickness="0" 
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/photos/backpack.png" Height="52" Width="57"></Image>
         </Button>
 
 
-        <Grid x:Name="InputBox" Visibility="Collapsed" Margin="349,300,394,200" >
+        <Grid Visibility="{Binding InventoryVisibility}" Margin="349,300,394,200">
             <Border
             MinWidth="250"
             Background="NavajoWhite" 
@@ -126,14 +126,16 @@
             </Border>
         </Grid>
 
-        <Grid Background="Black" Opacity="0.5"  x:Name="deathView" Visibility="Collapsed">
+        <Grid Background="Black" Opacity="0.5"  x:Name="deathView" Visibility="{Binding DeathScreenVisibility}">
             <StackPanel Width="1018" Height="267" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Vous êtes mort" FontWeight="Bold" FontFamily="Cambria" Foreground="White" FontSize="70" Width="483"/>
-                <Button Margin="5" Click="QuitterBtn_Click" Content="Quitter" Background="{x:Null}" Width="206" Foreground="White" FontSize="35" Height="50"/>
+                <Button Margin="5" Command="{Binding QuitCommand}" Content="Quitter" Background="{x:Null}" Width="206" Foreground="White" FontSize="35" Height="50"/>
             </StackPanel>
         </Grid>
-        
+
+
     </Grid>
+
 
 </Window>
 

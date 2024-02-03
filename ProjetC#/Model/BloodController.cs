@@ -8,13 +8,13 @@ public class BloodController : INotifyPropertyChanged
 {
     public Action? OnBloodChanged;
 
-    private int blood;
+    private int _blood;
     public int Blood
     {
-        get { return blood; }
+        get { return _blood; }
         set
         {
-            blood = value;
+            _blood = value;
             OnPropertyChanged();
         }
     }

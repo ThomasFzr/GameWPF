@@ -1,30 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Game.Model;
 
 public class Player : Character
 {
+    const int HP = 10;
+    const int BLOOD = 0;
+    const int MONEY = 10000;
     public MoneyController MoneyController { get; set; }
     public bool IsTotemActivated { get; set; }
     public Action<AAttack>? OnYesClickedAction;
 
-    private List<AAttack> attacksEquipped = new();
-    public List<AAttack> AttacksEquipped
+    private ObservableCollection<AAttack> _attacksEquipped = new();
+    public ObservableCollection<AAttack> AttacksEquipped
     {
-        get { return attacksEquipped; }
+        get { return _attacksEquipped; }
         set
         {
-            attacksEquipped = value;
+            _attacksEquipped = value;
         }
     }
 
     public Player()
     {
-        HealthController = new(200);
-        BloodController = new(200);
-        MoneyController = new(0);
+        HealthController = new(HP);
+        BloodController = new(BLOOD);
+        MoneyController = new(MONEY);
 
         IsTotemActivated = false;
 
@@ -46,9 +49,6 @@ public class Player : Character
         {
             Attacks.Add(newAttack);
             MessageBox.Show("Attaque ajoutée à votre inventaire mais non équipé.");
-            OnPropertyChanged("Attacks");
-
         }
-        OnPropertyChanged("AttacksEquipped");
     }
 }

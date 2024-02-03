@@ -1,20 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
+using System.Media;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Game.Model;
 
-public class MoneyController :INotifyPropertyChanged
+public class MoneyController : INotifyPropertyChanged
 {
+    private readonly SoundPlayer _moneySound;
+
     public Action<bool>? OnMoneyChanged;
 
-    private int money;
+    private int _money;
     public int Money
     {
-        get { return money; }
+        get { return _money; }
         set
         {
-            money = value;
+            _money = value;
             OnPropertyChanged();
         }
     }
@@ -22,12 +27,17 @@ public class MoneyController :INotifyPropertyChanged
     public MoneyController(int money)
     {
         Money = money;
+
+        string workingDirectory = Environment.CurrentDirectory;
+        var _moneySoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "coin.wav");
+        _moneySound = new SoundPlayer(_moneySoundPath);
     }
 
     public void MoneyLoss(int amount)
     {
         OnMoneyChanged?.Invoke(false);
         Money -= amount;
+        _moneySound.Play();
     }
 
     public void MoneyGain(int amount)

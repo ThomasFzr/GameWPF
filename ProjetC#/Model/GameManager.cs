@@ -2,11 +2,18 @@
 
 public class GameManager
 {
-    private static GameManager? instance;
+    private static GameManager? _instance;
 
     public Player Player { get; set; }
     public Monster Monster { get; set; }
     public bool IsGameRunning { get; private set; }
+
+    public enum EnumTurn
+    {
+        PlayerTurn,
+        MonsterTurn,
+        InventoryTurn
+    }
 
     private GameManager()
     {
@@ -21,8 +28,8 @@ public class GameManager
     {
         get
         {
-            instance ??= new GameManager();
-            return instance;
+            _instance ??= new GameManager();
+            return _instance;
         }
     }
 
