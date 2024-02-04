@@ -6,6 +6,7 @@ public class Heal : AAttack
     {
         AttackName = "HEAL";
         BloodNeeded = 15;
+        Damage = 0;
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {

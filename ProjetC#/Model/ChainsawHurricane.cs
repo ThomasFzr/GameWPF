@@ -7,7 +7,6 @@ public class ChainsawHurricane : AAttack
         AttackName = "HURRICANE";
         Damage = 70;
         BloodNeeded = 40;
-
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {

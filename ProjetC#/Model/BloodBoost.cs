@@ -6,7 +6,7 @@ public class BloodBoost : AAttack
     {
         AttackName = "SANGBOOST";
         BloodNeeded = 0;
-
+        Damage = 0;
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {

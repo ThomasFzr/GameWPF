@@ -8,18 +8,18 @@ public class Player : Character
 {
     const int HP = 200;
     const int BLOOD = 20;
-    const int MONEY = 100000;
+    const int MONEY = 0;
     public MoneyController MoneyController { get; set; }
     public bool IsTotemActivated { get; set; }
     public Action<AAttack>? OnYesClickedAction;
 
-    private ObservableCollection<AAttack> _attacksEquipped = new();
-    public ObservableCollection<AAttack> AttacksEquipped
+    private ObservableCollection<AAttack> _attacksUnequipped = new();
+    public ObservableCollection<AAttack> AttacksUnequipped
     {
-        get { return _attacksEquipped; }
+        get { return _attacksUnequipped; }
         set
         {
-            _attacksEquipped = value;
+            _attacksUnequipped = value;
         }
     }
 
@@ -30,7 +30,6 @@ public class Player : Character
         MoneyController = new(MONEY);
 
         IsTotemActivated = false;
-
         AttacksEquipped.Add(new ChainsawSlash());
     }
 
@@ -47,7 +46,7 @@ public class Player : Character
         }
         else
         {
-            Attacks.Add(newAttack);
+            AttacksUnequipped.Add(newAttack);
             MessageBox.Show("Attaque ajoutée à votre inventaire mais non équipé.");
         }
     }

@@ -31,10 +31,10 @@
     <Grid>
         <Image Source="/photos/street.jpg" Stretch="Fill" Margin="0,-282,0,0" HorizontalAlignment="Right" Width="1317" Height="1131" VerticalAlignment="Top" Panel.ZIndex="-1"/>
 
-        <Button Content="{Binding Player.AttacksEquipped[0].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Tag="0" Height="29" Width="100" IsEnabled="{Binding Attack1IsEnabled}" Visibility="{Binding Attack1BtnVisibility}"/>
-        <Button Content="{Binding Player.AttacksEquipped[1].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Tag="1" Height="29" Width="100" IsEnabled="{Binding Attack2IsEnabled}" Visibility="{Binding Attack2BtnVisibility}"/>
-        <Button Content="{Binding Player.AttacksEquipped[2].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Tag="2" Height="29" Width="100" IsEnabled="{Binding Attack3IsEnabled}" Visibility="{Binding Attack3BtnVisibility}"/>
-        <Button Content="{Binding Player.AttacksEquipped[3].AttackName}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Tag="3" Height="29" Width="100" IsEnabled="{Binding Attack4IsEnabled}" Visibility="{Binding Attack4BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[0].AttackName, Mode=OneWay}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="102,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.64,0.653" Tag="0" Height="29" Width="100" IsEnabled="{Binding Attack1IsEnabled}" Visibility="{Binding Attack1BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[1].AttackName, Mode=OneWay}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="242,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.334,0.069" Tag="1" Height="29" Width="100" IsEnabled="{Binding Attack2IsEnabled}" Visibility="{Binding Attack2BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[2].AttackName, Mode=OneWay}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="378,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.299,2.275" Tag="2" Height="29" Width="100" IsEnabled="{Binding Attack3IsEnabled}" Visibility="{Binding Attack3BtnVisibility}"/>
+        <Button Content="{Binding Player.AttacksEquipped[3].AttackName, Mode=OneWay}" Command="{Binding AttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" HorizontalAlignment="Left" Margin="533,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Tag="3" Height="29" Width="100" IsEnabled="{Binding Attack4IsEnabled}" Visibility="{Binding Attack4BtnVisibility}"/>
 
         <!--MONEY-->
         <TextBlock HorizontalAlignment="Left" FontSize="40" FontFamily="Meiryo" Foreground="{Binding MoneyPlayerForeground}" FontWeight="DemiBold"
@@ -119,7 +119,7 @@
             VerticalAlignment="Center">
                 <StackPanel Width="214">
                     <TextBlock Margin="5" Text="Vos attaques non équipées:" FontWeight="Bold" FontFamily="Cambria" FontSize="15" />
-                    <TextBlock Text="{Binding Player.Attacks[0].AttackName}" Width="72" FontSize="12" FontFamily="Bold"/>
+                    <TextBlock Text="{Binding Player.AttacksUnequipped[0].AttackName, Mode=OneWay}" Width="72" FontSize="12" FontFamily="Bold"/>
                     <TextBlock Margin="5" TextWrapping="Wrap"
                                Text="(Cliquer sur le bouton d'attaque de votre choix pour intervertir les attaques)" FontWeight="Light" FontFamily="Cambria" Height="44" Width="181" />
                 </StackPanel>

@@ -27,7 +27,7 @@ public class InGameViewModel : INotifyPropertyChanged
     private readonly ShopWindow? _shopWindow;
     private readonly string[] _imagePaths = { "/photos/1.png", "/photos/2.png", "/photos/3.png", "/photos/3.png" };
     private int _currentImageIndex = 0;
-    private DispatcherTimer _timer;
+    private DispatcherTimer? _timer;
     private readonly MediaElement _backgroundMusic;
     private readonly SoundPlayer _attackSoundPlayer;
     private readonly SoundPlayer _attackSoundMonster;
@@ -298,7 +298,7 @@ public class InGameViewModel : INotifyPropertyChanged
         }
     }
 
-    private string _attackMonsterText;
+    private string _attackMonsterText="";
     public string AttackMonsterText
     {
         get { return _attackMonsterText; }
@@ -312,7 +312,7 @@ public class InGameViewModel : INotifyPropertyChanged
         }
     }
 
-    private string _attackDenjiText;
+    private string _attackDenjiText="";
     public string AttackDenjiText
     {
         get { return _attackDenjiText; }
@@ -326,7 +326,7 @@ public class InGameViewModel : INotifyPropertyChanged
         }
     }
 
-    private ImageSource _animatedImageSource;
+    private ImageSource? _animatedImageSource = null;
     public ImageSource AnimatedImageSource
     {
         get { return _animatedImageSource; }
@@ -392,16 +392,16 @@ public class InGameViewModel : INotifyPropertyChanged
         Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
 
         string workingDirectory = Environment.CurrentDirectory;
-        var attackSoundPlayerPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "metal.wav");
+        string attackSoundPlayerPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "metal.wav");
         _attackSoundPlayer = new SoundPlayer(attackSoundPlayerPath);
-        var attackSoundMonsterPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "monsterattack.wav");
+        string attackSoundMonsterPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "monsterattack.wav");
         _attackSoundMonster = new SoundPlayer(attackSoundMonsterPath);
-        var gameOverSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "fail.wav");
+        string gameOverSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "fail.wav");
         _gameOverSound = new SoundPlayer(gameOverSoundPath);
         _monsterMoveAnimation = monsterStoryboard;
 
         _backgroundMusic = new MediaElement();
-        var inGameSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "background.mp3");
+        string inGameSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "background.mp3");
         _backgroundMusic.Source = new Uri(inGameSoundPath);
         _backgroundMusic.MediaEnded += BackgroundMusic_MediaEnded;
         _backgroundMusic.LoadedBehavior = MediaState.Manual;
@@ -423,7 +423,7 @@ public class InGameViewModel : INotifyPropertyChanged
     public void AdvanceMonster(int attackNumber)
     {
         BubbleMonsterVisibility = Visibility.Visible;
-        AttackMonsterText = Monster.Attacks[attackNumber].AttackName;
+        AttackMonsterText = Monster.AttacksEquipped[attackNumber].AttackName;
         _attackSoundMonster.Play();
         App.Current.Dispatcher.Invoke(() =>
         {
@@ -450,7 +450,7 @@ public class InGameViewModel : INotifyPropertyChanged
         _timer.Tick += Timer_Tick;
     }
 
-    private void Timer_Tick(object sender, EventArgs e)
+    private void Timer_Tick(object? sender, EventArgs e)
     {
         AnimatedImageSource = new BitmapImage(new Uri(_imagePaths[_currentImageIndex], UriKind.RelativeOrAbsolute));
 
@@ -458,7 +458,7 @@ public class InGameViewModel : INotifyPropertyChanged
 
         if (_currentImageIndex == 0)
         {
-            _timer.Stop();
+            _timer?.Stop();
         }
     }
 
@@ -467,7 +467,7 @@ public class InGameViewModel : INotifyPropertyChanged
         int attackNumber = int.Parse((string)parameter);
         if (IsInventoryOpen)
         {
-            if (Player.Attacks.Count != 0)
+            if (Player.AttacksUnequipped.Count != 0)
             {
                 SwapAttackInventory(attackNumber);
             }
@@ -478,7 +478,7 @@ public class InGameViewModel : INotifyPropertyChanged
             _attackSoundPlayer.Play();
 
             _currentImageIndex = 0;
-            _timer.Start();
+            _timer?.Start();
             BubbleDenjiVisibility = Visibility.Visible;
             AttackDenjiText = Player.AttacksEquipped[attackNumber].AttackName;
             Task.Delay(1000).ContinueWith(t =>
@@ -504,7 +504,7 @@ public class InGameViewModel : INotifyPropertyChanged
 
     private void OnOpenShop(object? parameter)
     {
-        _shopWindow.ShowDialog();
+        _shopWindow?.ShowDialog();
     }
 
     private void PlayerTurn()
@@ -618,7 +618,7 @@ public class InGameViewModel : INotifyPropertyChanged
 
     private void SwapAttackInventory(int attackNbr)
     {
-        (Player.AttacksEquipped[attackNbr], Player.Attacks[0]) = (Player.Attacks[0], Player.AttacksEquipped[attackNbr]);
+        (Player.AttacksEquipped[attackNbr], Player.AttacksUnequipped[0]) = (Player.AttacksUnequipped[0], Player.AttacksEquipped[attackNbr]);
     }
 
     private void ShowDeath()

@@ -27,7 +27,7 @@ public class ShopViewModel : INotifyPropertyChanged
     public Action<GameManager.EnumTurn>? OnShopClosed;
 
     public Shop Shop { get; set; } = new();
-    private ShopWindow _shopWindow;
+    private readonly ShopWindow _shopWindow;
     public Player Player { get; private set; }
     private AAttack? _attackToAdd;
 
@@ -258,7 +258,7 @@ public class ShopViewModel : INotifyPropertyChanged
         }
         if (attackIndexToReplace != nothinSelected)
         {
-            Player.Attacks.Add(Player.AttacksEquipped[attackIndexToReplace]);
+            Player.AttacksUnequipped.Add(Player.AttacksEquipped[attackIndexToReplace]);
             Player.AttacksEquipped[attackIndexToReplace] = _attackToAdd;
         }
 

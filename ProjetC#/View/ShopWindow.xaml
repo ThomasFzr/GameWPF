@@ -18,40 +18,40 @@
              <Run Text="$" />
         </TextBlock>
 
-        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[0].AttackName}" Height="48" Visibility="{Binding ShopItem1Visibility}">
+        <Button Margin="151,0,929,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[0].AttackName, Mode=OneWay}" Height="48" Visibility="{Binding ShopItem1Visibility}">
             <StackPanel>
                 <TextBlock> 
-             <Run Text="{Binding Shop.AttacksOnSale[0].AttackName}" />
+             <Run Text="{Binding Shop.AttacksOnSale[0].AttackName, Mode=OneWay}" />
                 </TextBlock>
                 <TextBlock> 
              <Run Text=" 1000$"/>
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[1].AttackName}" Height="48" Visibility="{Binding ShopItem2Visibility}">
+        <Button Margin="394,0,686,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[1].AttackName, Mode=OneWay}" Height="48" Visibility="{Binding ShopItem2Visibility}">
             <StackPanel>
                 <TextBlock> 
-                    <Run Text="{Binding Shop.AttacksOnSale[1].AttackName}" />
+                    <Run Text="{Binding Shop.AttacksOnSale[1].AttackName, Mode=OneWay}" />
                 </TextBlock>
                 <TextBlock> 
                     <Run Text=" 1000$"/>
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[2].AttackName}" Height="48" Visibility="{Binding ShopItem3Visibility}">
+        <Button Margin="652,0,428,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[2].AttackName, Mode=OneWay}" Height="48" Visibility="{Binding ShopItem3Visibility}">
             <StackPanel>
                 <TextBlock> 
-        <Run Text="{Binding Shop.AttacksOnSale[2].AttackName}" />
+        <Run Text="{Binding Shop.AttacksOnSale[2].AttackName, Mode=OneWay}" />
                 </TextBlock>
                 <TextBlock> 
         <Run Text=" 1000$"/>
                 </TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="901,0,179,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[3].AttackName}" Height="48" Visibility="{Binding ShopItem4Visibility}">
+        <Button Margin="901,0,179,0" VerticalAlignment="Center" RenderTransformOrigin="0.581,-0.389" Command="{Binding OnBuyAttackCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Tag="{Binding Shop.AttacksOnSale[3].AttackName, Mode=OneWay}" Height="48" Visibility="{Binding ShopItem4Visibility}">
             <StackPanel>
                 <TextBlock> 
-        <Run Text="{Binding Shop.AttacksOnSale[3].AttackName}" />
+        <Run Text="{Binding Shop.AttacksOnSale[3].AttackName, Mode=OneWay}" />
                 </TextBlock>
                 <TextBlock> 
         <Run Text=" 1000$"/>
@@ -88,10 +88,10 @@
                 VerticalAlignment="Center">
                 <StackPanel Width="214" x:Name="listChoice">
                     <TextBlock Margin="5" Text="Choisir un sort à remplacer:" FontWeight="Bold" FontFamily="Cambria" />
-                    <RadioButton Content="{Binding Player.AttacksEquipped[0].AttackName}" IsChecked="{Binding AttackIsChecked1}"/>
-                    <RadioButton Content="{Binding Player.AttacksEquipped[1].AttackName}" IsChecked="{Binding AttackIsChecked2}"/>
-                    <RadioButton Content="{Binding Player.AttacksEquipped[2].AttackName}" IsChecked="{Binding AttackIsChecked3}"/>
-                    <RadioButton Content="{Binding Player.AttacksEquipped[3].AttackName}" IsChecked="{Binding AttackIsChecked4}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[0].AttackName, Mode=OneWay}" IsChecked="{Binding AttackIsChecked1}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[1].AttackName, Mode=OneWay}" IsChecked="{Binding AttackIsChecked2}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[2].AttackName, Mode=OneWay}" IsChecked="{Binding AttackIsChecked3}"/>
+                    <RadioButton Content="{Binding Player.AttacksEquipped[3].AttackName, Mode=OneWay}" IsChecked="{Binding AttackIsChecked4}"/>
                     <Button  Margin="5" Content="Remplacer" Background="{x:Null}" Command="{Binding ReplaceAttackCommand}" Width="69"/>
                 </StackPanel>
             </Border>

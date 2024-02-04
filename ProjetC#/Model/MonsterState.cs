@@ -7,8 +7,8 @@ public class MonsterState : AState
 {
     private static MonsterState? _instance;
     private int _randomNumber;
-    private Random _random = new();
-    public Action<int> OnMonsterAttack;
+    private readonly Random _random = new();
+    public Action<int>? OnMonsterAttack;
 
     private MonsterState()
     {
@@ -27,11 +27,9 @@ public class MonsterState : AState
     {
         Task.Delay(1250).ContinueWith(t =>
         {
-
-
             _randomNumber = _random.Next(0, GameManager.Instance.Monster.monsterAttackLevel);
             OnMonsterAttack?.Invoke(_randomNumber);
-            GameManager.Instance.Monster.Attacks[_randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
+            GameManager.Instance.Monster.AttacksEquipped[_randomNumber]?.Execute(GameManager.Instance.Monster, GameManager.Instance.Player);
 
             Task.Delay(550).ContinueWith(t =>
             {

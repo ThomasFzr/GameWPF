@@ -15,7 +15,7 @@ public partial class InGameWindow : Window
         Closing += InGameWindow_Closing;
     }
 
-    private void InGameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    private void InGameWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
     {
         Application.Current.Shutdown();
     }

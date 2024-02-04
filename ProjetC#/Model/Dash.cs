@@ -4,7 +4,7 @@ public class Dash : AAttack
 {
     public Dash()
     {
-        AttackName = "Dash";
+        AttackName = "DASH";
         Damage = 30;
         BloodNeeded = 15;
     }

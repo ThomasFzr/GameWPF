@@ -7,7 +7,6 @@ public class ChainsawBlaster : AAttack
         AttackName = "BLASTER";
         Damage = 50;
         BloodNeeded = 30;
-
     }
     public override void Execute(Character sender, Character receiver, bool totem)
     {

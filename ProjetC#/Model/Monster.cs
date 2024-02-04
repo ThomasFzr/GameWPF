@@ -28,12 +28,12 @@ public class Monster : Character
     {
         HealthController = new(100);
         BloodController = new(100);
-        Attacks.Add(new Dash());
+        AttacksEquipped.Add(new Dash());
         HealthController.OnDie += DeathManager;
         IsDead = false;
 
         string workingDirectory = Environment.CurrentDirectory;
-        var _monsterLevelUpSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "level-up.wav");
+        string _monsterLevelUpSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "level-up.wav");
         _monsterLevelUpSound = new SoundPlayer(_monsterLevelUpSoundPath);
     }
 
@@ -48,15 +48,14 @@ public class Monster : Character
         switch (MonsterLevel)
         {
             case 2:
-                Attacks.Add(new Heal());
+                AttacksEquipped.Add(new Heal());
                 monsterAttackLevel++;
                 break;
 
             case 5:
-                Attacks.Add(new ChainsawHurricane());
+                AttacksEquipped.Add(new ChainsawHurricane());
                 monsterAttackLevel++;
                 break;
         }
     }
-
 }

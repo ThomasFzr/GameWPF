@@ -9,13 +9,13 @@ public class Character : INotifyPropertyChanged
     public HealthController? HealthController { get; protected set; }
     public BloodController? BloodController { get; protected set; }
 
-    private ObservableCollection<AAttack> _attacks = new();
-    public ObservableCollection<AAttack> Attacks
+    private ObservableCollection<AAttack> _attacksEquipped = new();
+    public ObservableCollection<AAttack> AttacksEquipped
     {
-        get { return _attacks; }
+        get { return _attacksEquipped; }
         set
         {
-            _attacks = value;
+            _attacksEquipped = value;
             OnPropertyChanged();
         }
     }
