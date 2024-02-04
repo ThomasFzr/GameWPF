@@ -24,6 +24,7 @@ En jeu vous avez accès à votre inventaire, vous permettant d'interchangé une 
 Le jeu s'arrête lorsque vous mourrez.
 
 Bonne chance!
+Et n'oubliez pas d'activer le son.
 
 
 Thomas FOLTZER (ThomasFzr) et Sam Bernolle (F4senna)
