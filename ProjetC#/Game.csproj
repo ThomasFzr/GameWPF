@@ -10,9 +10,11 @@
 
   <ItemGroup>
     <None Remove="music\background.mp3" />
-    <None Remove="music\menu.mp3" />
-    <None Remove="music\metal.wav" />
+    <None Remove="music\coin.wav" />
+    <None Remove="music\fail.wav" />
+    <None Remove="music\level-up.wav" />
     <None Remove="music\monsterattack.wav" />
+    <None Remove="music\playerAttack.wav" />
     <None Remove="photos\1.png" />
     <None Remove="photos\2.png" />
     <None Remove="photos\3.png" />
@@ -36,12 +38,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="music\background.mp3" />
-    <Resource Include="music\menu.mp3" />
-    <Resource Include="music\metal.wav" />
-    <Resource Include="music\monsterattack.wav">
+    <Content Include="music\background.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
+    <Content Include="music\coin.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\fail.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\level-up.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\playerAttack.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="music\monsterAttack.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="photos\1.png" />
     <Resource Include="photos\backpack.png" />
     <Resource Include="photos\bubble2.png" />

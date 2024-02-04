@@ -47,7 +47,7 @@ public class Player : Character
         else
         {
             AttacksUnequipped.Add(newAttack);
-            MessageBox.Show("Attaque ajoutée à votre inventaire mais non équipé.");
+            MessageBox.Show("Attaque ajoutée à votre inventaire mais non équipée.");
         }
     }
 }

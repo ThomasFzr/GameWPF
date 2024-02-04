@@ -298,7 +298,7 @@ public class InGameViewModel : INotifyPropertyChanged
         }
     }
 
-    private string _attackMonsterText="";
+    private string _attackMonsterText = "";
     public string AttackMonsterText
     {
         get { return _attackMonsterText; }
@@ -312,7 +312,7 @@ public class InGameViewModel : INotifyPropertyChanged
         }
     }
 
-    private string _attackDenjiText="";
+    private string _attackDenjiText = "";
     public string AttackDenjiText
     {
         get { return _attackDenjiText; }
@@ -391,22 +391,24 @@ public class InGameViewModel : INotifyPropertyChanged
         Monster.HealthController.OnHealthChanged += ChangeHpColorMonster;
         Player.MoneyController.OnMoneyChanged += ChangeMoneyColorPlayer;
 
-        string workingDirectory = Environment.CurrentDirectory;
-        string attackSoundPlayerPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "metal.wav");
+        string executablePath = AppDomain.CurrentDomain.BaseDirectory;
+
+        string attackSoundPlayerPath = Path.Combine(executablePath, "music", "playerAttack.wav");
         _attackSoundPlayer = new SoundPlayer(attackSoundPlayerPath);
-        string attackSoundMonsterPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "monsterattack.wav");
+        string attackSoundMonsterPath = Path.Combine(executablePath, "music", "monsterAttack.wav");
         _attackSoundMonster = new SoundPlayer(attackSoundMonsterPath);
-        string gameOverSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "fail.wav");
+        string gameOverSoundPath = Path.Combine(executablePath, "music", "fail.wav");
         _gameOverSound = new SoundPlayer(gameOverSoundPath);
         _monsterMoveAnimation = monsterStoryboard;
 
         _backgroundMusic = new MediaElement();
-        string inGameSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "background.mp3");
+        string inGameSoundPath = Path.Combine(executablePath, "music", "background.mp3");
         _backgroundMusic.Source = new Uri(inGameSoundPath);
         _backgroundMusic.MediaEnded += BackgroundMusic_MediaEnded;
         _backgroundMusic.LoadedBehavior = MediaState.Manual;
         _backgroundMusic.UnloadedBehavior = MediaState.Manual;
         _backgroundMusic.Play();
+
         _timer?.Start();
 
         AttackCommand = new RelayCommand(OnAttackButton);
