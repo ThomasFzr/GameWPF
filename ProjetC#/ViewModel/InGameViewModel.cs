@@ -42,7 +42,7 @@ public class InGameViewModel : INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
-    public void OnPropertyChanged([CallerMemberName] string name = null)
+    public void OnPropertyChanged([CallerMemberName] string? name = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
@@ -58,7 +58,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_bubbleMonsterVisibility != value)
             {
                 _bubbleMonsterVisibility = value;
-                OnPropertyChanged(nameof(BubbleMonsterVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -71,7 +71,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_bubbleDenjiVisibility != value)
             {
                 _bubbleDenjiVisibility = value;
-                OnPropertyChanged(nameof(BubbleDenjiVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -85,7 +85,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_playerArrowVisibility != value)
             {
                 _playerArrowVisibility = value;
-                OnPropertyChanged(nameof(PlayerArrowVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -99,7 +99,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_monsterArrowVisibility != value)
             {
                 _monsterArrowVisibility = value;
-                OnPropertyChanged(nameof(MonsterArrowVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -112,7 +112,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_pochitaDmgBoosterVisibility != value)
             {
                 _pochitaDmgBoosterVisibility = value;
-                OnPropertyChanged(nameof(PochitaDmgBoosterVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -126,7 +126,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack1BtnVisibility != value)
             {
                 _attack1BtnVisibility = value;
-                OnPropertyChanged(nameof(Attack1BtnVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -140,7 +140,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack1IsEnabled != value)
             {
                 _attack1IsEnabled = value;
-                OnPropertyChanged(nameof(Attack1IsEnabled));
+                OnPropertyChanged();
             }
         }
     }
@@ -154,7 +154,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack2BtnVisibility != value)
             {
                 _attack2BtnVisibility = value;
-                OnPropertyChanged(nameof(Attack2BtnVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -167,7 +167,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack2IsEnabled != value)
             {
                 _attack2IsEnabled = value;
-                OnPropertyChanged(nameof(Attack2IsEnabled));
+                OnPropertyChanged();
             }
         }
     }
@@ -181,7 +181,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack3BtnVisibility != value)
             {
                 _attack3BtnVisibility = value;
-                OnPropertyChanged(nameof(Attack3BtnVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -195,7 +195,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack3IsEnabled != value)
             {
                 _attack3IsEnabled = value;
-                OnPropertyChanged(nameof(Attack3IsEnabled));
+                OnPropertyChanged();
             }
         }
     }
@@ -209,7 +209,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack4BtnVisibility != value)
             {
                 _attack4BtnVisibility = value;
-                OnPropertyChanged(nameof(Attack4BtnVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -223,7 +223,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attack4IsEnabled != value)
             {
                 _attack4IsEnabled = value;
-                OnPropertyChanged(nameof(Attack4IsEnabled));
+                OnPropertyChanged();
             }
         }
     }
@@ -237,7 +237,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_deathScreenVisibility != value)
             {
                 _deathScreenVisibility = value;
-                OnPropertyChanged(nameof(DeathScreenVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -251,7 +251,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_inventoryVisibility != value)
             {
                 _inventoryVisibility = value;
-                OnPropertyChanged(nameof(InventoryVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -265,7 +265,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_hpMonsterForeground != value)
             {
                 _hpMonsterForeground = value;
-                OnPropertyChanged(nameof(HpMonsterForeground));
+                OnPropertyChanged();
             }
         }
     }
@@ -279,7 +279,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_hpPlayerForeground != value)
             {
                 _hpPlayerForeground = value;
-                OnPropertyChanged(nameof(HpPlayerForeground));
+                OnPropertyChanged();
             }
         }
     }
@@ -293,7 +293,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_moneyPlayerForeground != value)
             {
                 _moneyPlayerForeground = value;
-                OnPropertyChanged(nameof(MoneyPlayerForeground));
+                OnPropertyChanged();
             }
         }
     }
@@ -307,7 +307,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attackMonsterText != value)
             {
                 _attackMonsterText = value;
-                OnPropertyChanged(nameof(AttackMonsterText));
+                OnPropertyChanged();
             }
         }
     }
@@ -321,7 +321,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_attackDenjiText != value)
             {
                 _attackDenjiText = value;
-                OnPropertyChanged(nameof(AttackDenjiText));
+                OnPropertyChanged();
             }
         }
     }
@@ -335,7 +335,7 @@ public class InGameViewModel : INotifyPropertyChanged
             if (_animatedImageSource != value)
             {
                 _animatedImageSource = value;
-                OnPropertyChanged(nameof(AnimatedImageSource));
+                OnPropertyChanged();
             }
         }
     }

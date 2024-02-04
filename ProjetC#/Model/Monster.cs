@@ -8,7 +8,18 @@ public class Monster : Character
 {
     private readonly SoundPlayer _monsterLevelUpSound;
 
-    public int MonsterLevel { get; set; } = 1;
+    private int _monsterLevel = 1;
+    public int MonsterLevel {
+        get
+        {
+            return _monsterLevel;
+        }
+        set
+        {
+            _monsterLevel = value;
+            OnPropertyChanged();
+        }
+    }
     public int monsterAttackLevel = 1;
     public Action<int>? MonsterIsDead;
     public bool IsDead { get; set; }
@@ -32,7 +43,6 @@ public class Monster : Character
         MonsterIsDead?.Invoke(MonsterLevel);
         _monsterLevelUpSound.Play();
         MonsterLevel++;
-        OnPropertyChanged("MonsterLevel");
         HealthController.Hp = (100 + MonsterLevel * 10);
         BloodController.Blood = (100 + MonsterLevel * 10);
         switch (MonsterLevel)

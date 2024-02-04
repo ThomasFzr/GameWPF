@@ -15,7 +15,7 @@ namespace Game.ViewModel;
 public class ShopViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
-    public void OnPropertyChanged([CallerMemberName] string name = null)
+    public void OnPropertyChanged([CallerMemberName] string? name = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
@@ -40,7 +40,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_pochitaVisibility != value)
             {
                 _pochitaVisibility = value;
-                OnPropertyChanged(nameof(PochitaVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -53,7 +53,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_attacksEquipedListVisibility != value)
             {
                 _attacksEquipedListVisibility = value;
-                OnPropertyChanged(nameof(AttacksEquipedListVisibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -67,7 +67,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_shopItem1Visibility != value)
             {
                 _shopItem1Visibility = value;
-                OnPropertyChanged(nameof(ShopItem1Visibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -81,7 +81,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_shopItem2Visibility != value)
             {
                 _shopItem2Visibility = value;
-                OnPropertyChanged(nameof(ShopItem2Visibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -95,7 +95,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_shopItem3Visibility != value)
             {
                 _shopItem3Visibility = value;
-                OnPropertyChanged(nameof(ShopItem3Visibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -109,7 +109,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_shopItem4Visibility != value)
             {
                 _shopItem4Visibility = value;
-                OnPropertyChanged(nameof(ShopItem4Visibility));
+                OnPropertyChanged();
             }
         }
     }
@@ -123,7 +123,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_attackIsChecked1 != value)
             {
                 _attackIsChecked1 = value;
-                OnPropertyChanged(nameof(AttackIsChecked1));
+                OnPropertyChanged();
             }
         }
     }
@@ -137,7 +137,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_attackIsChecked2 != value)
             {
                 _attackIsChecked2 = value;
-                OnPropertyChanged(nameof(AttackIsChecked2));
+                OnPropertyChanged();
             }
         }
     }
@@ -151,7 +151,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_attackIsChecked3 != value)
             {
                 _attackIsChecked3 = value;
-                OnPropertyChanged(nameof(AttackIsChecked3));
+                OnPropertyChanged();
             }
         }
     }
@@ -165,7 +165,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_attackIsChecked4 != value)
             {
                 _attackIsChecked4 = value;
-                OnPropertyChanged(nameof(AttackIsChecked4));
+                OnPropertyChanged();
             }
         }
     }
@@ -179,7 +179,7 @@ public class ShopViewModel : INotifyPropertyChanged
             if (_moneyPlayerForeground != value)
             {
                 _moneyPlayerForeground = value;
-                OnPropertyChanged(nameof(MoneyPlayerForeground));
+                OnPropertyChanged();
             }
         }
     }
