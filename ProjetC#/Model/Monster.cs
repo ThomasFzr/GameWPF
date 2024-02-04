@@ -32,8 +32,8 @@ public class Monster : Character
         HealthController.OnDie += DeathManager;
         IsDead = false;
 
-        string workingDirectory = Environment.CurrentDirectory;
-        string _monsterLevelUpSoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "level-up.wav");
+        string executablePath = AppDomain.CurrentDomain.BaseDirectory;
+        string _monsterLevelUpSoundPath = Path.Combine(executablePath, "music", "level-up.wav");
         _monsterLevelUpSound = new SoundPlayer(_monsterLevelUpSoundPath);
     }
 

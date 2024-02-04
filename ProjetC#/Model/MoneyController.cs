@@ -27,8 +27,8 @@ public class MoneyController : INotifyPropertyChanged
     {
         Money = money;
 
-        string workingDirectory = Environment.CurrentDirectory;
-        var _moneySoundPath = Path.Combine(Directory.GetParent(workingDirectory).Parent.Parent.FullName, "music", "coin.wav");
+        string executablePath = AppDomain.CurrentDomain.BaseDirectory;
+        var _moneySoundPath = Path.Combine(executablePath, "music", "coin.wav");
         _moneySound = new SoundPlayer(_moneySoundPath);
     }
 

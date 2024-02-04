@@ -25,3 +25,6 @@ Le jeu s'arrête lorsque vous mourrez.
 
 Bonne chance!
 Et n'oubliez pas d'activer le son de votre ordinateur :D
+
+Sam Bernolle & Thomas Foltzer 
+Classe B2A
