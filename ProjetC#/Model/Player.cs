@@ -7,8 +7,8 @@ namespace Game.Model;
 public class Player : Character
 {
     const int HP = 200;
-    const int BLOOD = 200;
-    const int MONEY = 0;
+    const int BLOOD = 20;
+    const int MONEY = 100000;
     public MoneyController MoneyController { get; set; }
     public bool IsTotemActivated { get; set; }
     public Action<AAttack>? OnYesClickedAction;

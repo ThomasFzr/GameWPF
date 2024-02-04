@@ -88,7 +88,7 @@
 
         <Image x:Name="monsterArrow" Margin="1088,276,76,367" Source="/photos/arrow.png" Stretch="Fill" Visibility="{Binding MonsterArrowVisibility}" RenderTransformOrigin="7.042,0.692"/>
 
-        <Button Content="Shop" Command="{Binding OpenShopCommand}" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Height="50" Width="95"/>
+        <Button Content="Shop" Command="{Binding OpenShopCommand}" HorizontalAlignment="Left" Margin="1125,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.581,-0.389" Height="50" Width="95" IsEnabled="{Binding IsShopAllowed}"/>
 
         <Image x:Name="pochitaDmgBooster" Margin="-4,549,1148,108" Source="/photos/pochita.png" Stretch="Fill" Visibility="{Binding PochitaDmgBoosterVisibility}"/>
 
@@ -102,7 +102,7 @@
             <TextBlock Text="{Binding AttackMonsterText}" x:Name="AttackMonster" Margin="851,258,219,388"  FontSize="30" FontFamily="Meiryo" Foreground="White" FontWeight="DemiBold"/>
         </Grid>
 
-        <Button Command="{Binding OpenInventoryCommand}" Margin="10,610,0,0" Background="{x:Null}" BorderThickness="0" 
+        <Button Command="{Binding OpenInventoryCommand}" IsEnabled="{Binding IsInventoryAllowed}" Margin="10,610,0,0" Background="{x:Null}" BorderThickness="0" 
                 Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/photos/backpack.png" Height="52" Width="57"></Image>
         </Button>

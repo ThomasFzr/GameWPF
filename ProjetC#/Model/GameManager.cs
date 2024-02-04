@@ -44,9 +44,4 @@ public class GameManager
     {
         IsGameRunning = true;
     }
-
-    public void EndGame()
-    {
-        IsGameRunning = false;
-    }
 }

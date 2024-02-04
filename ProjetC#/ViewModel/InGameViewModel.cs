@@ -33,7 +33,13 @@ public class InGameViewModel : INotifyPropertyChanged
     private readonly SoundPlayer _attackSoundMonster;
     private readonly SoundPlayer _gameOverSound;
     private readonly Storyboard _monsterMoveAnimation;
-    private bool _isInventoryOpen = false;
+    private bool IsInventoryOpen
+    {
+        get
+        {
+            return InventoryVisibility == Visibility.Visible;
+        }
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
     public void OnPropertyChanged([CallerMemberName] string name = null)
@@ -334,6 +340,35 @@ public class InGameViewModel : INotifyPropertyChanged
         }
     }
 
+    private bool _isShopAllowed = true;
+    public bool IsShopAllowed
+    {
+        get
+        {
+            return _isShopAllowed;
+        }
+        private set
+        {
+            _isShopAllowed = value;
+            OnPropertyChanged();
+
+        }
+    }
+    private bool _isInventoryAllowed = true;
+    public bool IsInventoryAllowed
+    {
+        get
+        {
+            return _isInventoryAllowed;
+        }
+        private set
+        {
+            _isInventoryAllowed = value;
+            OnPropertyChanged();
+
+        }
+    }
+
     public InGameViewModel(Storyboard monsterStoryboard)
     {
         InitializeTimer();
@@ -344,6 +379,7 @@ public class InGameViewModel : INotifyPropertyChanged
 
         PlayerState.Instance.OnArrowToShow += PlayerTurn;
         PlayerState.Instance.OnBtnToShow += SwitchBtn;
+        PlayerState.Instance.OnPlayerTurn += AllowInventory;
         MonsterState.Instance.OnMonsterAttack += AdvanceMonster;
 
         _shopWindow.ShopViewModel.Shop.OnBuyAttack += ShowBtnWhenBuy;
@@ -377,6 +413,11 @@ public class InGameViewModel : INotifyPropertyChanged
         OpenShopCommand = new RelayCommand(OnOpenShop);
         OpenInventoryCommand = new RelayCommand(OnInventory);
         QuitCommand = new RelayCommand(OnQuitGame);
+    }
+
+    private void AllowInventory()
+    {
+        IsInventoryAllowed = true;
     }
 
     public void AdvanceMonster(int attackNumber)
@@ -424,12 +465,16 @@ public class InGameViewModel : INotifyPropertyChanged
     private void OnAttackButton(object? parameter)
     {
         int attackNumber = int.Parse((string)parameter);
-        if (_isInventoryOpen && Player.Attacks.Count != 0)
+        if (IsInventoryOpen)
         {
-            SwapAttackInventory(attackNumber);
+            if (Player.Attacks.Count != 0)
+            {
+                SwapAttackInventory(attackNumber);
+            }
         }
-        else if (!_isInventoryOpen)
+        else
         {
+            IsInventoryAllowed = false;
             _attackSoundPlayer.Play();
 
             _currentImageIndex = 0;
@@ -487,10 +532,10 @@ public class InGameViewModel : INotifyPropertyChanged
                 break;
 
             case GameManager.EnumTurn.PlayerTurn:
-                Attack1IsEnabled = (Attack1BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[0].BloodNeeded);
-                Attack2IsEnabled = (Attack2BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[1]?.BloodNeeded);
-                Attack3IsEnabled = (Attack3BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[2]?.BloodNeeded);
-                Attack4IsEnabled = (Attack4BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[3]?.BloodNeeded);
+                Attack1IsEnabled = (Attack1BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[0]?.BloodNeeded && StateMachine.Instance.m_currentState == PlayerState.Instance);
+                Attack2IsEnabled = (Attack2BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[1]?.BloodNeeded && StateMachine.Instance.m_currentState == PlayerState.Instance);
+                Attack3IsEnabled = (Attack3BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[2]?.BloodNeeded && StateMachine.Instance.m_currentState == PlayerState.Instance);
+                Attack4IsEnabled = (Attack4BtnVisibility == Visibility.Visible && Player.BloodController?.Blood >= Player.AttacksEquipped[3]?.BloodNeeded && StateMachine.Instance.m_currentState == PlayerState.Instance);
                 break;
         }
     }
@@ -555,15 +600,19 @@ public class InGameViewModel : INotifyPropertyChanged
 
     private void OnInventory(object? parameter)
     {
-        InventoryVisibility = InventoryVisibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-        _isInventoryOpen = _isInventoryOpen == false;
-        if (_isInventoryOpen)
+        if (StateMachine.Instance.m_currentState == PlayerState.Instance)
         {
-            SwitchBtn(GameManager.EnumTurn.InventoryTurn);
-        }
-        else
-        {
-            SwitchBtn(GameManager.EnumTurn.PlayerTurn);
+            InventoryVisibility = InventoryVisibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            if (IsInventoryOpen)
+            {
+                SwitchBtn(GameManager.EnumTurn.InventoryTurn);
+                IsShopAllowed = false;
+            }
+            else
+            {
+                SwitchBtn(GameManager.EnumTurn.PlayerTurn);
+                IsShopAllowed = true;
+            }
         }
     }
 

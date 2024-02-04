@@ -8,6 +8,7 @@ public class PlayerState : AState
 
     public Action<int>? OnClickedAttack;
     public Action? OnArrowToShow;
+    public Action? OnPlayerTurn;
     public Action<GameManager.EnumTurn>? OnBtnToShow;
 
     private PlayerState()
@@ -27,6 +28,7 @@ public class PlayerState : AState
     {
         OnClickedAttack += ExecuteAttack;
         OnArrowToShow?.Invoke();
+        OnPlayerTurn?.Invoke();
         OnBtnToShow?.Invoke(GameManager.EnumTurn.PlayerTurn);
     }
 
