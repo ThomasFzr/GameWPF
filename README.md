@@ -1,30 +1,26 @@
-Dans le cadre du module C#, nous avons dû réaliser une application WPF, en équipe de 2 pour notre part.
+In the context of the C# module of our school, we had to develop a WPF application in teams of two.
 
-Notre projet est un jeu vidéo tour par tour contre une IA inspiré de l'animé Chainsaw Man.
+Our project is a turn-based video game against an AI inspired by the Chainsaw Man anime.
 
-Vous incarnez le personnage principal de l'animé, Denji et vous affrontez un des méchants de cet uninvers, Katana Man, aussi connu sous le nom de Samurai Sword.
+You play as the main character from the anime, Denji, and face off against one of the villains in this universe, Katana Man, also known as Samurai Sword.
 
-Vous commencez le jeu avec 200 HP, 200 points de sang et 0 $.
-Les points de sang sont comme le mana, les attaques consomment du sang et tuer un monstre vous en redonne.
+You start the game with 200 HP, 200 blood points, and $0. Blood points function like mana; attacks consume blood, and defeating a monster replenishes it.
 
-Au départ vous n'avez que l'attaque de base de Denji, Chainsaw Slash, cette attaque ne consomme pas de sang et inflige 30 de dégâts à l'avdersaire.
+Initially, you only have Denji's basic attack, Chainsaw Slash, which doesn't consume blood and deals 30 damage to the opponent.
 
-Vous avez accès à un shop, dans lequel se trouve plusieurs attaques, un sort de soin qui redonne des HP, un booster de sang qui redonne du sang
-et un Totem Booster, Pochita, qui boost vos dégâts de 15%.
+You have access to a shop offering various attacks, a healing spell to restore HP, a blood booster to replenish blood, and a Totem Booster named Pochita, which boosts your damage by 15%.
 
-Vous ne pouvez acheter ces objets que si vous avez suffisant d'argent.
+You can only purchase these items if you have enough money.
 
-A chaque fois que votre adversaire meurt, il réapparait avec plus de vie, plus de sang et de nouvelles attaques selon son niveau.
+Whenever your opponent dies, they respawn with more life, more blood, and new attacks based on their level.
 
-Si vous achetez une nouvelle attaque dans le shop alors que vous en avez déjà 4 d'équipées (le nombre maximum), un popup apparait, vous proposant 
-de remplacer l'une de vos attaques déjà équipée, ou de simplement mettre l'attaque dans votre inventaire.   
+If you try to buy a new attack from the shop when you already have four equipped (the maximum number), a popup appears, allowing you to either replace one of your equipped attacks or simply put the new attack into your inventory.
 
-En jeu vous avez accès à votre inventaire, accessible en cliquant sur le sac à dos en bas à gauche de l'écran, vous permettant d'intervertir une attaque de votre inventaire avec une déjà équipée, en cliquant sur cette dernière.
+In-game, you can access your inventory by clicking on the backpack icon at the bottom left of the screen, allowing you to swap an attack from your inventory with one that's already equipped by clicking on the latter.
 
-Le jeu s'arrête lorsque vous mourrez.
+The game ends when you die.
 
-Bonne chance!
-Et n'oubliez pas d'activer le son de votre ordinateur :D
+Good luck!
+And don't forget to turn on the sound on your computer :D
 
-Sam Bernolle & Thomas Foltzer 
-Classe B2A
+Sam Bernolle(@f4senna) & Thomas Foltzer(@ThomasFzr)
